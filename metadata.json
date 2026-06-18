@@ -1,0 +1,6 @@
+{
+  "name": "The Cave",
+  "description": "Sito web ufficiale di The Cave - CrossFit® & HYROX a Roma (Mandrione e Cinecittà). Allenamento intenso, forza e community.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
