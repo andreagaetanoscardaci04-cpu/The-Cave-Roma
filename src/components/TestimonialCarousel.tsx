@@ -37,7 +37,7 @@ export default function TestimonialCarousel() {
           display: flex;
           gap: 2rem;
           width: max-content;
-          animation: scrollHorizontal 45s linear infinite;
+          animation: scrollHorizontal 90s linear infinite;
         }
         .animate-scroll-reviews:hover {
           animation-play-state: paused;
@@ -54,11 +54,8 @@ export default function TestimonialCarousel() {
           {tripledReviews.map((rev, idx) => (
             <div 
               key={`${rev.id}-${idx}`}
-              className="w-[300px] sm:w-[400px] bg-near-black border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-yellow/30 hover:bg-white/[0.01] transition-all shrink-0 relative"
+              className="premium-card w-[300px] sm:w-[400px] bg-near-black border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-yellow/30 hover:bg-white/[0.01] transition-all shrink-0 relative"
             >
-              {/* Corner industrial touch */}
-              <div className="absolute top-0 right-0 w-2 h-2 bg-brand-yellow/10 border-t border-r border-[#f2c200]"></div>
-
               <div>
                 {/* Gold Stars */}
                 <div className="flex items-center space-x-1 mb-5">

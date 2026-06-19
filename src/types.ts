@@ -16,6 +16,11 @@ export interface LocationInfo {
   image: string;
 }
 
+export interface ProgramDetail {
+  label: string;
+  value: string;
+}
+
 export interface ProgramInfo {
   id: string;
   title: string;
@@ -23,6 +28,8 @@ export interface ProgramInfo {
   description: string;
   features: string[];
   image: string;
+  longDescription: string[];
+  details: ProgramDetail[];
 }
 
 export interface ReviewInfo {
@@ -40,5 +47,5 @@ export interface ScheduleItem {
 export interface ProgramSchedule {
   programName: string;
   schedules: ScheduleItem[];
-  infoNotes?: string;
+  weekendNote?: string;
 }

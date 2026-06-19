@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BOX_LOCATIONS, CONTACT_PHONE, CONTACT_TEL_LINK } from '../data.ts';
+import { BOX_LOCATIONS, CONTACT_PHONE, CONTACT_TEL_LINK, INSTAGRAM_ACCOUNTS, FACEBOOK_ACCOUNTS } from '../data.ts';
 import { Phone, Mail, Instagram, Facebook } from 'lucide-react';
 
 export default function Footer() {
@@ -77,21 +77,52 @@ export default function Footer() {
             La tana sotterranea nei quartieri di Roma dove il carattere viene forgiato e temperato attraverso il sudore, la ghisa, Rogue ed eccellenti coach certificati. Non è una semplice palestra, è la tua nuova casa.
           </p>
           
-          <div className="flex items-center space-x-4 pt-2">
-            <a 
-              href="#" 
-              aria-label="Instagram Link"
-              className="p-2.5 bg-white/[0.02] border border-white/10 text-white hover:text-brand-yellow hover:border-brand-yellow transition-all"
-            >
-              <Instagram size={18} />
-            </a>
-            <a 
-              href="#" 
-              aria-label="Facebook Link"
-              className="p-2.5 bg-white/[0.02] border border-white/10 text-white hover:text-brand-yellow hover:border-brand-yellow transition-all"
-            >
-              <Facebook size={18} />
-            </a>
+          <div className="pt-2 space-y-2.5">
+            <span className="font-sans text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase block">
+              SEGUICI SU INSTAGRAM
+            </span>
+            <div className="flex flex-wrap items-center gap-3">
+              {INSTAGRAM_ACCOUNTS.map((acc) => (
+                <a
+                  key={acc.label}
+                  href={acc.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Instagram ${acc.label}`}
+                  className="group flex items-center gap-2 pl-2.5 pr-4 py-2 rounded-full bg-white/[0.02] border border-white/10 text-white hover:border-brand-yellow hover:bg-brand-yellow/10 transition-all"
+                >
+                  <span className="p-1.5 rounded-full bg-brand-yellow text-near-black shrink-0">
+                    <Instagram size={14} />
+                  </span>
+                  <span className="font-sans text-xs font-bold tracking-wider uppercase group-hover:text-brand-yellow transition-colors">
+                    {acc.label}
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            <span className="font-sans text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase block pt-1">
+              SEGUICI SU FACEBOOK
+            </span>
+            <div className="flex flex-wrap items-center gap-3">
+              {FACEBOOK_ACCOUNTS.map((acc) => (
+                <a
+                  key={acc.label}
+                  href={acc.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Facebook ${acc.label}`}
+                  className="group flex items-center gap-2 pl-2.5 pr-4 py-2 rounded-full bg-white/[0.02] border border-white/10 text-white hover:border-brand-yellow hover:bg-brand-yellow/10 transition-all"
+                >
+                  <span className="p-1.5 rounded-full bg-brand-yellow text-near-black shrink-0">
+                    <Facebook size={14} />
+                  </span>
+                  <span className="font-sans text-xs font-bold tracking-wider uppercase group-hover:text-brand-yellow transition-colors">
+                    {acc.label}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -137,7 +168,7 @@ export default function Footer() {
             </a>
             <div className="flex items-center space-x-2.5 text-white/60">
               <Mail size={15} />
-              <span className="font-sans text-xs">info@thecaveroma.it</span>
+              <span className="font-sans text-xs">thecavecfmandrione@gmail.com</span>
             </div>
           </div>
         </div>

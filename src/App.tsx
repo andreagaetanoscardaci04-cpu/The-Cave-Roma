@@ -8,6 +8,7 @@ import Stats from './components/Stats.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import LocationsList from './components/LocationsList.tsx';
 import ProgramCards from './components/ProgramCards.tsx';
+import GallerySection from './components/GallerySection.tsx';
 import CoachSection from './components/CoachSection.tsx';
 import TestimonialCarousel from './components/TestimonialCarousel.tsx';
 import ScheduleGrid from './components/ScheduleGrid.tsx';
@@ -18,8 +19,8 @@ import { Star, ShieldAlert, Dumbbell, Flame, Compass } from 'lucide-react';
 
 export default function App() {
   return (
-    <div className="bg-[#070706] text-white min-h-screen font-sans antialiased overflow-x-hidden relative film-grain">
-      
+    <div className="bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#15140f_0%,_#070706_55%)] text-white min-h-screen font-sans antialiased overflow-x-hidden relative film-grain">
+
       {/* Sticky Header Nav */}
       <Navbar />
 
@@ -84,8 +85,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* Diagonal stripes visual indicator */}
-        <div className="absolute bottom-0 inset-x-0 h-4 hazard-stripes z-10"></div>
+        {/* Soft premium seam into the marquee strip below */}
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-yellow/70 to-transparent z-10"></div>
       </section>
 
       {/* Yellow Marquee strip scrolling keywords */}
@@ -175,6 +176,9 @@ export default function App() {
       {/* Programs (Programmi) Component */}
       <ProgramCards />
 
+      {/* Gallery (La Cave in Foto) Component - placeholders until real photos are provided */}
+      <GallerySection />
+
       {/* Testimonials Carousel Component */}
       <TestimonialCarousel />
 
@@ -190,9 +194,9 @@ export default function App() {
       {/* Final CALL TO ACTION: "Entra nella Cave" */}
       <section className="bg-near-black py-28 px-4 md:px-6 relative overflow-hidden text-center border-t border-white/5">
         
-        {/* Subtle diagonal safety stripes background layout decoration */}
-        <div className="absolute inset-0 opacity-5 hazard-stripes pointer-events-none"></div>
-        
+        {/* Soft premium yellow glow backdrop */}
+        <div className="absolute inset-0 glow-yellow-radial pointer-events-none"></div>
+
         <div className="max-w-4xl mx-auto relative z-15 space-y-8">
           
           <span className="inline-block bg-brand-yellow text-near-black font-sans font-extrabold text-xs tracking-[0.3em] px-4 py-1.5 uppercase">

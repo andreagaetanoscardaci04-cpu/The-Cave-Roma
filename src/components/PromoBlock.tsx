@@ -56,14 +56,11 @@ export default function PromoBlock() {
 
         {/* Right column CTA badge card */}
         <div className="w-full lg:w-96 shrink-0 bg-[#121211] border border-brand-yellow p-8 flex flex-col justify-between relative shadow-2xl overflow-hidden">
-          {/* Top hazard strip visual */}
-          <div className="absolute top-0 inset-x-0 h-2 hazard-stripes"></div>
-          
           <div className="mb-8 pt-4">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow block mb-2 uppercase">
               RISPARMIO ATTIVO
             </span>
-            <div className="font-display text-7xl text-white tracking-tighter leading-none mb-4">
+            <div className="font-display text-7xl text-white tracking-wide leading-none mb-4">
               -10%
             </div>
             <p className="font-sans text-xs text-white/50 leading-relaxed uppercase tracking-wider">

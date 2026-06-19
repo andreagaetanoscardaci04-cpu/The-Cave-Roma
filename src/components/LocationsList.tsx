@@ -4,7 +4,7 @@
  */
 
 import { BOX_LOCATIONS, CONTACT_TEL_LINK } from '../data.ts';
-import { MapPin, Phone, Maximize, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, ExternalLink } from 'lucide-react';
 
 export default function LocationsList() {
   return (
@@ -26,38 +26,26 @@ export default function LocationsList() {
         {/* Grid Container */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {BOX_LOCATIONS.map((box) => (
-            <div 
+            <div
               key={box.id}
-              className="bg-[#0e0e0d] border border-white/10 flex flex-col relative overflow-hidden group hover:border-[#f2c200]/40 transition-colors"
+              className="premium-card bg-[#0e0e0d] border border-white/10 flex flex-col relative overflow-hidden group hover:border-[#f2c200]/40 transition-colors"
             >
-              {/* Corner Accent */}
-              <div className="absolute top-0 right-0 w-3 h-3 bg-brand-yellow/10 border-t border-r border-brand-yellow opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              
               {/* Image Container with hover scale */}
-              <div className="relative h-64 md:h-80 overflow-hidden border-b border-white/10">
-                <img 
-                  src={box.image} 
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={box.image}
                   alt={box.name}
-                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-90"
-                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0d]/90 via-transparent to-black/40"></div>
-                
-                {/* Size Badge */}
-                <div className="absolute top-4 left-4 bg-brand-yellow text-near-black font-sans font-extrabold text-sm px-4 py-1 flex items-center gap-1.5 uppercase">
-                  <Maximize size={14} />
-                  {box.size}
-                </div>
-
-                {/* Programs Tag */}
-                <div className="absolute bottom-4 left-4 bg-near-black/85 border border-white/10 text-white font-sans font-semibold text-xs tracking-widest px-3 py-1 uppercase">
-                  {box.programLabel}
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0d] via-transparent to-transparent opacity-60"></div>
               </div>
 
               {/* Text Body */}
               <div className="p-8 flex-1 flex flex-col justify-between">
                 <div>
+                  <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-2">
+                    {box.size} · {box.programLabel}
+                  </span>
                   <h3 className="font-display text-3xl md:text-4xl text-white tracking-tight uppercase mb-4 group-hover:text-brand-yellow transition-colors">
                     {box.name}
                   </h3>

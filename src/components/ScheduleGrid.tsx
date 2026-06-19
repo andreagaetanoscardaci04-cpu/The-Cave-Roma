@@ -4,7 +4,7 @@
  */
 
 import { TIMETABLES } from '../data.ts';
-import { Calendar, Clock, AlertTriangle } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 export default function ScheduleGrid() {
   return (
@@ -31,53 +31,45 @@ export default function ScheduleGrid() {
         {/* 3 Columns Grid for timetables */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {TIMETABLES.map((table, idx) => (
-            <div 
-              key={idx} 
-              className="bg-[#0c0c0b] border border-white/10 flex flex-col justify-between group hover:border-brand-yellow/30 transition-all duration-300"
+            <div
+              key={idx}
+              className="premium-card bg-[#0c0c0b] border border-white/10 flex flex-col overflow-hidden group hover:border-brand-yellow/30 transition-all duration-300"
             >
               {/* Header Box */}
-              <div>
-                <div className="bg-white/[0.02] border-b border-white/10 p-6 flex items-center justify-between group-hover:bg-brand-yellow/[0.01] transition-colors">
-                  <h3 className="font-display text-2xl tracking-wide text-white uppercase group-hover:text-brand-yellow transition-colors">
-                    {table.programName}
-                  </h3>
-                  <Calendar size={18} className="text-brand-yellow/70" />
-                </div>
-
-                {/* Day Groups inside this category */}
-                <div className="p-6 space-y-6">
-                  {table.schedules.map((schedule, sIdx) => (
-                    <div key={sIdx} className="space-y-3">
-                      <span className="font-sans text-xs font-bold tracking-widest text-[#f2c200]/80 uppercase block">
-                        {schedule.dayGroup}
-                      </span>
-                      
-                      {/* Times list in a beautiful grid of slots */}
-                      <div className="grid grid-cols-3 gap-2">
-                        {schedule.times.map((time, tIdx) => (
-                          <div 
-                            key={tIdx} 
-                            className="bg-white/[0.01] border border-white/5 py-2.5 px-3 text-center hover:bg-brand-yellow/10 hover:border-brand-yellow/30 transition-all flex items-center justify-center space-x-1.5"
-                          >
-                            <Clock size={11} className="text-white/30 shrink-0" />
-                            <span className="font-mono text-xs font-bold text-white tracking-wide">
-                              {time}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="bg-white/[0.02] border-b border-white/10 p-6 flex items-center justify-between group-hover:bg-brand-yellow/[0.01] transition-colors">
+                <h3 className="font-display text-2xl tracking-wide text-brand-yellow uppercase">
+                  {table.programName}
+                </h3>
+                <Calendar size={18} className="text-brand-yellow/70" />
               </div>
 
-              {/* Footer Information Note */}
-              {table.infoNotes && (
-                <div className="p-6 bg-white/[0.01] border-t border-white/5 mx-6 mb-6 flex items-start gap-2.5">
-                  <AlertTriangle size={15} className="text-brand-yellow shrink-0 mt-0.5" />
-                  <p className="font-sans text-xs text-white/40 leading-relaxed tracking-wider">
-                    {table.infoNotes}
-                  </p>
+              {/* Day Groups inside this category */}
+              <div className="flex-1">
+                {table.schedules.map((schedule, sIdx) => (
+                  <div key={sIdx}>
+                    {schedule.dayGroup && (
+                      <span className="font-sans text-[11px] font-bold tracking-widest text-white/40 uppercase block px-6 pt-5 pb-2">
+                        {schedule.dayGroup}
+                      </span>
+                    )}
+                    <ul className="divide-y divide-white/5">
+                      {schedule.times.map((time, tIdx) => (
+                        <li
+                          key={tIdx}
+                          className="px-6 py-3 font-mono text-sm tracking-wider text-white/80 hover:bg-brand-yellow/5 transition-colors"
+                        >
+                          {time}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              {/* Weekend Highlight Bar */}
+              {table.weekendNote && (
+                <div className="border-t-2 border-brand-yellow bg-brand-yellow/10 px-6 py-3 text-xs font-black uppercase tracking-widest text-brand-yellow">
+                  {table.weekendNote}
                 </div>
               )}
             </div>

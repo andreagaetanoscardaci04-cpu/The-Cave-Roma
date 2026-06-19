@@ -29,9 +29,9 @@ export default function MarqueeStrip() {
       
       <div className="animate-marquee-loop flex items-center space-x-12">
         {items.map((item, idx) => (
-          <div key={idx} className="flex items-center space-x-12 text-near-black font-display text-lg uppercase tracking-wider">
+          <div key={idx} className="flex items-center space-x-12 text-near-black font-display text-lg uppercase tracking-widest">
             <span>{item}</span>
-            <span className="text-near-black/30 text-2xl">•</span>
+            <span className="text-near-black/40 text-xl">•</span>
           </div>
         ))}
       </div>

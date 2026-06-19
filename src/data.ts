@@ -4,10 +4,24 @@
  */
 
 import { LocationInfo, ProgramInfo, ReviewInfo, ProgramSchedule } from './types.ts';
+import mandrioneImg from './assets/mandrione.webp';
+import cinecittaImg from './assets/cinecitta.webp';
 
 // Phone details
 export const CONTACT_PHONE = "339 643 8066";
 export const CONTACT_TEL_LINK = "tel:+393396438066";
+
+// Instagram accounts per location
+export const INSTAGRAM_ACCOUNTS = [
+  { label: "Mandrione", handle: "@the.cave.crossfit.mandrione", url: "https://www.instagram.com/the.cave.crossfit.mandrione/" },
+  { label: "Cinecittà", handle: "@the.cave.crossfit.cinecitta", url: "https://www.instagram.com/the.cave.crossfit.cinecitta/?hl=it" }
+];
+
+// Facebook accounts per location
+export const FACEBOOK_ACCOUNTS = [
+  { label: "Mandrione", url: "https://www.facebook.com/thecavecrossfitmandrione/?locale=it_IT" },
+  { label: "Cinecittà", url: "https://www.facebook.com/p/The-Cave-CrossFit-Cinecitt%C3%A0-100067877744582/" }
+];
 
 // Locations details
 export const BOX_LOCATIONS: LocationInfo[] = [
@@ -21,8 +35,7 @@ export const BOX_LOCATIONS: LocationInfo[] = [
     city: "Roma",
     programLabel: "CrossFit® + HYROX",
     googleMapsUrl: "https://maps.google.com/?q=Via+del+Mandrione+105,+00181+Roma",
-    // These unsplash images are dark, gritty gym vibes representing the cave mood
-    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=1000"
+    image: mandrioneImg
   },
   {
     id: "cinecitta",
@@ -34,7 +47,7 @@ export const BOX_LOCATIONS: LocationInfo[] = [
     city: "Roma",
     programLabel: "HYROX + CrossFit®",
     googleMapsUrl: "https://maps.google.com/?q=Via+Silicella+103,+00169+Roma",
-    image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=1000"
+    image: cinecittaImg
   }
 ];
 
@@ -51,7 +64,17 @@ export const PROGRAMS: ProgramInfo[] = [
       "Programmazione scalabile per ogni livello",
       "Sviluppo di forza, coordinazione e potenza"
     ],
-    image: "https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&q=80&w=800",
+    longDescription: [
+      "Il CrossFit® a The Cave segue una programmazione costruita su cicli di forza, ginnastica e metabolic conditioning. Ogni WOD è calibrato dai nostri coach L-1 e L-2 per spingerti oltre i tuoi limiti in sicurezza, con scaling personalizzato per ogni livello.",
+      "Le classi includono warm-up tecnico, una parte dedicata a forza o skill ginnico, e il WOD finale ad alta intensità. Si lavora su bilancieri olimpionici, ginnastica (pull-up, muscle-up, handstand) e condizionamento metabolico, in un ambiente competitivo ma supportivo."
+    ],
+    details: [
+      { label: "Durata classe", value: "60 minuti" },
+      { label: "Livello", value: "Dal principiante all'atleta avanzato" },
+      { label: "Coach", value: "Certificati CrossFit® L-1 & L-2" },
+      { label: "Capienza media", value: "12-14 atleti per classe" }
+    ]
   },
   {
     id: "hyrox",
@@ -64,7 +87,17 @@ export const PROGRAMS: ProgramInfo[] = [
       "Ideale per atleti da endurance e forza",
       "Focalizzazione completa sulla metabolic conditioning"
     ],
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
+    longDescription: [
+      "La nostra programmazione HYROX segue lo standard di gara ufficiale: 8 km di corsa alternati a 8 stazioni funzionali (ski erg, sled push/pull, burpee broad jump, rowing, farmers carry, lunges, wall balls). Allenamento specifico race-ready per chi vuole competere o semplicemente migliorare la propria endurance funzionale.",
+      "Ogni sessione è pensata per costruire resistenza muscolare e cardiovascolare, gestione del ritmo e transizioni rapide tra le stazioni — esattamente come in gara."
+    ],
+    details: [
+      { label: "Durata classe", value: "60-75 minuti" },
+      { label: "Livello", value: "Intermedio / avanzato" },
+      { label: "Focus", value: "Endurance funzionale race-ready" },
+      { label: "Attrezzatura", value: "Sled, ski erg, rower, wall ball dedicati" }
+    ]
   },
   {
     id: "opengym",
@@ -77,7 +110,17 @@ export const PROGRAMS: ProgramInfo[] = [
       "Attrezzi di calibrazione professionale Rogue/BLOR",
       "Supervisione e sicurezza in sala"
     ],
-    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800",
+    longDescription: [
+      "L'Open Gym ti dà accesso libero al box fuori dagli orari delle classi guidate. Porta la tua scheda personale o quella del tuo coach e allenati in autonomia su rig, pedane olimpiche e pesi liberi, con supervisione in sala per garantire sicurezza e corretto utilizzo dell'attrezzatura.",
+      "Ideale per chi vuole lavorare su skill specifiche, recuperare un allenamento perso o semplicemente allenarsi con orari flessibili, mantenendo comunque accesso a tutta l'attrezzatura Rogue® e BLOR® del box."
+    ],
+    details: [
+      { label: "Accesso", value: "Lun-Sab, fasce orarie dedicate" },
+      { label: "Livello", value: "Autonomo (richiede esperienza base)" },
+      { label: "Attrezzatura", value: "Rig, pedane olimpiche, pesi liberi" },
+      { label: "Supervisione", value: "Staff in sala" }
+    ]
   },
   {
     id: "personaltraining",
@@ -90,46 +133,134 @@ export const PROGRAMS: ProgramInfo[] = [
       "Nutrizione e programmazione mirate",
       "Lezioni su prenotazione oraria preferenziale"
     ],
-    image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800",
+    longDescription: [
+      "Il Personal Training a The Cave è un percorso 1-a-1 costruito interamente sui tuoi obiettivi: performance atletica, ricomposizione corporea, mobilità o recupero da infortunio. Si parte da un check posturale e biomeccanico completo per individuare squilibri e priorità di lavoro.",
+      "Il coach dedicato programma ogni sessione con progressioni mirate, monitorando costantemente i carichi e i progressi. Su richiesta è disponibile anche supporto nutrizionale per integrare l'allenamento con un piano alimentare coerente."
+    ],
+    details: [
+      { label: "Durata sessione", value: "60 minuti" },
+      { label: "Modalità", value: "1-a-1 con coach dedicato" },
+      { label: "Check iniziale", value: "Valutazione posturale e biomeccanica" },
+      { label: "Prenotazione", value: "Su fascia oraria preferenziale" }
+    ]
   }
 ];
 
-// Horizontal carousel reviews
+// Horizontal carousel reviews — sourced from real Google reviews
 export const REVIEWS: ReviewInfo[] = [
   {
     id: "rev1",
-    text: "Un box incredibile. Attrezzatura Rogue top di gamma e coach fantastici che ti seguono passo dopo passo. Atmosfera unica, vera cultura del ferro.",
-    author: "Marco G.",
+    text: "Il mio posto del cuore. Partire da zero a The Cave CrossFit Mandrione non è un problema: sarai seguito da ottimi professionisti e i risultati non tarderanno ad arrivare.",
+    author: "Rita R.",
     rating: 5
   },
   {
     id: "rev2",
-    text: "Il miglior box per il CrossFit e HYROX a Roma. Gli spazi sono giganteschi (Cinecittà è pazzesco) e la community ti spinge oltre ogni limite.",
-    author: "Valentina D.",
+    text: "Ottimo team, da un anno che mi alleno con loro ed ho già ottenuto i risultati che volevo. Grazie a tutti!!",
+    author: "Andrea A.",
     rating: 5
   },
   {
     id: "rev3",
-    text: "Brutale, pulito, focalizzato. Non è la solita palestra commerciale. Qui si lavora sodo e si forgia il carattere. Disciplina mentale al 100%.",
-    author: "Alessandro M.",
+    text: "Ottima palestra dedicata al CrossFit. Istruttori competenti, simpatici e preparati.",
+    author: "Riccardo V.",
     rating: 5
   },
   {
     id: "rev4",
-    text: "Due sedi spettacolari a Roma. L'abbonamento permette di allenarsi con coach eccezionali e preparatissimi. Una vera tana di campioni.",
-    author: "Giulia F.",
+    text: "Box super attrezzato per il CrossFit e coach perfetti!",
+    author: "Erion B.",
     rating: 5
   },
   {
     id: "rev5",
-    text: "Frequento le classi HYROX e sono entusiasta. Programmazione studiata alla perfezione ed energia pazzesca durante i WOD. Rogue e BLOR di prim'ordine.",
-    author: "Roberto T.",
+    text: "Un posto dove ci si allena come una volta, da provare per capire come ci si allena. Grandi.",
+    author: "Matteo D.P.",
     rating: 5
   },
   {
-    id: "rev6",
-    text: "Competenza, passione e disciplina. Se cerchi un posto dove superare i tuoi limiti fisici e mentali, The Cave è l'unica scelta possibile a Roma.",
-    author: "Francesco S.",
+    id: "rev7",
+    text: "Mi trovo abbastanza bene, tutto come in famiglia.",
+    author: "Giulio C.",
+    rating: 5
+  },
+  {
+    id: "rev8",
+    text: "5 stelle al coach Federica Guerrera.",
+    author: "Antonio Francesco G.",
+    rating: 5
+  },
+  {
+    id: "rev9",
+    text: "Veramente un bell'impianto per attrezzature e spazio.",
+    author: "Aldo C.",
+    rating: 5
+  },
+  {
+    id: "rev10",
+    text: "Very nice and welcoming owner and community. We were in Rome for a long weekend and visited the box, the WOD was great and the atmosphere nice! Thank you for a good time!!",
+    author: "Mai-Britt N.",
+    rating: 5
+  },
+  {
+    id: "rev11",
+    text: "A great box, the coach and the place were really nice. We had a blast the two times we visited during the same weekend. Friendly and quick to answer our Facebook message. Loved it.",
+    author: "Emilia H.",
+    rating: 5
+  },
+  {
+    id: "rev12",
+    text: "Very nice box, thanks a lot!",
+    author: "Mehregan K.",
+    rating: 5
+  },
+  {
+    id: "rev13",
+    text: "Box di CrossFit completo di tutto, dove c'è spazio per tutti! Ambiente divertente e sereno, con coach professionali e preparati. Sicuramente un posto dove tornare!",
+    author: "Roberto M.",
+    rating: 5
+  },
+  {
+    id: "rev14",
+    text: "Coach e proprietari simpatici. Ottimo ambiente. Ho provato altri box, ma solo loro mi hanno convinto!",
+    author: "Salvo",
+    rating: 5
+  },
+  {
+    id: "rev15",
+    text: "Istruttori bravi e qualificati. Ti seguono e ti spiegano bene i movimenti della pesistica e di ogni movimento del CrossFit.",
+    author: "Mathias",
+    rating: 5
+  },
+  {
+    id: "rev16",
+    text: "È stato molto figo.",
+    author: "Alessandro B.",
+    rating: 4
+  },
+  {
+    id: "rev17",
+    text: "Il The Cave è una garanzia!",
+    author: "Eleonora S.",
+    rating: 5
+  },
+  {
+    id: "rev18",
+    text: "Went to this box while staying in Rome for a couple of days. They recently opened and I did a drop-in open gym. They were really friendly and straightforward, the box offers everything a normal WOD asks for. Great experience!",
+    author: "Simon H.",
+    rating: 5
+  },
+  {
+    id: "rev19",
+    text: "Top!!",
+    author: "Elisabetta R.",
+    rating: 5
+  },
+  {
+    id: "rev20",
+    text: "Top",
+    author: "Andrea C.",
     rating: 5
   }
 ];
@@ -141,50 +272,29 @@ export const TIMETABLES: ProgramSchedule[] = [
     schedules: [
       {
         dayGroup: "Lunedì – Venerdì",
-        times: ["07:00", "08:00", "10:00", "13:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
-      },
-      {
-        dayGroup: "Sabato",
-        times: ["10:30", "15:30"]
+        times: ["7:00 – 8:00", "8:00 – 9:00", "10:00 – 11:00", "13:00 – 14:00", "17:00 – 18:00", "18:00 – 19:00", "19:00 – 20:00", "20:00 – 21:00"]
       }
     ],
-    infoNotes: "Le classi hanno una durata di 60 minuti e richiedono la prenotazione tramite app di box."
+    weekendNote: "Sab 10:30 · 15:30"
   },
   {
     programName: "Open Gym",
     schedules: [
       {
         dayGroup: "Lunedì – Venerdì",
-        times: ["09:00", "11:30", "14:00", "16:00 – 19:30"]
-      },
-      {
-        dayGroup: "Sabato",
-        times: ["12:30 – 15:30"]
+        times: ["9:00 – 10:00", "9:00 – 11:00", "11:30 – 13:00", "13:00 – 15:00", "14:00 – 15:30", "16:00 – 18:00", "18:00 – 19:30", "19:30 – 21:00"]
       }
     ],
-    infoNotes: "Accesso libero esclusivo all'area attrezzata per allenarsi sulla propria scheda tecnica di box."
+    weekendNote: "Sab 12:30 – 15:30"
   },
   {
     programName: "HYROX",
     schedules: [
       {
-        dayGroup: "Lunedì",
-        times: ["08:00", "18:00"]
-      },
-      {
-        dayGroup: "Mercoledì",
-        times: ["07:00", "17:00"]
-      },
-      {
-        dayGroup: "Venerdì",
-        times: ["09:00"]
-      },
-      {
-        dayGroup: "Sabato",
-        times: ["11:30"]
+        dayGroup: "Settimana",
+        times: ["Lun 8:00 – 9:00", "Lun 18:00 – 19:00", "Mer 7:00 – 8:00", "Mer 17:00 – 18:00", "Ven 9:00 – 10:00", "Sab 11:30 – 12:30"]
       }
-    ],
-    infoNotes: "Classi focalizzate sull'allenamento specifico in vista delle competizioni ufficiali HYROX."
+    ]
   }
 ];
 
