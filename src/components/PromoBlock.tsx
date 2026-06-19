@@ -98,7 +98,7 @@ export default function PromoBlock() {
                 href={CONTACT_TEL_LINK}
                 className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-base text-center tracking-wider uppercase btn-cut flex items-center justify-center gap-2 col-button hover:bg-white transition-all duration-200"
               >
-                SALTA LA CODA
+                SCOPRI DI PIÙ
                 <ChevronRight size={18} />
               </a>
 
