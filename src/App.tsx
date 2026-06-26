@@ -15,7 +15,7 @@ import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
 import Footer from './components/Footer.tsx';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
-import { Star, Dumbbell, Flame, Compass, MapPin } from 'lucide-react';
+import { Star, Dumbbell, Flame, Compass, MapPin, CalendarDays, Users } from 'lucide-react';
 
 export default function App() {
   return (
@@ -29,7 +29,7 @@ export default function App() {
 
         {/* Background gym image — brighter to show equipment on right */}
         <div
-          className="absolute inset-0 bg-cover bg-center z-0 filter grayscale contrast-110 brightness-[0.38]"
+          className="absolute inset-0 bg-cover bg-center z-0 filter contrast-110 brightness-[0.4]"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=2000')`
           }}
@@ -76,14 +76,16 @@ export default function App() {
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <a
                   href={CONTACT_TEL_LINK}
-                  className="w-full sm:w-auto py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut text-center hover:bg-white transition-all duration-300"
+                  className="w-full sm:w-auto py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2.5 hover:bg-white transition-all duration-300"
                 >
+                  <CalendarDays size={16} />
                   PRENOTA UNA PROVA
                 </a>
                 <a
                   href="#sedi"
-                  className="w-full sm:w-auto py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut text-center hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
+                  className="w-full sm:w-auto py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2.5 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
                 >
+                  <MapPin size={16} />
                   SCOPRI LE SEDI
                 </a>
               </div>
@@ -100,27 +102,27 @@ export default function App() {
             <div className="flex items-center gap-3 shrink-0">
               <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5">
                 <MapPin size={12} className="text-brand-yellow shrink-0" />
-                <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-brand-yellow">LE SEDI A ROMA</span>
+                <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-brand-yellow">DUE SEDI A ROMA</span>
               </div>
               <span className="font-sans text-xs text-white/50 tracking-wide">Mandrione & Cinecittà</span>
             </div>
 
             {/* Stats — right side on desktop */}
             <div className="flex items-stretch gap-0 sm:ml-auto divide-x divide-white/10">
-              <div className="pr-6 sm:pr-8 text-left">
-                <span className="font-display text-base text-white block leading-tight">12+</span>
-                <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase whitespace-nowrap">COACH CERTIFICATI</span>
+              <div className="pr-6 sm:pr-8 flex items-center gap-2.5">
+                <Users size={18} className="text-brand-yellow shrink-0" />
+                <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap leading-relaxed">COACH<br/>CERTIFICATI</span>
               </div>
-              <div className="px-6 sm:px-8 text-left">
-                <span className="font-sans text-sm font-bold text-white block leading-tight tracking-wider">Rogue® / BLOR®</span>
-                <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase whitespace-nowrap">ATTREZZATURA ELITE</span>
+              <div className="px-6 sm:px-8 flex items-center gap-2.5">
+                <Dumbbell size={18} className="text-brand-yellow shrink-0" />
+                <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap leading-relaxed">ROGUE® /<br/>BLOR®</span>
               </div>
-              <div className="pl-6 sm:pl-8 text-left">
-                <div className="flex items-center gap-1">
-                  <span className="font-display text-base text-brand-yellow leading-tight">4.85</span>
-                  <Star size={11} className="fill-brand-yellow text-brand-yellow" />
+              <div className="pl-6 sm:pl-8 flex items-center gap-2.5">
+                <Star size={16} className="fill-brand-yellow text-brand-yellow shrink-0" />
+                <div>
+                  <span className="font-display text-base text-brand-yellow block leading-none">4.85</span>
+                  <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap">SU GOOGLE<br/>OLTRE 200 RECENSIONI</span>
                 </div>
-                <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase whitespace-nowrap">SU GOOGLE · OLTRE 100 RECENSIONI</span>
               </div>
             </div>
           </div>
