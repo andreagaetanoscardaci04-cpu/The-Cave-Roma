@@ -14,8 +14,8 @@ import TestimonialCarousel from './components/TestimonialCarousel.tsx';
 import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
 import Footer from './components/Footer.tsx';
-import { CONTACT_TEL_LINK, CONTACT_PHONE, REVIEWS } from './data.ts';
-import { Star, Dumbbell, Flame, Compass } from 'lucide-react';
+import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
+import { Star, Dumbbell, Flame, Compass, MapPin } from 'lucide-react';
 
 export default function App() {
   return (
@@ -26,83 +26,65 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col pt-20 overflow-hidden">
-        {/* Background gym image */}
+
+        {/* Background gym image — brighter to show equipment on right */}
         <div
-          className="absolute inset-0 bg-cover bg-center z-0 filter grayscale contrast-125 brightness-[0.25]"
+          className="absolute inset-0 bg-cover bg-center z-0 filter grayscale contrast-110 brightness-[0.38]"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=2000')`
           }}
         ></div>
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070706] via-transparent to-black/50 z-0"></div>
+        {/* Left-heavy gradient: opaque on left → semi-transparent on right (desktop) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/90 lg:to-[#070706]/25 to-[#070706]/75 z-0"></div>
+        {/* Bottom fade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/70 via-transparent to-transparent z-0"></div>
 
-        {/* Left industrial decoration line */}
-        <div className="hidden lg:block absolute left-8 top-1/4 bottom-1/4 w-[1px] bg-white/10 z-10">
-          <div className="absolute top-10 left-[-3px] w-1.5 h-1.5 bg-[#f2c200]"></div>
-          <div className="absolute bottom-10 left-[-3px] w-1.5 h-1.5 bg-[#f2c200]"></div>
-        </div>
-
-        {/* Main centered content */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 text-center w-full py-8">
-            <div className="space-y-5 md:space-y-7 animate-fade-in-up">
-
-              {/* Google Rating Badge */}
-              <div className="flex items-center justify-center">
-                <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2.5 backdrop-blur-sm">
-                  <span className="font-display text-2xl text-brand-yellow leading-none">4.8</span>
-                  <div className="flex flex-col items-start gap-1">
-                    <div className="flex gap-0.5">
-                      {[1,2,3,4,5].map((s) => (
-                        <Star key={s} size={11} className="fill-brand-yellow text-brand-yellow" />
-                      ))}
-                    </div>
-                    <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase leading-none">Google Reviews</span>
-                  </div>
-                  <span className="text-white/20 text-sm">|</span>
-                  <span className="font-sans text-[11px] text-white/50 tracking-wide">+100 recensioni</span>
-                </div>
-              </div>
+        {/* Main content — left aligned */}
+        <div className="flex-1 flex items-center">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full py-8">
+            <div className="max-w-xl space-y-6 md:space-y-7">
 
               {/* THE CAVE Logo */}
-              <div className="select-none py-2">
-                <h1 className="font-display leading-[0.8] tracking-widest text-[#ffffff] uppercase flex flex-col items-center">
-                  <span className="text-[clamp(80px,15vw,210px)] font-black text-white leading-none">
+              <div className="select-none">
+                <h1 className="font-display leading-[0.82] tracking-tight uppercase">
+                  <span className="block text-[clamp(90px,16vw,220px)] font-black text-white leading-none">
                     THE
                   </span>
-                  <span className="text-[clamp(90px,17vw,240px)] font-black text-brand-yellow leading-none text-shadow-xl">
+                  <span className="block text-[clamp(100px,18vw,250px)] font-black text-brand-yellow leading-none">
                     CAVE
                   </span>
                 </h1>
               </div>
 
-              {/* Subline */}
-              <div className="max-w-3xl mx-auto border-t border-b border-white/10 py-4">
-                <p className="font-sans text-sm sm:text-base md:text-lg font-bold tracking-[0.2em] uppercase text-white/90">
-                  900 m² • CrossFit® + HYROX • DUE SEDI A ROMA (MANDRIONE & CINECITTÀ)
-                </p>
-              </div>
+              {/* Subtitle */}
+              <p className="font-sans text-sm font-bold tracking-[0.22em] text-white/90 uppercase">
+                THE CAVE: BOX DI CROSSFIT & HYROX
+              </p>
 
-              {/* CTA Buttons */}
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap max-w-2xl mx-auto">
+              {/* Stats pill */}
+              <p className="font-sans text-xs font-bold tracking-widest text-white/50 uppercase">
+                900+ m² • 2 SEDI A ROMA • CROSSFIT® • HYROX
+              </p>
+
+              {/* Body copy */}
+              <p className="font-sans text-base md:text-lg text-white/70 leading-relaxed">
+                Allenamenti funzionali ad alta intensità. Community reale. Zero compromessi.
+              </p>
+
+              {/* CTAs */}
+              <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <a
                   href={CONTACT_TEL_LINK}
                   className="w-full sm:w-auto py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut text-center hover:bg-white transition-all duration-300"
                 >
-                  PROVA GRATIS
+                  PRENOTA UNA PROVA
                 </a>
                 <a
                   href="#sedi"
-                  className="w-full sm:w-auto py-4 px-7 bg-near-black/70 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut text-center hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
+                  className="w-full sm:w-auto py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut text-center hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
                 >
-                  LE NOSTRE SEDI
-                </a>
-                <a
-                  href="#coaches"
-                  className="w-full sm:w-auto py-4 px-7 bg-near-black/70 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut text-center hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
-                >
-                  LO STAFF
+                  SCOPRI LE SEDI
                 </a>
               </div>
 
@@ -110,49 +92,43 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mini Google Reviews Carousel — bottom of hero */}
-        <div className="relative z-10 w-full overflow-hidden pb-10 md:pb-14">
-          <style>{`
-            @keyframes scrollHeroReviews {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            .animate-hero-reviews {
-              display: flex;
-              gap: 0.75rem;
-              width: max-content;
-              animation: scrollHeroReviews 55s linear infinite;
-            }
-            .animate-hero-reviews:hover {
-              animation-play-state: paused;
-            }
-          `}</style>
-          <div className="absolute left-0 inset-y-0 w-10 md:w-20 bg-gradient-to-r from-[#070706] to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 inset-y-0 w-10 md:w-20 bg-gradient-to-l from-[#070706] to-transparent z-10 pointer-events-none"></div>
-          <div className="animate-hero-reviews px-3">
-            {[...REVIEWS, ...REVIEWS].map((rev, idx) => (
-              <div
-                key={`hero-rev-${rev.id}-${idx}`}
-                className="shrink-0 w-[230px] sm:w-[280px] bg-white/[0.04] border border-white/10 p-4 text-left"
-              >
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(rev.rating)].map((_, s) => (
-                    <Star key={s} size={11} className="fill-brand-yellow text-brand-yellow" />
-                  ))}
-                </div>
-                <p className="font-sans text-[11px] text-white/70 italic leading-relaxed mb-2" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                  "{rev.text}"
-                </p>
-                <span className="font-sans text-[10px] text-white/40 uppercase tracking-wider">
-                  {rev.author}
-                </span>
+        {/* Bottom info bar */}
+        <div className="relative z-10 border-t border-white/10 bg-near-black/60 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0">
+
+            {/* Sedi badge + label */}
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5">
+                <MapPin size={12} className="text-brand-yellow shrink-0" />
+                <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-brand-yellow">LE SEDI A ROMA</span>
               </div>
-            ))}
+              <span className="font-sans text-xs text-white/50 tracking-wide">Mandrione & Cinecittà</span>
+            </div>
+
+            {/* Stats — right side on desktop */}
+            <div className="flex items-stretch gap-0 sm:ml-auto divide-x divide-white/10">
+              <div className="pr-6 sm:pr-8 text-left">
+                <span className="font-display text-base text-white block leading-tight">12+</span>
+                <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase whitespace-nowrap">COACH CERTIFICATI</span>
+              </div>
+              <div className="px-6 sm:px-8 text-left">
+                <span className="font-sans text-sm font-bold text-white block leading-tight tracking-wider">Rogue® / BLOR®</span>
+                <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase whitespace-nowrap">ATTREZZATURA ELITE</span>
+              </div>
+              <div className="pl-6 sm:pl-8 text-left">
+                <div className="flex items-center gap-1">
+                  <span className="font-display text-base text-brand-yellow leading-tight">4.85</span>
+                  <Star size={11} className="fill-brand-yellow text-brand-yellow" />
+                </div>
+                <span className="font-sans text-[9px] text-white/40 tracking-widest uppercase whitespace-nowrap">SU GOOGLE · OLTRE 100 RECENSIONI</span>
+              </div>
+            </div>
           </div>
+
+          {/* Hazard stripe */}
+          <div className="h-2.5 hazard-stripes opacity-80"></div>
         </div>
 
-        {/* Bottom seam */}
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-yellow/70 to-transparent z-10"></div>
       </section>
 
       {/* Yellow Marquee strip scrolling keywords */}
