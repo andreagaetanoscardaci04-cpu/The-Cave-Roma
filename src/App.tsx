@@ -15,7 +15,7 @@ import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
 import Footer from './components/Footer.tsx';
 import { CONTACT_TEL_LINK, CONTACT_PHONE, REVIEWS } from './data.ts';
-import { Star, ShieldAlert, Dumbbell, Flame, Compass } from 'lucide-react';
+import { Star, Dumbbell, Flame, Compass } from 'lucide-react';
 
 export default function App() {
   return (
@@ -236,6 +236,61 @@ export default function App() {
         </div>
       </section>
 
+      {/* Community & Events Section */}
+      <section id="community" className="bg-near-black py-24 px-4 md:px-6 border-b border-white/5 relative">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div className="max-w-7xl mx-auto">
+
+          <div className="mb-14 text-center md:text-left">
+            <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
+              PEOPLE FIRST
+            </span>
+            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
+              LA NOSTRA <span className="text-outline-yellow">COMMUNITY</span>
+            </h2>
+            <div className="w-24 h-1 bg-brand-yellow mt-4 mx-auto md:mx-0"></div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+            <div className="lg:col-span-5 space-y-5">
+              <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
+                A The Cave non ci si allena da soli.
+              </p>
+              <div className="space-y-4 font-sans text-sm text-white/60 tracking-wide leading-relaxed">
+                <p>
+                  La community è il cuore del box. Atleti di ogni livello, dal principiante assoluto all'agonista, condividono spazio, sudore e progressi. Qui si entra come nuovi e si esce come famiglia.
+                </p>
+                <p>
+                  Organizziamo eventi regolari, sessioni a tema e gare interne per mantenere alta la motivazione e rinsaldare il legame tra i membri. Non è marketing: è il modo in cui funzionano i veri box CrossFit.
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { Icon: Dumbbell, label: "WOD SOCIALI", desc: "Sessioni di gruppo speciali con WOD tematici e sfide collettive aperte a tutti i livelli." },
+                { Icon: Flame, label: "GARE INTERNE", desc: "Competizioni amichevoli mensili per misurare i progressi e alimentare l'agonismo sano." },
+                { Icon: Compass, label: "DROP-IN WELCOME", desc: "Atleti visitatori sempre benvenuti. Il tuo network di box si estende fino a Roma." }
+              ].map(({ Icon, label, desc }, idx) => (
+                <div key={idx} className="bg-[#0c0c0b] border border-white/10 p-6 hover:border-brand-yellow/30 transition-colors group">
+                  <div className="mb-4 w-10 h-10 bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center group-hover:bg-brand-yellow/20 transition-colors">
+                    <Icon size={20} className="text-brand-yellow" />
+                  </div>
+                  <h4 className="font-display text-lg text-white uppercase mb-2 tracking-tight group-hover:text-brand-yellow transition-colors">
+                    {label}
+                  </h4>
+                  <p className="font-sans text-xs text-white/50 leading-relaxed tracking-wider">
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* Locations (Sedi) Component */}
       <LocationsList />
 
@@ -253,9 +308,6 @@ export default function App() {
 
       {/* Timetable (Orari) Grid Component */}
       <ScheduleGrid />
-
-      {/* Armed forces discount Promo section */}
-      <PromoBlock />
 
       {/* Final CALL TO ACTION: "Entra nella Cave" */}
       <section className="bg-near-black py-28 px-4 md:px-6 relative overflow-hidden text-center border-t border-white/5">
@@ -297,6 +349,44 @@ export default function App() {
             OPPURE CHIAMACI AL: <strong className="text-white">{CONTACT_PHONE}</strong>
           </div>
 
+        </div>
+      </section>
+
+      {/* Convenzioni — sconto Forze Armate e Forze dell'Ordine */}
+      <PromoBlock />
+
+      {/* Affiliazioni ufficiali */}
+      <section id="affiliazioni" className="bg-[#0c0c0b] py-20 px-4 md:px-6 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
+              CERTIFICAZIONI E PARTNERSHIP
+            </span>
+            <h2 className="font-display text-4xl md:text-6xl tracking-tight leading-none text-white uppercase">
+              AFFILIAZIONI <span className="text-outline-yellow">UFFICIALI</span>
+            </h2>
+            <div className="w-24 h-1 bg-brand-yellow mt-4 mx-auto"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="border border-white/10 p-8 text-center hover:border-brand-yellow/40 transition-colors group">
+              <div className="w-16 h-16 bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center mx-auto mb-5 group-hover:bg-brand-yellow/20 transition-colors">
+                <span className="font-display text-xl text-brand-yellow leading-none">CF®</span>
+              </div>
+              <h4 className="font-display text-2xl text-white uppercase mb-3">CrossFit® Affiliate</h4>
+              <p className="font-sans text-xs text-white/40 tracking-wider leading-relaxed">
+                Box affiliato ufficiale CrossFit® LLC. Programmazione, standard e attrezzatura certificati.
+              </p>
+            </div>
+            <div className="border border-white/10 p-8 text-center hover:border-brand-yellow/40 transition-colors group">
+              <div className="w-16 h-16 bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center mx-auto mb-5 group-hover:bg-brand-yellow/20 transition-colors">
+                <span className="font-display text-xl text-brand-yellow leading-none">HRX</span>
+              </div>
+              <h4 className="font-display text-2xl text-white uppercase mb-3">HYROX Partner Box</h4>
+              <p className="font-sans text-xs text-white/40 tracking-wider leading-relaxed">
+                Partner Box ufficiale HYROX GmbH. Allenamento specifico race-ready per le gare ufficiali.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -6,100 +6,122 @@
 import { useState } from 'react';
 import { PROGRAMS, CONTACT_TEL_LINK } from '../data.ts';
 import { ProgramInfo } from '../types.ts';
-import { ArrowUpRight, Check, X } from 'lucide-react';
+import { ArrowUpRight, Check, X, Clock } from 'lucide-react';
 
 export default function ProgramCards() {
   const [activeProgram, setActiveProgram] = useState<ProgramInfo | null>(null);
 
+  const classiOrdinarie = PROGRAMS.filter(p => ['crossfit', 'hyrox', 'opengym'].includes(p.id));
+  const programmazioni = PROGRAMS.filter(p => p.id === 'personaltraining');
+
+  const renderCard = (prog: ProgramInfo, idx: number) => (
+    <div
+      key={prog.id}
+      className="premium-card bg-near-black border border-white/10 p-8 md:p-10 flex flex-col justify-between group relative overflow-hidden hover:border-[#f2c200]/30 transition-colors"
+    >
+      <div className="absolute -bottom-10 -right-4 font-display text-[150px] leading-none text-white/[0.02] select-none pointer-events-none group-hover:text-brand-yellow/[0.03] transition-colors">
+        0{idx + 1}
+      </div>
+
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="font-display text-3xl md:text-4xl text-white tracking-tight uppercase group-hover:text-brand-yellow transition-colors">
+            {prog.title}
+          </h3>
+          <button
+            type="button"
+            onClick={() => setActiveProgram(prog)}
+            aria-label={`Più info su ${prog.title}`}
+            className="p-2.5 border border-white/10 text-brand-yellow rounded-full group-hover:border-brand-yellow group-hover:bg-brand-yellow group-hover:text-near-black transition-all"
+          >
+            <ArrowUpRight size={18} />
+          </button>
+        </div>
+
+        <p className="font-sans text-xs font-bold tracking-widest text-[#f2c200]/80 uppercase mb-4">
+          " {prog.quote} "
+        </p>
+
+        <p className="font-sans text-sm text-white/50 tracking-wide leading-relaxed mb-6">
+          {prog.description}
+        </p>
+
+        <ul className="space-y-3 mb-8">
+          {prog.features.map((feat, fIdx) => (
+            <li key={fIdx} className="flex items-start gap-2.5">
+              <div className="bg-[#f2c200]/10 border border-[#f2c200]/30 rounded-full p-0.5 mt-0.5">
+                <Check className="text-brand-yellow" size={12} />
+              </div>
+              <span className="font-sans text-xs font-semibold tracking-wide text-white/80 uppercase">
+                {feat}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="pt-6 border-t border-white/5 flex items-center justify-between">
+        <span className="font-sans text-[10px] tracking-widest text-white/30 uppercase">
+          ATTREZZATURE D'ELITE Rogue & BLOR
+        </span>
+        <button
+          type="button"
+          onClick={() => setActiveProgram(prog)}
+          className="font-sans text-xs tracking-widest text-brand-yellow font-bold uppercase hover:underline cursor-pointer"
+        >
+          INFO CORSO
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <section id="programmi" className="bg-[#0c0c0b] py-24 px-4 md:px-6 border-b border-white/5 relative">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      
+
       <div className="max-w-7xl mx-auto">
-        {/* Section Heading */}
-        <div className="mb-16 md:mb-20 text-right md:text-left flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
+
+        {/* ---- 01: Classi e Corsi ---- */}
+        <div className="mb-24">
+          <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
+                01 — CLASSI E CORSI
+              </span>
+              <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
+                ATTIVITÀ <span className="text-outline-yellow">ORDINARIE</span>
+              </h2>
+            </div>
+            <a
+              href="#orari"
+              className="inline-flex items-center gap-2 py-3 px-6 border border-brand-yellow/50 text-brand-yellow font-sans font-bold text-sm tracking-widest uppercase btn-cut hover:bg-brand-yellow hover:text-near-black transition-all duration-200 shrink-0 self-start md:self-auto"
+            >
+              <Clock size={15} />
+              VEDI GLI ORARI
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {classiOrdinarie.map((prog, idx) => renderCard(prog, idx))}
+          </div>
+        </div>
+
+        {/* ---- 02: Programmazioni Personalizzate ---- */}
+        <div>
+          <div className="mb-14">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-              I NOSTRI CORSI / ATTIVITÀ
+              02 — PROGRAMMAZIONI
             </span>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              PROGRAMMI DI <span className="text-outline-yellow">FORZA</span>
+              PERCORSI <span className="text-outline-yellow">PERSONALIZZATI</span>
             </h2>
           </div>
-          <p className="font-sans text-sm text-white/40 tracking-wider max-w-md">
-            Preparazione atletica, disciplina mentale e macchinari d'elite per aiutarti a superare ogni barriera fisica.
-          </p>
+
+          <div className="max-w-2xl">
+            {programmazioni.map((prog, idx) => renderCard(prog, idx))}
+          </div>
         </div>
 
-        {/* Programs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROGRAMS.map((prog, idx) => (
-            <div
-              key={prog.id}
-              className="premium-card bg-near-black border border-white/10 p-8 md:p-10 flex flex-col justify-between group relative overflow-hidden hover:border-[#f2c200]/30 transition-colors"
-            >
-              {/* Massive subtle background index number */}
-              <div className="absolute -bottom-10 -right-4 font-display text-[150px] leading-none text-white/[0.02] select-none pointer-events-none group-hover:text-brand-yellow/[0.03] transition-colors">
-                0{idx + 1}
-              </div>
-
-              <div>
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-display text-3xl md:text-4xl text-white tracking-tight uppercase group-hover:text-brand-yellow transition-colors">
-                    {prog.title}
-                  </h3>
-                  <button
-                    type="button"
-                    onClick={() => setActiveProgram(prog)}
-                    aria-label={`Più info su ${prog.title}`}
-                    className="p-2.5 border border-white/10 text-brand-yellow rounded-full group-hover:border-brand-yellow group-hover:bg-brand-yellow group-hover:text-near-black transition-all"
-                  >
-                    <ArrowUpRight size={18} />
-                  </button>
-                </div>
-
-                {/* Quote */}
-                <p className="font-sans text-xs font-bold tracking-widest text-[#f2c200]/80 uppercase mb-4">
-                  “ {prog.quote} ”
-                </p>
-
-                {/* Description */}
-                <p className="font-sans text-sm text-white/50 tracking-wide leading-relaxed mb-6">
-                  {prog.description}
-                </p>
-
-                {/* Features list */}
-                <ul className="space-y-3 mb-8">
-                  {prog.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-2.5">
-                      <div className="bg-[#f2c200]/10 border border-[#f2c200]/30 rounded-full p-0.5 mt-0.5">
-                        <Check className="text-brand-yellow" size={12} />
-                      </div>
-                      <span className="font-sans text-xs font-semibold tracking-wide text-white/80 uppercase">
-                        {feat}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Bottom Decoration */}
-              <div className="pt-6 border-t border-white/5 flex items-center justify-between">
-                <span className="font-sans text-[10px] tracking-widest text-white/30 uppercase">
-                  ATTREZZATURE D'ELITE Rogue & BLOR
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setActiveProgram(prog)}
-                  className="font-sans text-xs tracking-widest text-brand-yellow font-bold uppercase hover:underline cursor-pointer"
-                >
-                  INFO CORSO
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Program Info Modal */}
@@ -135,7 +157,7 @@ export default function ProgramCards() {
                 {activeProgram.title}
               </h3>
               <p className="font-sans text-xs font-bold tracking-widest text-[#f2c200]/80 uppercase mb-4">
-                “ {activeProgram.quote} ”
+                " {activeProgram.quote} "
               </p>
 
               <div className="space-y-4 mb-6">
@@ -146,7 +168,6 @@ export default function ProgramCards() {
                 ))}
               </div>
 
-              {/* Quick facts grid */}
               <div className="grid grid-cols-2 gap-3 mb-8">
                 {activeProgram.details.map((d, dIdx) => (
                   <div key={dIdx} className="bg-white/[0.02] border border-white/5 p-3">
