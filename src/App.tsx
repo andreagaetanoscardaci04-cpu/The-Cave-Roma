@@ -130,18 +130,15 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile-only: full-width photo below info bar, cropped slightly top & bottom */}
-        <div className="block lg:hidden w-full overflow-hidden aspect-[6/7]">
+        {/* Mobile-only: photo cropped to square — ends at barbell level */}
+        <div className="block lg:hidden w-full overflow-hidden aspect-[1/1]">
           <img
             src={heroMobileBg}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-top"
           />
         </div>
-
-        {/* Hazard stripe */}
-        <div className="lg:relative lg:z-10 h-2.5 hazard-stripes opacity-80"></div>
 
       </section>
 
