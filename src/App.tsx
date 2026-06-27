@@ -44,50 +44,50 @@ export default function App() {
 
         {/* Main content — left aligned */}
         <div className="flex-1 flex items-center lg:relative lg:z-10">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full py-8">
-            <div className="max-w-xl space-y-6 md:space-y-7">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full py-4 lg:py-8">
+            <div className="max-w-xl space-y-3 md:space-y-6 lg:space-y-7">
 
               {/* THE CAVE Logo */}
               <div className="select-none">
-                <h1 className="font-display leading-[0.82] tracking-tight uppercase">
-                  <span className="block text-[clamp(90px,16vw,220px)] font-black text-white leading-none">
+                <h1 className="font-display leading-[0.82] tracking-tight uppercase text-center lg:text-left">
+                  <span className="block text-[70px] lg:text-[clamp(90px,16vw,220px)] font-black text-white leading-none">
                     THE
                   </span>
-                  <span className="block text-[clamp(100px,18vw,250px)] font-black text-brand-yellow leading-none">
+                  <span className="block text-[78px] lg:text-[clamp(100px,18vw,250px)] font-black text-brand-yellow leading-none">
                     CAVE
                   </span>
                 </h1>
               </div>
 
               {/* Subtitle */}
-              <p className="font-sans text-sm font-bold tracking-[0.22em] text-white/90 uppercase">
+              <p className="font-sans text-xs lg:text-sm font-bold tracking-[0.22em] text-white/90 uppercase">
                 THE CAVE: BOX DI CROSSFIT & HYROX
               </p>
 
-              {/* Stats pill */}
-              <p className="font-sans text-xs font-bold tracking-widest text-white/50 uppercase">
+              {/* Stats pill — hidden on mobile to save space */}
+              <p className="hidden md:block font-sans text-xs font-bold tracking-widest text-white/50 uppercase">
                 900+ m² • 2 SEDI A ROMA • CROSSFIT® • HYROX
               </p>
 
               {/* Body copy */}
-              <p className="font-sans text-base md:text-lg text-white/70 leading-relaxed">
+              <p className="font-sans text-xs md:text-base lg:text-lg text-white/70 leading-relaxed">
                 Allenamenti funzionali ad alta intensità. Community reale. Zero compromessi.
               </p>
 
               {/* CTAs */}
-              <div className="pt-2 flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 lg:gap-3 lg:pt-2">
                 <a
                   href={CONTACT_TEL_LINK}
-                  className="w-full sm:w-auto py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2.5 hover:bg-white transition-all duration-300"
+                  className="w-full sm:w-auto py-2.5 lg:py-4 px-6 lg:px-8 bg-brand-yellow text-near-black font-sans font-black text-xs lg:text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-300"
                 >
-                  <CalendarDays size={16} />
+                  <CalendarDays size={14} />
                   PRENOTA UNA PROVA
                 </a>
                 <a
                   href="#sedi"
-                  className="w-full sm:w-auto py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2.5 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
+                  className="w-full sm:w-auto py-2.5 lg:py-4 px-6 lg:px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-xs lg:text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
                 >
-                  <MapPin size={16} />
+                  <MapPin size={14} />
                   SCOPRI LE SEDI
                 </a>
               </div>
@@ -123,7 +123,7 @@ export default function App() {
                 <Star size={16} className="fill-brand-yellow text-brand-yellow shrink-0" />
                 <div>
                   <span className="font-display text-base text-brand-yellow block leading-none">4.85</span>
-                  <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap">SU GOOGLE<br/>OLTRE 200 RECENSIONI</span>
+                  <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap">SU GOOGLE</span>
                 </div>
               </div>
             </div>
