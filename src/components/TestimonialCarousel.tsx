@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { REVIEWS } from '../data.ts';
-import { Star, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Star, X } from 'lucide-react';
 
 type Review = (typeof REVIEWS)[0];
 
@@ -79,36 +79,17 @@ export default function TestimonialCarousel() {
       {/* Hide webkit scrollbar */}
       <style>{`.reviews-track::-webkit-scrollbar { display: none; }`}</style>
 
-      {/* Header + Arrow controls */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="text-center md:text-left">
-          <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-            I NOSTRI MEMBRI DICONO DI NOI
-          </span>
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-            VOCI DI <span className="text-outline-yellow">SUCCESSO</span>
-          </h2>
-          <p className="font-sans text-sm text-white/40 tracking-wider mt-4 max-w-lg mx-auto md:mx-0">
-            Leggi le recensioni certificate dei nostri iscritti che hanno forgiato la propria mente e il proprio corpo a The Cave.
-          </p>
-        </div>
-
-        <div className="flex gap-3 shrink-0 justify-center md:justify-end">
-          <button
-            onClick={() => { setIsPaused(true); scroll(-1); }}
-            className="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:bg-brand-yellow hover:text-near-black hover:border-brand-yellow transition-all duration-200"
-            aria-label="Recensione precedente"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={() => { setIsPaused(true); scroll(1); }}
-            className="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:bg-brand-yellow hover:text-near-black hover:border-brand-yellow transition-all duration-200"
-            aria-label="Recensione successiva"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 text-center md:text-left">
+        <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
+          I NOSTRI MEMBRI DICONO DI NOI
+        </span>
+        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
+          VOCI DI <span className="text-outline-yellow">SUCCESSO</span>
+        </h2>
+        <p className="font-sans text-sm text-white/40 tracking-wider mt-4 max-w-lg mx-auto md:mx-0">
+          Leggi le recensioni certificate dei nostri iscritti che hanno forgiato la propria mente e il proprio corpo a The Cave.
+        </p>
       </div>
 
       {/* Scrollable track */}
