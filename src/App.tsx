@@ -27,26 +27,23 @@ export default function App() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col pt-20 overflow-hidden">
+      <section className="flex flex-col pt-20 overflow-hidden lg:relative lg:min-h-screen">
 
-        {/* Background gym image — desktop vs mobile responsive */}
-        <picture className="absolute inset-0 block w-full h-full z-0">
-          <source media="(min-width: 768px)" srcSet={heroDesktopBg} />
+        {/* Desktop-only: absolute background image */}
+        <picture className="hidden lg:block lg:absolute lg:inset-0 lg:w-full lg:h-full z-0">
           <img
-            src={heroMobileBg}
+            src={heroDesktopBg}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-[center_30%] md:object-[60%_center] brightness-90"
+            className="w-full h-full object-cover object-[60%_center] brightness-90"
           />
         </picture>
-
-        {/* Left-heavy gradient: full black on left → clear on right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/95 lg:via-[#070706]/80 lg:to-[#070706]/10 to-[#070706]/80 z-0"></div>
-        {/* Bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/80 via-transparent to-transparent z-0"></div>
+        {/* Desktop-only gradient overlays */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/95 lg:via-[#070706]/80 lg:to-[#070706]/10 to-[#070706]/80 z-0"></div>
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#070706]/80 via-transparent to-transparent z-0"></div>
 
         {/* Main content — left aligned */}
-        <div className="flex-1 flex items-center">
+        <div className="flex-1 flex items-center lg:relative lg:z-10">
           <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full py-8">
             <div className="max-w-xl space-y-6 md:space-y-7">
 
@@ -100,7 +97,7 @@ export default function App() {
         </div>
 
         {/* Bottom info bar */}
-        <div className="relative z-10 border-t border-white/10 bg-near-black/60 backdrop-blur-sm">
+        <div className="lg:relative lg:z-10 border-t border-white/10 bg-near-black/60 lg:backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0">
 
             {/* Sedi badge + label */}
@@ -131,10 +128,20 @@ export default function App() {
               </div>
             </div>
           </div>
-
-          {/* Hazard stripe */}
-          <div className="h-2.5 hazard-stripes opacity-80"></div>
         </div>
+
+        {/* Mobile-only: full-width photo below info bar */}
+        <div className="block lg:hidden">
+          <img
+            src={heroMobileBg}
+            alt=""
+            aria-hidden="true"
+            className="w-full"
+          />
+        </div>
+
+        {/* Hazard stripe */}
+        <div className="lg:relative lg:z-10 h-2.5 hazard-stripes opacity-80"></div>
 
       </section>
 
