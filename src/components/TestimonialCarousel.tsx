@@ -3,94 +3,209 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { REVIEWS } from '../data.ts';
-import { Star } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, X } from 'lucide-react';
+
+type Review = (typeof REVIEWS)[0];
 
 export default function TestimonialCarousel() {
-  // Triple the items to make sure it fills the screen width of even super-wide monitors seamlessly before looping.
-  const tripledReviews = [...REVIEWS, ...REVIEWS, ...REVIEWS];
+  const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const isJumping = useRef(false);
+
+  const tripled = [...REVIEWS, ...REVIEWS, ...REVIEWS];
+
+  // Start scrolled to middle third so both directions have room to loop
+  useEffect(() => {
+    const el = trackRef.current;
+    if (el) el.scrollLeft = el.scrollWidth / 3;
+  }, []);
+
+  // Infinite loop: silently jump when near the edges
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      if (isJumping.current) return;
+      const third = el.scrollWidth / 3;
+      if (el.scrollLeft >= third * 2) {
+        isJumping.current = true;
+        el.scrollLeft -= third;
+        setTimeout(() => { isJumping.current = false; }, 50);
+      } else if (el.scrollLeft <= 0) {
+        isJumping.current = true;
+        el.scrollLeft += third;
+        setTimeout(() => { isJumping.current = false; }, 50);
+      }
+    };
+    el.addEventListener('scroll', onScroll);
+    return () => el.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scroll = useCallback((dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const cardW = window.innerWidth < 640 ? 332 : 432; // card + gap
+    el.scrollBy({ left: dir * cardW, behavior: 'smooth' });
+  }, []);
+
+  // Auto-advance every 3.5s
+  useEffect(() => {
+    if (isPaused || selectedReview) return;
+    const id = setInterval(() => scroll(1), 3500);
+    return () => clearInterval(id);
+  }, [isPaused, selectedReview, scroll]);
+
+  // Close modal on Escape
+  useEffect(() => {
+    if (!selectedReview) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedReview(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedReview]);
+
+  // Lock body scroll while modal is open
+  useEffect(() => {
+    document.body.style.overflow = selectedReview ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [selectedReview]);
 
   return (
     <section id="reviews" className="bg-[#0c0c0b] py-24 border-b border-white/5 relative overflow-hidden select-none">
-      {/* Absolute linear layout elements */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 text-center md:text-left">
-        <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-          I NOSTRI MEMBRI DICONO DI NOI
-        </span>
-        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-          VOCI DI <span className="text-outline-yellow">SUCCESSO</span>
-        </h2>
-        <p className="font-sans text-sm text-white/40 tracking-wider mt-4 max-w-lg">
-          Leggi le recensioni certificate dei nostri iscritti che hanno forgiato la propria mente e il proprio corpo a The Cave.
-        </p>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      {/* Hide webkit scrollbar */}
+      <style>{`.reviews-track::-webkit-scrollbar { display: none; }`}</style>
+
+      {/* Header + Arrow controls */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="text-center md:text-left">
+          <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
+            I NOSTRI MEMBRI DICONO DI NOI
+          </span>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
+            VOCI DI <span className="text-outline-yellow">SUCCESSO</span>
+          </h2>
+          <p className="font-sans text-sm text-white/40 tracking-wider mt-4 max-w-lg mx-auto md:mx-0">
+            Leggi le recensioni certificate dei nostri iscritti che hanno forgiato la propria mente e il proprio corpo a The Cave.
+          </p>
+        </div>
+
+        <div className="flex gap-3 shrink-0 justify-center md:justify-end">
+          <button
+            onClick={() => { setIsPaused(true); scroll(-1); }}
+            className="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:bg-brand-yellow hover:text-near-black hover:border-brand-yellow transition-all duration-200"
+            aria-label="Recensione precedente"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => { setIsPaused(true); scroll(1); }}
+            className="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:bg-brand-yellow hover:text-near-black hover:border-brand-yellow transition-all duration-200"
+            aria-label="Recensione successiva"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
 
-      {/* Styled Inline CSS for Perfect Testimonial Scrolling Carousel */}
-      <style>{`
-        @keyframes scrollHorizontal {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.3333%); }
-        }
-        .animate-scroll-reviews {
-          display: flex;
-          gap: 2rem;
-          width: max-content;
-          animation: scrollHorizontal 90s linear infinite;
-        }
-        .animate-scroll-reviews:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+      {/* Scrollable track */}
+      <div className="relative">
+        <div className="absolute left-0 inset-y-0 w-16 md:w-40 bg-gradient-to-r from-[#0c0c0b] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 inset-y-0 w-16 md:w-40 bg-gradient-to-l from-[#0c0c0b] to-transparent z-10 pointer-events-none" />
 
-      {/* Scrolling Area */}
-      <div className="w-full overflow-hidden py-4 premium-carousel-container relative">
-        {/* Soft edge fade overlays */}
-        <div className="absolute left-0 inset-y-0 w-16 md:w-40 bg-gradient-to-r from-[#0c0c0b] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 inset-y-0 w-16 md:w-40 bg-gradient-to-l from-[#0c0c0b] to-transparent z-10 pointer-events-none"></div>
-
-        <div className="animate-scroll-reviews px-4">
-          {tripledReviews.map((rev, idx) => (
-            <div 
+        <div
+          ref={trackRef}
+          className="reviews-track flex gap-8 py-4 overflow-x-scroll px-16 md:px-40"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {tripled.map((rev, idx) => (
+            <div
               key={`${rev.id}-${idx}`}
-              className="premium-card w-[300px] sm:w-[400px] bg-near-black border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-yellow/30 hover:bg-white/[0.01] transition-all shrink-0 relative"
+              className="premium-card w-[300px] sm:w-[400px] bg-near-black border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-yellow/30 hover:bg-white/[0.01] transition-all shrink-0 cursor-pointer group"
+              onClick={() => setSelectedReview(rev)}
             >
               <div>
-                {/* Gold Stars */}
-                <div className="flex items-center space-x-1 mb-5">
-                  {[...Array(rev.rating)].map((_, sIdx) => (
-                    <Star key={sIdx} size={15} className="fill-brand-yellow text-brand-yellow shrink-0" />
-                  ))}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center space-x-1">
+                    {[...Array(rev.rating)].map((_, i) => (
+                      <Star key={i} size={15} className="fill-brand-yellow text-brand-yellow shrink-0" />
+                    ))}
+                  </div>
+                  <span className="text-[9px] font-sans text-white/20 tracking-widest uppercase group-hover:text-brand-yellow/60 transition-colors">
+                    ESPANDI
+                  </span>
                 </div>
-
-                {/* Testimony */}
-                <p className="font-sans text-sm sm:text-base text-white/80 leading-relaxed italic mb-6">
-                  “{rev.text}”
+                <p className="font-sans text-sm sm:text-base text-white/80 leading-relaxed italic mb-6 line-clamp-4">
+                  "{rev.text}"
                 </p>
               </div>
-
-              {/* Author & platform */}
               <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                 <div>
-                  <h4 className="font-sans font-bold text-sm text-white uppercase tracking-wider">
-                    {rev.author}
-                  </h4>
+                  <h4 className="font-sans font-bold text-sm text-white uppercase tracking-wider">{rev.author}</h4>
                   <div className="flex items-center space-x-1.5 mt-0.5">
-                    <span className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse" />
                     <span className="font-mono text-[9px] text-[#2ecd6c] tracking-widest uppercase">VERIFICATO</span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="font-sans text-[10px] text-white/30 tracking-widest font-extrabold uppercase block">
-                    GOOGLE REVIEW
-                  </span>
-                </div>
+                <span className="font-sans text-[10px] text-white/30 tracking-widest font-extrabold uppercase">GOOGLE REVIEW</span>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Expanded Review Modal */}
+      {selectedReview && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedReview(null)}
+        >
+          <div
+            className="bg-[#0c0c0b] border border-white/20 p-8 md:p-10 max-w-lg w-full relative"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Close */}
+            <button
+              onClick={() => setSelectedReview(null)}
+              className="absolute top-4 right-4 w-8 h-8 border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white transition-all"
+              aria-label="Chiudi"
+            >
+              <X size={16} />
+            </button>
+
+            {/* Stars */}
+            <div className="flex items-center space-x-1.5 mb-6">
+              {[...Array(selectedReview.rating)].map((_, i) => (
+                <Star key={i} size={20} className="fill-brand-yellow text-brand-yellow" />
+              ))}
+            </div>
+
+            {/* Full review text */}
+            <p className="font-sans text-lg md:text-xl text-white leading-relaxed italic mb-8">
+              "{selectedReview.text}"
+            </p>
+
+            {/* Author */}
+            <div className="border-t border-white/10 pt-6 flex items-center justify-between">
+              <div>
+                <h4 className="font-sans font-bold text-base text-white uppercase tracking-wider">
+                  {selectedReview.author}
+                </h4>
+                <div className="flex items-center space-x-1.5 mt-1">
+                  <span className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse" />
+                  <span className="font-mono text-[10px] text-[#2ecd6c] tracking-widest uppercase">RECENSIONE VERIFICATA</span>
+                </div>
+              </div>
+              <span className="font-sans text-xs text-white/30 tracking-widest font-extrabold uppercase">Google</span>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
