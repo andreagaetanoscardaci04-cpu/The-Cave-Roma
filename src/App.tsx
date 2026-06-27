@@ -6,6 +6,8 @@
 import Navbar from './components/Navbar.tsx';
 import Stats from './components/Stats.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
+import heroDesktopBg from './assets/hero-desktop.png';
+import heroMobileBg from './assets/hero-mobile.png';
 import LocationsList from './components/LocationsList.tsx';
 import ProgramCards from './components/ProgramCards.tsx';
 import GallerySection from './components/GallerySection.tsx';
@@ -27,18 +29,21 @@ export default function App() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col pt-20 overflow-hidden">
 
-        {/* Background gym image — brighter to show equipment on right */}
-        <div
-          className="absolute inset-0 bg-cover bg-center z-0 filter contrast-110 brightness-[0.4]"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=2000')`
-          }}
-        ></div>
+        {/* Background gym image — desktop vs mobile responsive */}
+        <picture className="absolute inset-0 block w-full h-full z-0">
+          <source media="(min-width: 768px)" srcSet={heroDesktopBg} />
+          <img
+            src={heroMobileBg}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-[center_30%] md:object-[60%_center] brightness-90"
+          />
+        </picture>
 
-        {/* Left-heavy gradient: opaque on left → semi-transparent on right (desktop) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/90 lg:to-[#070706]/25 to-[#070706]/75 z-0"></div>
+        {/* Left-heavy gradient: full black on left → clear on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/95 lg:via-[#070706]/80 lg:to-[#070706]/10 to-[#070706]/80 z-0"></div>
         {/* Bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/70 via-transparent to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/80 via-transparent to-transparent z-0"></div>
 
         {/* Main content — left aligned */}
         <div className="flex-1 flex items-center">
