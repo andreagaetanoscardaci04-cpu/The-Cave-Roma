@@ -151,74 +151,70 @@ export default function App() {
       {/* Stats Band Component */}
       <Stats />
 
-      {/* About Split section: "Non è una palestra" */}
+      {/* LA NOSTRA FILOSOFIA manifesto */}
       <section id="box-philosophy" className="bg-[#0c0c0b] py-24 px-4 md:px-6 relative border-b border-white/5">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Block - Statement & Description */}
+
+          {/* Left — manifesto testo */}
           <div className="lg:col-span-7 space-y-6">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block">
-              LA NOSTRA FILOSOFIA DI FORZA
+              LA NOSTRA FILOSOFIA
             </span>
-            
+
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
               NON È UNA <span className="text-outline-yellow">PALESTRA.</span>
             </h2>
-            
+
             <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
-              Il box The Cave elimina l'effimero, accoglie la pura prestazione. 
+              The Cave elimina l'effimero e accoglie la pura prestazione.
             </p>
-            
+
             <div className="space-y-4 font-sans text-sm text-white/60 tracking-wide leading-relaxed">
               <p>
-                Non troverai specchi decorativi, pavimentazioni scivolose o macchinari commerciali progettati per farti perdere tempo. Qui trovi bilancieri olimpionici Rogue®, bumper pesanti, pedane resistenti in gomma da 3 centimetri e la migliore attrezzatura BLOR® sul mercato.
+                Niente specchi decorativi, pavimentazioni scivolose o macchinari commerciali progettati per farti perdere tempo. Qui trovi bilancieri olimpionici Rogue®, bumper pesanti, pedane in gomma da 3 centimetri e la migliore attrezzatura BLOR® sul mercato.
               </p>
               <p>
                 La nostra missione è costruire un fisico resiliente, flessibile ed efficiente preparando la mente alla fatica, alla disciplina e al superamento di ogni ostacolo. Che tu scelga il rig di CrossFit® o la pista aerobica di HYROX, ti aspetta una community unita, decisa e priva di fronzoli cosmetici.
               </p>
             </div>
 
-            {/* Google Rating Verification Badge inside About */}
-            <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="bg-[#070706] border border-[#f2c200]/30 p-4 shrink-0 flex items-center justify-center gap-3">
-                <span className="text-3xl font-display text-brand-yellow">4.85</span>
-                <div className="flex flex-col">
-                  <div className="flex">
-                    {[1,2,3,4,5].map((s) => (
-                      <Star key={s} size={12} className="fill-brand-yellow text-brand-yellow" />
-                    ))}
-                  </div>
-                  <span className="font-sans text-[9px] tracking-wider text-white/50 uppercase mt-0.5">GOOGLE REVIEW RATING</span>
+            {/* Tre pilastri del manifesto */}
+            <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
+              {[
+                { value: "ZERO", label: "Specchi & fronzoli" },
+                { value: "100%", label: "Attrezzatura Rogue® BLOR®" },
+                { value: "PURA", label: "Prestazione e disciplina" },
+              ].map(({ value, label }) => (
+                <div key={label} className="text-center">
+                  <span className="font-display text-2xl md:text-3xl text-brand-yellow block leading-none">{value}</span>
+                  <span className="font-sans text-[9px] text-white/40 uppercase tracking-widest mt-1 block leading-relaxed">{label}</span>
                 </div>
-              </div>
-              <p className="font-sans text-xs text-white/40 uppercase tracking-widest leading-relaxed">
-                Approvato da atleti di Roma. Certificazione di eccellenza nel CrossFit® e HYROX di livello agonistico.
-              </p>
+              ))}
             </div>
           </div>
 
-          {/* Right Block - Gym image and physical details */}
+          {/* Right — placeholder foto box */}
           <div className="lg:col-span-5 relative">
             <div className="border border-white/10 p-2 relative overflow-hidden group">
-              {/* Corner industrial notches */}
-              <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#f2c200] z-10"></div>
-              <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#f2c200] z-10"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
 
-              {/* Box Image */}
-              <div className="relative h-96 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Metabolic area at Rome Box"
-                  className="w-full h-full object-cover filter grayscale contrast-125 hover:brightness-105 duration-500 transition-all group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-[#070706]/20 group-hover:bg-transparent duration-300 transition-colors"></div>
+              {/* Placeholder foto — sostituire con foto reale del box */}
+              <div className="relative h-[420px] overflow-hidden bg-[#070706] flex flex-col items-center justify-center gap-4">
+                <Dumbbell size={48} className="text-white/10" />
+                <span className="font-sans text-xs text-white/20 tracking-[0.3em] uppercase">Foto box — in arrivo</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/60 via-transparent to-transparent" />
               </div>
-              
-              {/* Overlay quote */}
+
+              {/* Citazione overlay */}
               <div className="absolute bottom-6 inset-x-6 bg-[#070706]/90 border border-white/10 p-5 text-center">
-                <span className="font-sans text-xs font-bold text-brand-yellow tracking-widest uppercase block mb-1">“ FORGIA IL TUO LIMITATORE ”</span>
-                <span className="font-sans text-[10px] text-white/40 uppercase tracking-wider block">LA PREPARAZIONE MENTALE SUPERA OGNI FATICA FISICA.</span>
+                <span className="font-sans text-xs font-bold text-brand-yellow tracking-widest uppercase block mb-1">
+                  " FORGIA I TUOI LIMITI "
+                </span>
+                <span className="font-sans text-[10px] text-white/40 uppercase tracking-wider block">
+                  LA PREPARAZIONE MENTALE SUPERA OGNI FATICA FISICA.
+                </span>
               </div>
             </div>
           </div>
