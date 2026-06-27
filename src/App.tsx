@@ -50,10 +50,10 @@ export default function App() {
               {/* THE CAVE Logo */}
               <div className="select-none">
                 <h1 className="font-display leading-[0.82] tracking-tight uppercase text-center lg:text-left">
-                  <span className="block text-[70px] lg:text-[clamp(90px,16vw,220px)] font-black text-white leading-none">
+                  <span className="block text-[130px] lg:text-[clamp(90px,16vw,220px)] font-black text-white leading-none">
                     THE
                   </span>
-                  <span className="block text-[78px] lg:text-[clamp(100px,18vw,250px)] font-black text-brand-yellow leading-none">
+                  <span className="block text-[145px] lg:text-[clamp(100px,18vw,250px)] font-black text-brand-yellow leading-none">
                     CAVE
                   </span>
                 </h1>
@@ -130,13 +130,13 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile-only: full-width photo below info bar */}
-        <div className="block lg:hidden">
+        {/* Mobile-only: full-width photo below info bar, cropped slightly top & bottom */}
+        <div className="block lg:hidden w-full overflow-hidden aspect-[6/7]">
           <img
             src={heroMobileBg}
             alt=""
             aria-hidden="true"
-            className="w-full"
+            className="w-full h-full object-cover object-center"
           />
         </div>
 
