@@ -81,16 +81,32 @@ export default function ProgramCards() {
 
       <div className="max-w-7xl mx-auto">
 
-        {/* ---- 01: Classi e Corsi ---- */}
-        <div className="mb-24">
+        {/* Testata principale sezione */}
+        <div className="mb-20 text-center md:text-left">
+          <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
+            COSA OFFRIAMO
+          </span>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
+            I NOSTRI <span className="text-outline-yellow">CORSI</span>
+          </h2>
+        </div>
+
+        {/* Separatore visivo */}
+        <div className="w-full h-px bg-white/5 mb-20" />
+
+        {/* ---- 01: Classi Ordinarie ---- */}
+        <div className="mb-28">
           <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-                01 — CLASSI E CORSI
+                01 / CLASSI ORDINARIE
               </span>
-              <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-                ATTIVITÀ <span className="text-outline-yellow">ORDINARIE</span>
-              </h2>
+              <h3 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-none text-white uppercase">
+                ATTIVITÀ <span className="text-outline-yellow">CORSI</span>
+              </h3>
+              <p className="font-sans text-sm text-white/40 tracking-wider leading-relaxed mt-4 max-w-lg">
+                Le classi regolari del box: CrossFit, HYROX e Open Gym. Programmate dai nostri coach certificati, aperte a ogni livello.
+              </p>
             </div>
             <a
               href="#orari"
@@ -106,15 +122,21 @@ export default function ProgramCards() {
           </div>
         </div>
 
-        {/* ---- 02: Programmazioni Personalizzate ---- */}
+        {/* Separatore visivo tra le due sottosezioni */}
+        <div className="w-full h-px bg-white/5 mb-28" />
+
+        {/* ---- 02: Programmi Personalizzati ---- */}
         <div>
           <div className="mb-14">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-              02 — PROGRAMMAZIONI
+              02 / PROGRAMMI PERSONALIZZATI
             </span>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              PERCORSI <span className="text-outline-yellow">PERSONALIZZATI</span>
-            </h2>
+            <h3 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-none text-white uppercase">
+              PERCORSI <span className="text-outline-yellow">SU MISURA</span>
+            </h3>
+            <p className="font-sans text-sm text-white/40 tracking-wider leading-relaxed mt-4 max-w-lg">
+              Personal Training e programmazioni dedicate per chi vuole un percorso costruito sui propri obiettivi specifici.
+            </p>
           </div>
 
           <div className="max-w-2xl">
