@@ -222,24 +222,24 @@ export default function App() {
         </div>
       </section>
 
-      {/* Community & Events Section */}
+      {/* LA NOSTRA COMMUNITY & EVENTI */}
       <section id="community" className="bg-near-black py-24 px-4 md:px-6 border-b border-white/5 relative">
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-7xl mx-auto">
 
-          <div className="mb-14 text-center md:text-left">
+          <div className="mb-16 text-center md:text-left">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
               PEOPLE FIRST
             </span>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              LA NOSTRA <span className="text-outline-yellow">COMMUNITY</span>
+              COMMUNITY <span className="text-outline-yellow">& EVENTI</span>
             </h2>
-            <div className="w-24 h-1 bg-brand-yellow mt-4 mx-auto md:mx-0"></div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
-            <div className="lg:col-span-5 space-y-5">
+            {/* Left: testo + card eventi */}
+            <div className="lg:col-span-5 space-y-6">
               <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
                 A The Cave non ci si allena da soli.
               </p>
@@ -251,26 +251,57 @@ export default function App() {
                   Organizziamo eventi regolari, sessioni a tema e gare interne per mantenere alta la motivazione e rinsaldare il legame tra i membri. Non è marketing: è il modo in cui funzionano i veri box CrossFit.
                 </p>
               </div>
+
+              <div className="space-y-3 pt-2">
+                {[
+                  { Icon: Dumbbell, label: "WOD SOCIALI", desc: "Sessioni di gruppo speciali con WOD tematici e sfide collettive aperte a tutti i livelli." },
+                  { Icon: Flame, label: "GARE INTERNE", desc: "Competizioni amichevoli mensili per misurare i progressi e alimentare l'agonismo sano." },
+                  { Icon: Compass, label: "DROP-IN WELCOME", desc: "Atleti visitatori sempre benvenuti. Il tuo network di box si estende fino a Roma." }
+                ].map(({ Icon, label, desc }, idx) => (
+                  <div key={idx} className="bg-[#0c0c0b] border border-white/10 p-5 flex items-start gap-4 hover:border-brand-yellow/30 transition-colors group">
+                    <div className="w-10 h-10 bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center shrink-0 group-hover:bg-brand-yellow/20 transition-colors">
+                      <Icon size={18} className="text-brand-yellow" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-base text-white uppercase mb-1 tracking-tight group-hover:text-brand-yellow transition-colors">
+                        {label}
+                      </h4>
+                      <p className="font-sans text-xs text-white/50 leading-relaxed tracking-wider">
+                        {desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {[
-                { Icon: Dumbbell, label: "WOD SOCIALI", desc: "Sessioni di gruppo speciali con WOD tematici e sfide collettive aperte a tutti i livelli." },
-                { Icon: Flame, label: "GARE INTERNE", desc: "Competizioni amichevoli mensili per misurare i progressi e alimentare l'agonismo sano." },
-                { Icon: Compass, label: "DROP-IN WELCOME", desc: "Atleti visitatori sempre benvenuti. Il tuo network di box si estende fino a Roma." }
-              ].map(({ Icon, label, desc }, idx) => (
-                <div key={idx} className="bg-[#0c0c0b] border border-white/10 p-6 hover:border-brand-yellow/30 transition-colors group">
-                  <div className="mb-4 w-10 h-10 bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center group-hover:bg-brand-yellow/20 transition-colors">
-                    <Icon size={20} className="text-brand-yellow" />
-                  </div>
-                  <h4 className="font-display text-lg text-white uppercase mb-2 tracking-tight group-hover:text-brand-yellow transition-colors">
-                    {label}
-                  </h4>
-                  <p className="font-sans text-xs text-white/50 leading-relaxed tracking-wider">
-                    {desc}
-                  </p>
-                </div>
-              ))}
+            {/* Right: griglia foto placeholder */}
+            <div className="lg:col-span-7 grid grid-cols-2 gap-4">
+
+              {/* Foto grande: foto di gruppo */}
+              <div className="col-span-2 relative bg-[#0c0c0b] border border-white/10 h-72 flex flex-col items-center justify-center gap-3 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-yellow/5 to-transparent pointer-events-none" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow/40" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow/40" />
+                <Users size={40} className="text-white/10 relative z-10" />
+                <span className="font-sans text-xs text-white/20 tracking-[0.3em] uppercase relative z-10">Foto di gruppo</span>
+                <span className="font-mono text-[9px] text-brand-yellow/20 tracking-widest uppercase relative z-10">IN ARRIVO</span>
+              </div>
+
+              {/* Foto piccola sinistra: gara interna */}
+              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+                <Flame size={28} className="text-white/10" />
+                <span className="font-sans text-[9px] text-white/20 tracking-[0.25em] uppercase">Gara interna</span>
+                <span className="font-mono text-[8px] text-brand-yellow/20 tracking-widest uppercase">IN ARRIVO</span>
+              </div>
+
+              {/* Foto piccola destra: WOD evento */}
+              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+                <Dumbbell size={28} className="text-white/10" />
+                <span className="font-sans text-[9px] text-white/20 tracking-[0.25em] uppercase">WOD sociale</span>
+                <span className="font-mono text-[8px] text-brand-yellow/20 tracking-widest uppercase">IN ARRIVO</span>
+              </div>
+
             </div>
           </div>
 
