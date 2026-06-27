@@ -159,12 +159,16 @@ export default function App() {
           {/* Left — manifesto testo */}
           <div className="lg:col-span-7 space-y-6">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block">
-              LA NOSTRA FILOSOFIA
+              IL MANIFESTO
             </span>
 
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              NON È UNA <span className="text-outline-yellow">PALESTRA.</span>
+              LA NOSTRA <span className="text-outline-yellow">FILOSOFIA</span>
             </h2>
+
+            <p className="font-display text-2xl md:text-3xl text-white/50 uppercase tracking-tight leading-none">
+              Non è una palestra.
+            </p>
 
             <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
               The Cave elimina l'effimero e accoglie la pura prestazione.

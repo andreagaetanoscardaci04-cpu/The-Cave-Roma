@@ -24,12 +24,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "IL BOX", href: "#box-philosophy" },
+    { name: "FILOSOFIA", href: "#box-philosophy" },
+    { name: "COMMUNITY", href: "#community" },
+    { name: "CORSI", href: "#programmi" },
     { name: "SEDI", href: "#sedi" },
-    { name: "PROGRAMMI", href: "#programmi" },
-    { name: "COACH", href: "#coaches" },
     { name: "ORARI", href: "#orari" },
-    { name: "CONTATTI", href: "#contatti" }
+    { name: "COACH", href: "#coaches" },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
