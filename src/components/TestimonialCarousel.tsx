@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { REVIEWS } from '../data.ts';
 import { Star, X } from 'lucide-react';
 
@@ -11,54 +11,9 @@ type Review = (typeof REVIEWS)[0];
 
 export default function TestimonialCarousel() {
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const isJumping = useRef(false);
 
   const tripled = [...REVIEWS, ...REVIEWS, ...REVIEWS];
 
-  // Start scrolled to middle third so both directions have room to loop
-  useEffect(() => {
-    const el = trackRef.current;
-    if (el) el.scrollLeft = el.scrollWidth / 3;
-  }, []);
-
-  // Infinite loop: silently jump when near the edges
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      if (isJumping.current) return;
-      const third = el.scrollWidth / 3;
-      if (el.scrollLeft >= third * 2) {
-        isJumping.current = true;
-        el.scrollLeft -= third;
-        setTimeout(() => { isJumping.current = false; }, 50);
-      } else if (el.scrollLeft <= 0) {
-        isJumping.current = true;
-        el.scrollLeft += third;
-        setTimeout(() => { isJumping.current = false; }, 50);
-      }
-    };
-    el.addEventListener('scroll', onScroll);
-    return () => el.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const scroll = useCallback((dir: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const cardW = window.innerWidth < 640 ? 332 : 432; // card + gap
-    el.scrollBy({ left: dir * cardW, behavior: 'smooth' });
-  }, []);
-
-  // Auto-advance every 3.5s
-  useEffect(() => {
-    if (isPaused || selectedReview) return;
-    const id = setInterval(() => scroll(1), 3500);
-    return () => clearInterval(id);
-  }, [isPaused, selectedReview, scroll]);
-
-  // Close modal on Escape
   useEffect(() => {
     if (!selectedReview) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelectedReview(null); };
@@ -66,7 +21,6 @@ export default function TestimonialCarousel() {
     return () => window.removeEventListener('keydown', onKey);
   }, [selectedReview]);
 
-  // Lock body scroll while modal is open
   useEffect(() => {
     document.body.style.overflow = selectedReview ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -74,10 +28,17 @@ export default function TestimonialCarousel() {
 
   return (
     <section id="reviews" className="bg-[#0c0c0b] py-24 border-b border-white/5 relative overflow-hidden select-none">
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <style>{`
+        @keyframes reviewsScroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-33.3333%); }
+        }
+        .reviews-track {
+          animation: reviewsScroll 93s linear infinite;
+        }
+      `}</style>
 
-      {/* Hide webkit scrollbar */}
-      <style>{`.reviews-track::-webkit-scrollbar { display: none; }`}</style>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 text-center md:text-left">
@@ -93,16 +54,12 @@ export default function TestimonialCarousel() {
       </div>
 
       {/* Scrollable track */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <div className="absolute left-0 inset-y-0 w-16 md:w-40 bg-gradient-to-r from-[#0c0c0b] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-16 md:w-40 bg-gradient-to-l from-[#0c0c0b] to-transparent z-10 pointer-events-none" />
 
         <div
-          ref={trackRef}
-          className="reviews-track flex gap-8 py-4 overflow-x-scroll px-16 md:px-40"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          className="reviews-track flex gap-8 py-4 w-max"
         >
           {tripled.map((rev, idx) => (
             <div
@@ -150,7 +107,6 @@ export default function TestimonialCarousel() {
             className="bg-[#0c0c0b] border border-white/20 p-8 md:p-10 max-w-lg w-full relative"
             onClick={e => e.stopPropagation()}
           >
-            {/* Close */}
             <button
               onClick={() => setSelectedReview(null)}
               className="absolute top-4 right-4 w-8 h-8 border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white transition-all"
@@ -158,20 +114,14 @@ export default function TestimonialCarousel() {
             >
               <X size={16} />
             </button>
-
-            {/* Stars */}
             <div className="flex items-center space-x-1.5 mb-6">
               {[...Array(selectedReview.rating)].map((_, i) => (
                 <Star key={i} size={20} className="fill-brand-yellow text-brand-yellow" />
               ))}
             </div>
-
-            {/* Full review text */}
             <p className="font-sans text-lg md:text-xl text-white leading-relaxed italic mb-8">
               "{selectedReview.text}"
             </p>
-
-            {/* Author */}
             <div className="border-t border-white/10 pt-6 flex items-center justify-between">
               <div>
                 <h4 className="font-sans font-bold text-base text-white uppercase tracking-wider">
