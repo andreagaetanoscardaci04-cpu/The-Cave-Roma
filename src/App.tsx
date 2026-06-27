@@ -142,6 +142,9 @@ export default function App() {
 
       </section>
 
+      {/* Testimonials Carousel Component */}
+      <TestimonialCarousel />
+
       {/* Yellow Marquee strip scrolling keywords */}
       <MarqueeStrip />
 
@@ -286,9 +289,6 @@ export default function App() {
 
       {/* Gallery (La Cave in Foto) Component - placeholders until real photos are provided */}
       <GallerySection />
-
-      {/* Testimonials Carousel Component */}
-      <TestimonialCarousel />
 
       {/* Coaches Silhouette grid component */}
       <CoachSection />
