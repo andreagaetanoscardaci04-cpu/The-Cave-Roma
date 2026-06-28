@@ -167,34 +167,35 @@ export default function App() {
             </h2>
 
             <p className="font-display text-2xl md:text-3xl text-white/50 uppercase tracking-tight leading-none">
-              Non è una palestra.
+              Non è solo una palestra.
             </p>
 
             <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
-              The Cave elimina l'effimero e accoglie la pura prestazione.
+              The Cave è un luogo dove ci si allena con uno scopo, si cresce insieme e si costruiscono legami che vanno oltre il workout.
             </p>
 
             <div className="space-y-4 font-sans text-sm text-white/60 tracking-wide leading-relaxed">
               <p>
-                Niente specchi decorativi, pavimentazioni scivolose o macchinari commerciali progettati per farti perdere tempo. Qui trovi bilancieri olimpionici Rogue®, bumper pesanti, pedane in gomma da 3 centimetri e la migliore attrezzatura BLOR® sul mercato.
+                Qui crediamo nell'allenamento vero: quello che ti mette alla prova, ti insegna la disciplina e ti dimostra che i risultati arrivano con costanza, impegno e determinazione.
               </p>
               <p>
-                La nostra missione è costruire un fisico resiliente, flessibile ed efficiente preparando la mente alla fatica, alla disciplina e al superamento di ogni ostacolo. Che tu scelga il rig di CrossFit® o la pista aerobica di HYROX, ti aspetta una community unita, decisa e priva di fronzoli cosmetici.
+                Abbiamo scelto attrezzatura professionale e spazi progettati per la performance, con bilancieri olimpionici Rogue®, attrezzatura BLOR®, pedane dedicate e tutto ciò che serve per allenarsi senza compromessi.
+              </p>
+              <p>
+                Ma ciò che rende davvero speciale The Cave non sono i bilancieri o i workout. Sono le persone.
+              </p>
+              <p>
+                Qui nessuno si allena da solo. Ci si incoraggia durante ogni WOD, si festeggiano i traguardi insieme e ci si sostiene anche nei giorni più difficili. Che tu sia al tuo primo allenamento o un atleta esperto, entrerai a far parte di una community che condivide gli stessi valori: rispetto, sacrificio, crescita e voglia di migliorarsi ogni giorno.
+              </p>
+              <p>
+                Che il tuo obiettivo sia il CrossFit®, HYROX o semplicemente diventare una versione più forte di te stesso, qui troverai un ambiente che ti spingerà a dare il massimo, senza mai lasciarti indietro.
               </p>
             </div>
 
-            {/* Tre pilastri del manifesto */}
-            <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
-              {[
-                { value: "ZERO", label: "Specchi & fronzoli" },
-                { value: "100%", label: "Attrezzatura Rogue® BLOR®" },
-                { value: "PURA", label: "Prestazione e disciplina" },
-              ].map(({ value, label }) => (
-                <div key={label} className="text-center">
-                  <span className="font-display text-2xl md:text-3xl text-brand-yellow block leading-none">{value}</span>
-                  <span className="font-sans text-[9px] text-white/40 uppercase tracking-widest mt-1 block leading-relaxed">{label}</span>
-                </div>
-              ))}
+            <div className="pt-6 border-t border-white/10">
+              <p className="font-sans text-sm font-bold text-brand-yellow tracking-wide leading-relaxed">
+                Perché The Cave non è solo il posto dove ti alleni. È il posto a cui appartieni.
+              </p>
             </div>
           </div>
 
