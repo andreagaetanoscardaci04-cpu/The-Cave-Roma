@@ -59,7 +59,7 @@ export default function App() {
                 draggable={false}
                 className="w-[70vw] max-w-[260px] select-none pointer-events-none"
               />
-              <span className="font-sans text-[9px] font-bold tracking-[0.45em] text-brand-yellow/65 uppercase">
+              <span className="font-sans text-[13px] font-bold tracking-[0.3em] text-brand-yellow/85 uppercase">
                 CROSSFIT® & HYROX — ROMA
               </span>
             </div>
