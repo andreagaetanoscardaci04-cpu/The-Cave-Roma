@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, PhoneCall } from 'lucide-react';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from '../data.ts';
+import theCaveLogo from '../assets/the-cave-logo.png';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,10 +70,14 @@ export default function Navbar() {
           }}
           className="group flex items-center space-x-2 select-none"
         >
-          <div className="flex flex-col">
-            <span className="font-display text-2xl tracking-tighter leading-none text-white group-hover:text-brand-yellow transition-colors">
-              THE <span className="text-brand-yellow group-hover:text-white">CAVE</span>
-            </span>
+          <div className="flex flex-col gap-0.5">
+            <img
+              src={theCaveLogo}
+              alt="THE CAVE"
+              draggable={false}
+              className="h-8 w-auto pointer-events-none select-none"
+              style={{ mixBlendMode: 'screen' }}
+            />
             <span className="font-sans text-[9px] tracking-[0.25em] text-white/50 leading-none">
               CROSSFIT & HYROX
             </span>

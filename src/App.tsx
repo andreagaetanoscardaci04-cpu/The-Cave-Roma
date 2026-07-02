@@ -8,6 +8,7 @@ import Stats from './components/Stats.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.png';
 import heroMobileBg from './assets/hero-mobile.png';
+import theCaveLogo from './assets/the-cave-logo.png';
 import LocationsList from './components/LocationsList.tsx';
 import ProgramCards from './components/ProgramCards.tsx';
 import GallerySection from './components/GallerySection.tsx';
@@ -49,15 +50,14 @@ export default function App() {
             <div className="max-w-xl space-y-3 md:space-y-6 lg:space-y-7">
 
               {/* THE CAVE Logo */}
-              <div className="select-none">
-                <h1 className="font-display leading-[0.82] tracking-tight uppercase text-center lg:text-left">
-                  <span className="block text-[130px] lg:text-[clamp(90px,16vw,220px)] font-black text-white leading-none">
-                    THE
-                  </span>
-                  <span className="block text-[145px] lg:text-[clamp(100px,18vw,250px)] font-black text-brand-yellow leading-none">
-                    CAVE
-                  </span>
-                </h1>
+              <div className="select-none mx-auto lg:mx-0">
+                <img
+                  src={theCaveLogo}
+                  alt="THE CAVE"
+                  draggable={false}
+                  className="w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[clamp(380px,40vw,580px)] pointer-events-none mx-auto lg:mx-0"
+                  style={{ mixBlendMode: 'screen' }}
+                />
               </div>
 
               {/* Subtitle */}
