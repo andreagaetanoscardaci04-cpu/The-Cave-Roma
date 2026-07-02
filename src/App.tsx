@@ -15,6 +15,7 @@ import CoachSection from './components/CoachSection.tsx';
 import TestimonialCarousel from './components/TestimonialCarousel.tsx';
 import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
+import TrustpilotBanner from './components/TrustpilotBanner.tsx';
 import Footer from './components/Footer.tsx';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
 import { Star, Dumbbell, Flame, Compass, MapPin, CalendarDays, Users } from 'lucide-react';
@@ -408,6 +409,9 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Trustpilot CTA — invita i membri a lasciare una recensione */}
+      <TrustpilotBanner />
 
       {/* Footer component with addresses, phone and links */}
       <Footer />
