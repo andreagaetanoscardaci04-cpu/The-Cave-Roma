@@ -29,116 +29,194 @@ export default function App() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="flex flex-col pt-20 overflow-hidden lg:relative lg:min-h-screen">
+      <section className="overflow-hidden">
 
-        {/* Desktop-only: absolute background image */}
-        <picture className="hidden lg:block lg:absolute lg:inset-0 lg:w-full lg:h-full z-0">
-          <img
-            src={heroDesktopBg}
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-[60%_center] brightness-90"
-          />
-        </picture>
-        {/* Desktop-only gradient overlays */}
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/95 lg:via-[#070706]/80 lg:to-[#070706]/10 to-[#070706]/80 z-0"></div>
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#070706]/80 via-transparent to-transparent z-0"></div>
+        {/* ===== MOBILE HERO — full-screen immersive ===== */}
+        <div className="lg:hidden relative min-h-[100svh] flex flex-col">
 
-        {/* Main content — left aligned */}
-        <div className="flex-1 flex items-center lg:relative lg:z-10">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 w-full py-4 lg:py-8">
-            <div className="max-w-xl space-y-3 md:space-y-6 lg:space-y-7">
+          {/* Full-bleed background */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src={heroMobileBg}
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover object-[62%_top]"
+            />
+            {/* Top vignette — keeps logo readable over the bright gym ceiling */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#070706]/90 via-[#070706]/25 to-transparent" />
+            {/* Bottom vignette — CTA area always on solid dark */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #070706 0%, rgba(7,7,6,0.93) 28%, rgba(7,7,6,0.4) 52%, transparent 72%)' }} />
+          </div>
 
-              {/* THE CAVE Logo */}
-              <div className="select-none mx-auto lg:mx-0">
-                <img
-                  src={theCaveLogo}
-                  alt="THE CAVE"
-                  draggable={false}
-                  className="w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[clamp(380px,40vw,580px)] pointer-events-none mx-auto lg:mx-0"
-                  style={{ mixBlendMode: 'screen' }}
-                />
+          {/* Content stack */}
+          <div className="relative z-10 flex flex-col flex-1 px-5 pt-[76px]">
+
+            {/* Logo + location tag — top left */}
+            <div className="pt-5 flex flex-col items-start gap-1.5">
+              <img
+                src={theCaveLogo}
+                alt="THE CAVE"
+                draggable={false}
+                className="w-[70vw] max-w-[260px] select-none pointer-events-none"
+              />
+              <span className="font-sans text-[9px] font-bold tracking-[0.45em] text-brand-yellow/65 uppercase">
+                CROSSFIT® & HYROX — ROMA
+              </span>
+            </div>
+
+            {/* Push bottom content to the bottom */}
+            <div className="flex-1" />
+
+            {/* Bottom block */}
+            <div className="pb-safe-area-inset-bottom pb-8 space-y-4">
+
+              {/* Social proof row */}
+              <div className="flex items-center gap-2.5">
+                <div className="flex gap-[2px]">
+                  {[1,2,3,4,5].map(i => (
+                    <Star key={i} size={12} className="fill-brand-yellow text-brand-yellow" />
+                  ))}
+                </div>
+                <span className="font-sans text-[10px] font-semibold tracking-[0.22em] text-white/45 uppercase">
+                  4.85 · Google Reviews
+                </span>
               </div>
 
-              {/* Subtitle */}
-              <p className="font-sans text-xs lg:text-sm font-bold tracking-[0.22em] text-white/90 uppercase">
-                THE CAVE: BOX DI CROSSFIT & HYROX
-              </p>
+              {/* Headline */}
+              <h1 className="font-display text-[50px] leading-[0.88] tracking-tight text-white uppercase">
+                NESSUN<br />
+                <span className="text-brand-yellow">COMPROMESSO</span>
+              </h1>
 
-              {/* Stats pill — hidden on mobile to save space */}
-              <p className="hidden md:block font-sans text-xs font-bold tracking-widest text-white/50 uppercase">
-                900+ m² • 2 SEDI A ROMA • CROSSFIT® • HYROX
-              </p>
-
-              {/* Body copy */}
-              <p className="font-sans text-xs md:text-base lg:text-lg text-white/70 leading-relaxed">
-                Allenamenti funzionali ad alta intensità. Community reale. Zero compromessi.
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-2 lg:gap-3 lg:pt-2">
+              {/* CTA buttons */}
+              <div className="flex flex-col gap-2 pt-2">
                 <a
                   href={CONTACT_TEL_LINK}
-                  className="w-full sm:w-auto py-2.5 lg:py-4 px-6 lg:px-8 bg-brand-yellow text-near-black font-sans font-black text-xs lg:text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-300"
+                  className="w-full py-[15px] bg-brand-yellow text-near-black font-sans font-black text-[11px] tracking-[0.22em] uppercase btn-cut flex items-center justify-center gap-2.5"
                 >
                   <CalendarDays size={14} />
-                  PRENOTA UNA PROVA
+                  PRENOTA UNA PROVA GRATUITA
                 </a>
                 <a
                   href="#sedi"
-                  className="w-full sm:w-auto py-2.5 lg:py-4 px-6 lg:px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-xs lg:text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
+                  className="w-full py-[13px] border border-white/25 text-white font-sans font-black text-[11px] tracking-[0.22em] uppercase btn-cut flex items-center justify-center gap-2.5 bg-white/5 backdrop-blur-sm"
                 >
                   <MapPin size={14} />
                   SCOPRI LE SEDI
                 </a>
               </div>
 
+              {/* Stats strip */}
+              <div className="border-t border-white/10 pt-4 grid grid-cols-3 text-center divide-x divide-white/10">
+                <div>
+                  <span className="font-display text-[28px] leading-none text-brand-yellow">900m²</span>
+                  <span className="font-sans text-[8px] tracking-[0.22em] text-white/30 uppercase mt-1 block">Spazio Totale</span>
+                </div>
+                <div>
+                  <span className="font-display text-[28px] leading-none text-brand-yellow">2</span>
+                  <span className="font-sans text-[8px] tracking-[0.22em] text-white/30 uppercase mt-1 block">Sedi a Roma</span>
+                </div>
+                <div>
+                  <span className="font-display text-[28px] leading-none text-brand-yellow">12+</span>
+                  <span className="font-sans text-[8px] tracking-[0.22em] text-white/30 uppercase mt-1 block">Coach Cert.</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
-        {/* Bottom info bar */}
-        <div className="lg:relative lg:z-10 border-t border-white/10 bg-near-black/60 lg:backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0">
+        {/* ===== DESKTOP HERO ===== */}
+        <div className="hidden lg:flex flex-col pt-20 relative min-h-screen overflow-hidden">
 
-            {/* Sedi badge + label */}
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5">
-                <MapPin size={12} className="text-brand-yellow shrink-0" />
-                <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-brand-yellow">DUE SEDI A ROMA</span>
-              </div>
-              <span className="font-sans text-xs text-white/50 tracking-wide">Mandrione & Cinecittà</span>
-            </div>
+          {/* Background */}
+          <picture className="absolute inset-0 w-full h-full z-0">
+            <img
+              src={heroDesktopBg}
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover object-[60%_center] brightness-90"
+            />
+          </picture>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070706] via-[#070706]/95 to-[#070706]/10 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/80 via-transparent to-transparent z-0" />
 
-            {/* Stats — right side on desktop */}
-            <div className="flex items-stretch gap-0 sm:ml-auto divide-x divide-white/10">
-              <div className="pr-6 sm:pr-8 flex items-center gap-2.5">
-                <Users size={18} className="text-brand-yellow shrink-0" />
-                <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap leading-relaxed">COACH<br/>CERTIFICATI</span>
-              </div>
-              <div className="px-6 sm:px-8 flex items-center gap-2.5">
-                <Dumbbell size={18} className="text-brand-yellow shrink-0" />
-                <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap leading-relaxed">ROGUE® /<br/>BLOR®</span>
-              </div>
-              <div className="pl-6 sm:pl-8 flex items-center gap-2.5">
-                <Star size={16} className="fill-brand-yellow text-brand-yellow shrink-0" />
-                <div>
-                  <span className="font-display text-base text-brand-yellow block leading-none">4.85</span>
-                  <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap">SU GOOGLE</span>
+          {/* Main content */}
+          <div className="flex-1 flex items-center relative z-10">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 w-full py-8">
+              <div className="max-w-xl space-y-6 lg:space-y-7">
+
+                <div className="select-none">
+                  <img
+                    src={theCaveLogo}
+                    alt="THE CAVE"
+                    draggable={false}
+                    className="w-full max-w-[clamp(380px,40vw,580px)] pointer-events-none select-none"
+                  />
+                </div>
+
+                <p className="font-sans text-sm font-bold tracking-[0.22em] text-white/90 uppercase">
+                  THE CAVE: BOX DI CROSSFIT & HYROX
+                </p>
+
+                <p className="font-sans text-xs font-bold tracking-widest text-white/50 uppercase">
+                  900+ m² • 2 SEDI A ROMA • CROSSFIT® • HYROX
+                </p>
+
+                <p className="font-sans text-base lg:text-lg text-white/70 leading-relaxed">
+                  Allenamenti funzionali ad alta intensità. Community reale. Zero compromessi.
+                </p>
+
+                <div className="flex flex-row gap-3 pt-2">
+                  <a
+                    href={CONTACT_TEL_LINK}
+                    className="py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-300"
+                  >
+                    <CalendarDays size={14} />
+                    PRENOTA UNA PROVA
+                  </a>
+                  <a
+                    href="#sedi"
+                    className="py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
+                  >
+                    <MapPin size={14} />
+                    SCOPRI LE SEDI
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Mobile-only: photo cropped to square — ends at barbell level */}
-        <div className="block lg:hidden w-full overflow-hidden aspect-[1/1]">
-          <img
-            src={heroMobileBg}
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-top"
-          />
+          {/* Desktop bottom info bar */}
+          <div className="relative z-10 border-t border-white/10 bg-near-black/60 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center">
+              <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5">
+                  <MapPin size={12} className="text-brand-yellow shrink-0" />
+                  <span className="font-sans text-[10px] font-bold tracking-widest uppercase text-brand-yellow">DUE SEDI A ROMA</span>
+                </div>
+                <span className="font-sans text-xs text-white/50 tracking-wide">Mandrione & Cinecittà</span>
+              </div>
+              <div className="flex items-stretch gap-0 ml-auto divide-x divide-white/10">
+                <div className="pr-8 flex items-center gap-2.5">
+                  <Users size={18} className="text-brand-yellow shrink-0" />
+                  <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap leading-relaxed">COACH<br/>CERTIFICATI</span>
+                </div>
+                <div className="px-8 flex items-center gap-2.5">
+                  <Dumbbell size={18} className="text-brand-yellow shrink-0" />
+                  <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap leading-relaxed">ROGUE® /<br/>BLOR®</span>
+                </div>
+                <div className="pl-8 flex items-center gap-2.5">
+                  <Star size={16} className="fill-brand-yellow text-brand-yellow shrink-0" />
+                  <div>
+                    <span className="font-display text-base text-brand-yellow block leading-none">4.85</span>
+                    <span className="font-sans text-[9px] text-white/50 tracking-widest uppercase whitespace-nowrap">SU GOOGLE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </section>

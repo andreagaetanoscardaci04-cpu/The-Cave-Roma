@@ -76,7 +76,6 @@ export default function Navbar() {
               alt="THE CAVE"
               draggable={false}
               className="h-8 w-auto pointer-events-none select-none"
-              style={{ mixBlendMode: 'screen' }}
             />
             <span className="font-sans text-[9px] tracking-[0.25em] text-white/50 leading-none">
               CROSSFIT & HYROX
