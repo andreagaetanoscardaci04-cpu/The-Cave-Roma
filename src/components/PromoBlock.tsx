@@ -15,7 +15,7 @@ export default function PromoBlock() {
   ];
 
   return (
-    <section id="promo" className="bg-[#070706] py-24 px-4 md:px-6 relative overflow-hidden">
+    <section id="promo" className="bg-[#070706] py-16 md:py-24 px-4 md:px-6 relative overflow-hidden">
       {/* Background decoration representing target lines or tactical aesthetics */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-10 left-10 w-40 h-40 border border-white rounded-full"></div>

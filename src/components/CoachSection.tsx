@@ -8,7 +8,7 @@ import { User } from 'lucide-react';
 
 export default function CoachSection() {
   return (
-    <section id="coaches" className="bg-near-black py-24 px-4 md:px-6 border-b border-white/5 relative">
+    <section id="coaches" className="bg-near-black py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto">

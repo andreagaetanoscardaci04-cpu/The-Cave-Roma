@@ -76,13 +76,13 @@ export default function ProgramCards() {
   );
 
   return (
-    <section id="programmi" className="bg-[#0c0c0b] py-24 px-4 md:px-6 border-b border-white/5 relative">
+    <section id="programmi" className="bg-[#0c0c0b] py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto">
 
         {/* Testata principale sezione */}
-        <div className="mb-20 text-center md:text-left">
+        <div className="mb-12 md:mb-20 text-center md:text-left">
           <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
             COSA OFFRIAMO
           </span>
@@ -92,11 +92,11 @@ export default function ProgramCards() {
         </div>
 
         {/* Separatore visivo */}
-        <div className="w-full h-px bg-white/5 mb-20" />
+        <div className="w-full h-px bg-white/5 mb-12 md:mb-20" />
 
         {/* ---- 01: Classi Ordinarie ---- */}
-        <div className="mb-28">
-          <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div className="mb-16 md:mb-28">
+          <div className="mb-8 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
                 01 / CLASSI ORDINARIE
@@ -123,11 +123,11 @@ export default function ProgramCards() {
         </div>
 
         {/* Separatore visivo tra le due sottosezioni */}
-        <div className="w-full h-px bg-white/5 mb-28" />
+        <div className="w-full h-px bg-white/5 mb-16 md:mb-28" />
 
         {/* ---- 02: Programmi Personalizzati ---- */}
         <div>
-          <div className="mb-14">
+          <div className="mb-8 md:mb-14">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
               02 / PROGRAMMI PERSONALIZZATI
             </span>

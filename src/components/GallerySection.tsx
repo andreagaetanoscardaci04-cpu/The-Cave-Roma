@@ -9,7 +9,7 @@ export default function GallerySection() {
   const slots = Array.from({ length: 6 });
 
   return (
-    <section id="galleria" className="bg-[#0c0c0b] py-24 px-4 md:px-6 border-b border-white/5 relative">
+    <section id="galleria" className="bg-[#0c0c0b] py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto">

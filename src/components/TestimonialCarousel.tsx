@@ -11,6 +11,7 @@ type Review = (typeof REVIEWS)[0];
 
 export default function TestimonialCarousel() {
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+  const [touchPaused, setTouchPaused] = useState(false);
 
   const tripled = [...REVIEWS, ...REVIEWS, ...REVIEWS];
 
@@ -27,7 +28,7 @@ export default function TestimonialCarousel() {
   }, [selectedReview]);
 
   return (
-    <section id="reviews" className="bg-[#0c0c0b] py-24 border-b border-white/5 relative overflow-hidden select-none">
+    <section id="reviews" className="bg-[#0c0c0b] py-16 md:py-24 border-b border-white/5 relative overflow-hidden select-none">
       <style>{`
         @keyframes reviewsScroll {
           0%   { transform: translateX(0); }
@@ -36,12 +37,15 @@ export default function TestimonialCarousel() {
         .reviews-track {
           animation: reviewsScroll 93s linear infinite;
         }
+        .reviews-track.is-paused {
+          animation-play-state: paused;
+        }
       `}</style>
 
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mb-10 md:mb-16 text-center md:text-left">
         <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
           I NOSTRI MEMBRI DICONO DI NOI
         </span>
@@ -59,7 +63,9 @@ export default function TestimonialCarousel() {
         <div className="absolute right-0 inset-y-0 w-16 md:w-40 bg-gradient-to-l from-[#0c0c0b] to-transparent z-10 pointer-events-none" />
 
         <div
-          className="reviews-track flex gap-8 py-4 w-max"
+          className={`reviews-track flex gap-8 py-4 w-max ${touchPaused ? 'is-paused' : ''}`}
+          onTouchStart={() => setTouchPaused(true)}
+          onTouchEnd={() => setTouchPaused(false)}
         >
           {tripled.map((rev, idx) => (
             <div

@@ -44,8 +44,8 @@ export default function App() {
             />
             {/* Top vignette — keeps logo readable over the bright gym ceiling */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#070706]/90 via-[#070706]/25 to-transparent" />
-            {/* Bottom vignette — CTA area always on solid dark */}
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #070706 0%, rgba(7,7,6,0.93) 28%, rgba(7,7,6,0.4) 52%, transparent 72%)' }} />
+            {/* Bottom vignette — CTA area always on solid dark, softened higher up so the ROGUE branding on the sled stays visible */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #070706 0%, rgba(7,7,6,0.85) 14%, rgba(7,7,6,0.55) 30%, rgba(7,7,6,0.15) 48%, transparent 62%)' }} />
           </div>
 
           {/* Content stack */}
@@ -57,7 +57,7 @@ export default function App() {
                 src={theCaveLogo}
                 alt="THE CAVE"
                 draggable={false}
-                className="w-[70vw] max-w-[260px] select-none pointer-events-none"
+                className="w-[85vw] max-w-[340px] -ml-8 select-none pointer-events-none"
               />
               <span className="font-sans text-[13px] font-bold tracking-[0.3em] text-brand-yellow/85 uppercase">
                 CROSSFIT® & HYROX — ROMA
@@ -81,12 +81,6 @@ export default function App() {
                   4.85 · Google Reviews
                 </span>
               </div>
-
-              {/* Headline */}
-              <h1 className="font-display text-[50px] leading-[0.88] tracking-tight text-white uppercase">
-                NESSUN<br />
-                <span className="text-brand-yellow">COMPROMESSO</span>
-              </h1>
 
               {/* CTA buttons */}
               <div className="flex flex-col gap-2 pt-2">
@@ -231,12 +225,12 @@ export default function App() {
       <Stats />
 
       {/* LA NOSTRA FILOSOFIA manifesto */}
-      <section id="box-philosophy" className="bg-[#0c0c0b] py-24 px-4 md:px-6 relative border-b border-white/5">
+      <section id="box-philosophy" className="bg-[#0c0c0b] py-16 md:py-24 px-4 md:px-6 relative border-b border-white/5">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
-          {/* Left — manifesto testo */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Left — manifesto testo (mobile: appears after photo, order-2; desktop: first, order-1) */}
+          <div className="order-2 lg:order-1 lg:col-span-7 space-y-6">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block">
               IL MANIFESTO
             </span>
@@ -278,14 +272,14 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right — placeholder foto box */}
-          <div className="lg:col-span-5 relative">
+          {/* Left on mobile (order-1), right on desktop (order-2) — placeholder foto box */}
+          <div className="order-1 lg:order-2 lg:col-span-5 relative">
             <div className="border border-white/10 p-2 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
               <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
 
               {/* Placeholder foto — sostituire con foto reale del box */}
-              <div className="relative h-[420px] overflow-hidden bg-[#070706] flex flex-col items-center justify-center gap-4">
+              <div className="relative h-[300px] sm:h-[380px] lg:h-[420px] overflow-hidden bg-[#070706] flex flex-col items-center justify-center gap-4">
                 <Dumbbell size={48} className="text-white/10" />
                 <span className="font-sans text-xs text-white/20 tracking-[0.3em] uppercase">Foto box — in arrivo</span>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/60 via-transparent to-transparent" />
@@ -307,11 +301,11 @@ export default function App() {
       </section>
 
       {/* LA NOSTRA COMMUNITY & EVENTI */}
-      <section id="community" className="bg-near-black py-24 px-4 md:px-6 border-b border-white/5 relative">
+      <section id="community" className="bg-near-black py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="max-w-7xl mx-auto">
 
-          <div className="mb-16 text-center md:text-left">
+          <div className="mb-10 md:mb-16 text-center md:text-left">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
               PEOPLE FIRST
             </span>
@@ -408,7 +402,7 @@ export default function App() {
       <ScheduleGrid />
 
       {/* Final CALL TO ACTION: "Entra nella Cave" */}
-      <section className="bg-near-black py-28 px-4 md:px-6 relative overflow-hidden text-center border-t border-white/5">
+      <section className="bg-near-black py-20 md:py-28 px-4 md:px-6 relative overflow-hidden text-center border-t border-white/5">
         
         {/* Soft premium yellow glow backdrop */}
         <div className="absolute inset-0 glow-yellow-radial pointer-events-none"></div>
@@ -456,7 +450,7 @@ export default function App() {
       {/* Affiliazioni ufficiali */}
       <section id="affiliazioni" className="bg-[#0c0c0b] py-20 px-4 md:px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
               CERTIFICAZIONI E PARTNERSHIP
             </span>
