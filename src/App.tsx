@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from 'react';
 import Navbar from './components/Navbar.tsx';
+import BookingModal from './components/BookingModal.tsx';
 import Stats from './components/Stats.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.png';
@@ -22,11 +24,16 @@ import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
 import { Star, Dumbbell, Flame, Compass, MapPin, CalendarDays, Users } from 'lucide-react';
 
 export default function App() {
+  const [bookingOpen, setBookingOpen] = useState(false);
+
   return (
     <div className="bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#15140f_0%,_#070706_55%)] text-white min-h-screen font-sans antialiased overflow-x-hidden relative film-grain">
 
       {/* Sticky Header Nav */}
       <Navbar />
+
+      {/* Booking form modal — opens from the hero CTAs */}
+      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
 
       {/* Hero Section */}
       <section className="overflow-hidden">
@@ -84,13 +91,14 @@ export default function App() {
 
               {/* CTA buttons */}
               <div className="flex flex-col gap-2 pt-2">
-                <a
-                  href={CONTACT_TEL_LINK}
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
                   className="w-full py-[15px] bg-brand-yellow text-near-black font-sans font-black text-[11px] tracking-[0.22em] uppercase btn-cut flex items-center justify-center gap-2.5"
                 >
                   <CalendarDays size={14} />
-                  PRENOTA UNA PROVA GRATUITA
-                </a>
+                  PRENOTA UNA PROVA
+                </button>
                 <a
                   href="#sedi"
                   className="w-full py-[13px] border border-white/25 text-white font-sans font-black text-[11px] tracking-[0.22em] uppercase btn-cut flex items-center justify-center gap-2.5 bg-white/5 backdrop-blur-sm"
@@ -162,13 +170,14 @@ export default function App() {
                 </p>
 
                 <div className="flex flex-row gap-3 pt-2">
-                  <a
-                    href={CONTACT_TEL_LINK}
+                  <button
+                    type="button"
+                    onClick={() => setBookingOpen(true)}
                     className="py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-300"
                   >
                     <CalendarDays size={14} />
                     PRENOTA UNA PROVA
-                  </a>
+                  </button>
                   <a
                     href="#sedi"
                     className="py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"

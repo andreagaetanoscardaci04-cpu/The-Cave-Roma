@@ -11,6 +11,9 @@ import cinecittaImg from './assets/cinecitta.webp';
 export const CONTACT_PHONE = "339 643 8066";
 export const CONTACT_TEL_LINK = "tel:+393396438066";
 
+// TODO: replace with the gym's official email once available — used by the booking form
+export const CONTACT_EMAIL = "TODO@thecave.it";
+
 // Instagram accounts per location
 export const INSTAGRAM_ACCOUNTS = [
   { label: "Mandrione", handle: "@the.cave.crossfit.mandrione", url: "https://www.instagram.com/the.cave.crossfit.mandrione/" },
