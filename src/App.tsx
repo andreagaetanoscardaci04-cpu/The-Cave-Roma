@@ -148,12 +148,12 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-4 md:px-6 w-full py-8">
               <div className="max-w-xl space-y-6 lg:space-y-7">
 
-                <div className="select-none">
+                <div className="select-none -ml-[77px]">
                   <img
                     src={theCaveLogo}
                     alt="THE CAVE"
                     draggable={false}
-                    className="w-full max-w-[clamp(380px,40vw,580px)] pointer-events-none select-none"
+                    className="w-full max-w-[clamp(460px,48vw,700px)] pointer-events-none select-none"
                   />
                 </div>
 
@@ -335,14 +335,14 @@ export default function App() {
                   La community è il cuore del box. Atleti di ogni livello, dal principiante assoluto all'agonista, condividono spazio, sudore e progressi. Qui si entra come nuovi e si esce come famiglia.
                 </p>
                 <p>
-                  Organizziamo eventi regolari, sessioni a tema e gare interne per mantenere alta la motivazione e rinsaldare il legame tra i membri. Non è marketing: è il modo in cui funzionano i veri box CrossFit.
+                  Organizziamo eventi regolari, sessioni a tema e manifestazioni interne per mantenere alta la motivazione e rinsaldare il legame tra i membri. Non è marketing: è il modo in cui funzionano i veri box CrossFit.
                 </p>
               </div>
 
               <div className="space-y-3 pt-2">
                 {[
                   { Icon: Dumbbell, label: "WOD SOCIALI", desc: "Sessioni di gruppo speciali con WOD tematici e sfide collettive aperte a tutti i livelli." },
-                  { Icon: Flame, label: "GARE INTERNE", desc: "Competizioni amichevoli mensili per misurare i progressi e alimentare l'agonismo sano." },
+                  { Icon: Flame, label: "MANIFESTAZIONI INTERNE", desc: "Competizioni amichevoli mensili per misurare i progressi e alimentare l'agonismo sano." },
                   { Icon: Compass, label: "DROP-IN WELCOME", desc: "Atleti visitatori sempre benvenuti. Il tuo network di box si estende fino a Roma." }
                 ].map(({ Icon, label, desc }, idx) => (
                   <div key={idx} className="bg-[#0c0c0b] border border-white/10 p-5 flex items-start gap-4 hover:border-brand-yellow/30 transition-colors group">
@@ -375,10 +375,10 @@ export default function App() {
                 <span className="font-mono text-[9px] text-brand-yellow/20 tracking-widest uppercase relative z-10">IN ARRIVO</span>
               </div>
 
-              {/* Foto piccola sinistra: gara interna */}
+              {/* Foto piccola sinistra: manifestazione interna */}
               <div className="relative bg-[#0c0c0b] border border-white/10 h-48 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-brand-yellow/20 transition-colors">
                 <Flame size={28} className="text-white/10" />
-                <span className="font-sans text-[9px] text-white/20 tracking-[0.25em] uppercase">Gara interna</span>
+                <span className="font-sans text-[9px] text-white/20 tracking-[0.25em] uppercase">Manifestazione interna</span>
                 <span className="font-mono text-[8px] text-brand-yellow/20 tracking-widest uppercase">IN ARRIVO</span>
               </div>
 
@@ -431,19 +431,28 @@ export default function App() {
             Prenota subito la tua lezione di prova gratuita. Scopri di persona perché non siamo la solita palestra ma una vera tana di agonismo, disciplina e rispetto sportivo.
           </p>
 
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-            <a
-              href={CONTACT_TEL_LINK}
+          <div className="pt-6 flex flex-col items-center justify-center gap-4 max-w-md mx-auto">
+            <button
+              type="button"
+              onClick={() => setBookingOpen(true)}
               className="w-full sm:w-auto py-5 px-10 bg-brand-yellow text-near-black font-sans font-black text-base tracking-widest uppercase btn-cut text-shadow flex items-center justify-center gap-3 hover:bg-white transition-all duration-300"
             >
-              PRENOTA ORA GRATIS
-            </a>
-            <a
-              href="https://maps.google.com/?q=Via+del+Mandrione+105,+00181+Roma"
-              className="w-full sm:w-auto py-5 px-8 bg-[#0c0c0b] border border-white/10 text-white font-sans font-bold text-sm tracking-wider uppercase btn-cut text-center hover:bg-white hover:text-near-black transition-all duration-300"
-            >
-              RAGGIUNGI MANDRIONE
-            </a>
+              PRENOTA ORA
+            </button>
+            <div className="w-full flex flex-row items-center justify-center gap-3">
+              <a
+                href="https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8"
+                className="w-full py-3 px-4 bg-[#0c0c0b] border border-white/10 text-white font-sans font-bold text-xs tracking-wider uppercase btn-cut text-center hover:bg-white hover:text-near-black transition-all duration-300"
+              >
+                RAGGIUNGI MANDRIONE
+              </a>
+              <a
+                href="https://maps.app.goo.gl/qYJm9baFNdriiiNm8"
+                className="w-full py-3 px-4 bg-[#0c0c0b] border border-white/10 text-white font-sans font-bold text-xs tracking-wider uppercase btn-cut text-center hover:bg-white hover:text-near-black transition-all duration-300"
+              >
+                RAGGIUNGI CINECITTÀ
+              </a>
+            </div>
           </div>
 
           <div className="pt-6 text-white/30 font-sans text-xs tracking-widest uppercase">

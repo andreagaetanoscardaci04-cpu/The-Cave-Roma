@@ -26,7 +26,7 @@ export default function Footer() {
             Via del Mandrione 105, 00181 Roma | CrossFit® & HYROX
           </p>
           <a
-            href="https://maps.google.com/?q=Via+del+Mandrione+105,+00181+Roma"
+            href="https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-1 font-sans text-xs font-bold text-brand-yellow hover:underline uppercase tracking-widest pt-2"
@@ -48,7 +48,7 @@ export default function Footer() {
             Via Silicella 103, 00169 Roma | HYROX & CrossFit®
           </p>
           <a
-            href="https://maps.google.com/?q=Via+Silicella+103,+00169+Roma"
+            href="https://maps.app.goo.gl/qYJm9baFNdriiiNm8"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-1 font-sans text-xs font-bold text-brand-yellow hover:underline uppercase tracking-widest pt-2"

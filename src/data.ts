@@ -37,7 +37,7 @@ export const BOX_LOCATIONS: LocationInfo[] = [
     postalCode: "00181",
     city: "Roma",
     programLabel: "CrossFit® + HYROX",
-    googleMapsUrl: "https://maps.google.com/?q=Via+del+Mandrione+105,+00181+Roma",
+    googleMapsUrl: "https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8",
     image: mandrioneImg
   },
   {
@@ -49,7 +49,7 @@ export const BOX_LOCATIONS: LocationInfo[] = [
     postalCode: "00169",
     city: "Roma",
     programLabel: "HYROX + CrossFit®",
-    googleMapsUrl: "https://maps.google.com/?q=Via+Silicella+103,+00169+Roma",
+    googleMapsUrl: "https://maps.app.goo.gl/qYJm9baFNdriiiNm8",
     image: cinecittaImg
   }
 ];

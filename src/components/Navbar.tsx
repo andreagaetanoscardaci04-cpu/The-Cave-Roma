@@ -107,7 +107,7 @@ export default function Navbar() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-near-black opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-near-black"></span>
             </span>
-            PROVA GRATIS
+            CHIAMA ORA
           </a>
         </div>
 
@@ -158,7 +158,7 @@ export default function Navbar() {
               className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-lg text-center tracking-wider uppercase btn-cut flex items-center justify-center"
             >
               <PhoneCall size={20} className="mr-3" />
-              PROVA GRATIS SUBITO
+              CHIAMA ORA
             </a>
             <div className="text-center text-white/40 text-xs font-sans tracking-widest uppercase">
               CHIAMACI: {CONTACT_PHONE}

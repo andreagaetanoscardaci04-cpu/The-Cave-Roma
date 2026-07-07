@@ -16,10 +16,10 @@ export default function GallerySection() {
         {/* Section Heading */}
         <div className="mb-16 md:mb-20 text-left">
           <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-            // LA CAVE IN FOTO
+            // THE CAVE IN FOTO
           </span>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-            DENTRO LA <span className="text-outline-yellow">CAVE</span>
+            THE <span className="text-outline-yellow">CAVE</span>
           </h2>
         </div>
 
