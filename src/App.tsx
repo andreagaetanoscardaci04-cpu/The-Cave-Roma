@@ -6,7 +6,6 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar.tsx';
 import BookingModal from './components/BookingModal.tsx';
-import Stats from './components/Stats.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.png';
 import heroMobileBg from './assets/hero-mobile.png';
@@ -224,15 +223,6 @@ export default function App() {
 
       </section>
 
-      {/* Testimonials Carousel Component */}
-      <TestimonialCarousel />
-
-      {/* Yellow Marquee strip scrolling keywords */}
-      <MarqueeStrip />
-
-      {/* Stats Band Component */}
-      <Stats />
-
       {/* LA NOSTRA FILOSOFIA manifesto */}
       <section id="box-philosophy" className="bg-[#0c0c0b] py-16 md:py-24 px-4 md:px-6 relative border-b border-white/5">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -293,21 +283,17 @@ export default function App() {
                 <span className="font-sans text-xs text-white/20 tracking-[0.3em] uppercase">Foto box — in arrivo</span>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/60 via-transparent to-transparent" />
               </div>
-
-              {/* Citazione overlay */}
-              <div className="absolute bottom-6 inset-x-6 bg-[#070706]/90 border border-white/10 p-5 text-center">
-                <span className="font-sans text-xs font-bold text-brand-yellow tracking-widest uppercase block mb-1">
-                  " FORGIA I TUOI LIMITI "
-                </span>
-                <span className="font-sans text-[10px] text-white/40 uppercase tracking-wider block">
-                  LA PREPARAZIONE MENTALE SUPERA OGNI FATICA FISICA.
-                </span>
-              </div>
             </div>
           </div>
 
         </div>
       </section>
+
+      {/* Yellow Marquee strip scrolling keywords */}
+      <MarqueeStrip />
+
+      {/* Testimonials Carousel Component */}
+      <TestimonialCarousel />
 
       {/* LA NOSTRA COMMUNITY & EVENTI */}
       <section id="community" className="bg-near-black py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
