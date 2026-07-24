@@ -86,7 +86,7 @@ export default function TrustpilotBanner() {
         {/* CTA Button */}
         <div className="pt-2">
           <a
-            href="https://www.trustpilot.com"
+            href="https://it.trustpilot.com/review/thecavebox.it"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 py-4 px-10 font-sans font-black text-xs tracking-[0.25em] uppercase btn-cut text-white transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
