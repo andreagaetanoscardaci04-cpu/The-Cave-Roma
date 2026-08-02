@@ -10,6 +10,8 @@ import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.png';
 import heroMobileBg from './assets/hero-mobile.png';
 import theCaveLogo from './assets/the-cave-logo.png';
+import boxPhoto from './assets/box-photo.jpg';
+import wodSocialePhoto from './assets/wod-sociale.jpg';
 import LocationsList from './components/LocationsList.tsx';
 import ProgramCards from './components/ProgramCards.tsx';
 import GallerySection from './components/GallerySection.tsx';
@@ -277,10 +279,9 @@ export default function App() {
               <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
               <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
 
-              {/* Placeholder foto — sostituire con foto reale del box */}
-              <div className="relative h-[300px] sm:h-[380px] lg:h-[420px] overflow-hidden bg-[#070706] flex flex-col items-center justify-center gap-4">
-                <Dumbbell size={48} className="text-white/10" />
-                <span className="font-sans text-xs text-white/20 tracking-[0.3em] uppercase">Foto box — in arrivo</span>
+              {/* Foto reale del box */}
+              <div className="relative h-[300px] sm:h-[380px] lg:h-[420px] overflow-hidden bg-[#070706]">
+                <img src={boxPhoto} alt="The Cave — box" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070706]/60 via-transparent to-transparent" />
               </div>
             </div>
@@ -369,10 +370,10 @@ export default function App() {
               </div>
 
               {/* Foto piccola destra: WOD evento */}
-              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-brand-yellow/20 transition-colors">
-                <Dumbbell size={28} className="text-white/10" />
-                <span className="font-sans text-[9px] text-white/20 tracking-[0.25em] uppercase">WOD sociale</span>
-                <span className="font-mono text-[8px] text-brand-yellow/20 tracking-widest uppercase">IN ARRIVO</span>
+              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
+                <img src={wodSocialePhoto} alt="WOD sociale" className="w-full h-full object-cover" />
               </div>
 
             </div>
