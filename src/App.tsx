@@ -241,7 +241,7 @@ export default function App() {
             </h2>
 
             <p className="font-display text-2xl md:text-3xl text-white/50 uppercase tracking-tight leading-none">
-              Non è solo una palestra.
+              Sembrano parole costruite ma è veramente così:
             </p>
 
             <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
@@ -253,16 +253,22 @@ export default function App() {
                 Qui crediamo nell'allenamento vero: quello che ti mette alla prova, ti insegna la disciplina e ti dimostra che i risultati arrivano con costanza, impegno e determinazione.
               </p>
               <p>
-                Abbiamo scelto attrezzatura professionale e spazi progettati per la performance, con bilancieri olimpionici Rogue®, attrezzatura BLOR®, pedane dedicate e tutto ciò che serve per allenarsi senza compromessi.
+                È quello che accade a tutti quelli che varcano la porta di The Cave.
+              </p>
+              <p>
+                Abbiamo scelto attrezzatura professionale e spazi progettati per la performance, con bilancieri, attrezzatura al top, Rogue® e BLOR® e tutto ciò che serve per allenarsi senza compromessi, non manca veramente nulla, ti basterà entrare per renderti conto che sei in un box a 5 stelle, The Cave è così.
               </p>
               <p>
                 Ma ciò che rende davvero speciale The Cave non sono i bilancieri o i workout. Sono le persone.
               </p>
               <p>
-                Qui nessuno si allena da solo. Ci si incoraggia durante ogni WOD, si festeggiano i traguardi insieme e ci si sostiene anche nei giorni più difficili. Che tu sia al tuo primo allenamento o un atleta esperto, entrerai a far parte di una community che condivide gli stessi valori: rispetto, sacrificio, crescita e voglia di migliorarsi ogni giorno.
+                A partire dallo staff che ti farà sentire subito a casa, perché per noi l'accoglienza e il farvi migliorare è al primo posto di tutto.
               </p>
               <p>
-                Che il tuo obiettivo sia il CrossFit®, HYROX o semplicemente diventare una versione più forte di te stesso, qui troverai un ambiente che ti spingerà a dare il massimo, senza mai lasciarti indietro.
+                E poi...qui nessuno si allena da solo. Ci si incoraggia durante ogni WOD, si festeggiano i traguardi insieme e ci si sostiene anche nei giorni più difficili. Che tu sia al tuo primo allenamento o un atleta esperto, entrerai a far parte di una community che condivide gli stessi valori: rispetto, sacrificio, crescita e voglia di migliorarsi ogni giorno.
+              </p>
+              <p>
+                Che il tuo obiettivo sia il CrossFit®, HYROX o semplicemente diventare una versione più forte di te stesso, qui troverai un ambiente che ti spingerà a dare il massimo, senza mai lasciarti indietro o farti sentire trascurato.
               </p>
             </div>
 
@@ -319,10 +325,16 @@ export default function App() {
               </p>
               <div className="space-y-4 font-sans text-sm text-white/60 tracking-wide leading-relaxed">
                 <p>
-                  La community è il cuore del box. Atleti di ogni livello, dal principiante assoluto all'agonista, condividono spazio, sudore e progressi. Qui si entra come nuovi e si esce come famiglia.
+                  La community è il cuore del box. Il nostro punto di forza sono le classi, è così che nasce il CrossFit.
                 </p>
                 <p>
-                  Organizziamo eventi regolari, sessioni a tema e manifestazioni interne per mantenere alta la motivazione e rinsaldare il legame tra i membri. Non è marketing: è il modo in cui funzionano i veri box CrossFit.
+                  A The Cave atleti di ogni livello, dal principiante all'agonista, condividono spazio, sudore e progressi. Qui si entra come nuovi e si esce come famiglia. Da subito ti sentirai a casa.
+                </p>
+                <p>
+                  Organizziamo eventi che rafforzano il team building, dentro e fuori dal box, workshop con docenti esterni e manifestazioni interne per mantenere alta la motivazione e il focus.
+                </p>
+                <p>
+                  Non è marketing: è il modo in cui funziona The Cave.
                 </p>
               </div>
 

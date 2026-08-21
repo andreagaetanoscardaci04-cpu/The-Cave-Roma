@@ -151,117 +151,51 @@ export const PROGRAMS: ProgramInfo[] = [
 export const REVIEWS: ReviewInfo[] = [
   {
     id: "rev1",
-    text: "Il mio posto del cuore. Partire da zero a The Cave CrossFit Mandrione non è un problema: sarai seguito da ottimi professionisti e i risultati non tarderanno ad arrivare.",
-    author: "Rita R.",
+    text: "Mi sono allenato in questo box dopo un weekend di vacanza a Roma, mi sono sentito subito a casa! Mi hanno accolto a braccia aperte e nonostante avessi un problema di mobilità alla spalla mi hanno seguito e aiutato a fare il workout, si respira atmosfera di famiglia! Bravi coach, bravi tutti! Merita davvero!",
+    author: "Andrea G.",
     rating: 5
   },
   {
     id: "rev2",
-    text: "Ottimo team, da un anno che mi alleno con loro ed ho già ottenuto i risultati che volevo. Grazie a tutti!!",
-    author: "Andrea A.",
+    text: "Posto ideale per fare Crossfit su tutti per tutti i livelli. Il personale altamente qualificato segue scrupolosamente ogni iscritto e che guida verso la migliore esecuzione dei workout in pieno rispetto della sicurezza. 5 stelle so poche!",
+    author: "Vincenzo V.",
     rating: 5
   },
   {
     id: "rev3",
-    text: "Ottima palestra dedicata al CrossFit. Istruttori competenti, simpatici e preparati.",
-    author: "Riccardo V.",
+    text: "I was in Rome on vacation and looking for a box for drop in. Loved it there. The owner really made us feel welcome. The WODs were very well planned, the trainers were very knowledgeable and helpful. The box was very clean and nice. I definitely recommend and would go there again.",
+    author: "Viola D.",
     rating: 5
   },
   {
     id: "rev4",
-    text: "Box super attrezzato per il CrossFit e coach perfetti!",
-    author: "Erion B.",
+    text: "Cercando un box nei paraggi mi sono imbattuto in The Cave, che propone interessanti alternative anche per chi è a Roma \"di passaggio\", raramente trovo una scelta così vasta di membership. I coach davvero professionali e simpatici, minuziosi nelle tecniche di weightlifting e attenti durante i WODs. Personale attento e ambiente \"familiare\", ci si diverte e ci si allena bene, complimenti, molto felice di avervi conosciuto! Ci tornerò sicuramente quando farò tappa a Roma!",
+    author: "Mat",
     rating: 5
   },
   {
     id: "rev5",
-    text: "Un posto dove ci si allena come una volta, da provare per capire come ci si allena. Grandi.",
-    author: "Matteo D.P.",
+    text: "The Cave CrossFit Mandrione è molto più di un box di CrossFit: è una vera e propria comunità. I coach sono estremamente competenti, attenti e sempre pronti a correggere e motivare. La programmazione è ben strutturata e bilanciata, pensata per far progredire in modo costante, sia chi è alle prime armi che chi ha già esperienza. Ma ciò che rende davvero speciale questo box è l'ambiente: accogliente, stimolante e pieno di energia positiva. Si lavora duro, si suda, si migliora, ma sempre con il sorriso e il supporto di un gruppo unito. Consigliatissimo a chi cerca un box di CrossFit di qualità, con persone vere e passione autentica.",
+    author: "Blagoj N.",
+    rating: 5
+  },
+  {
+    id: "rev6",
+    text: "Sono stato un paio di settimane a Roma e ho frequentato questo box. Iscrizione alle classi molto semplice tramite app dedicata con possibilità di acquistare pacchetto ad ingressi. Vari Coach molto preparati e simpatici. Quando tornerò a Roma ripasserò sicuramente. Box top, super consigliato.",
+    author: "Michele F.",
     rating: 5
   },
   {
     id: "rev7",
-    text: "Mi trovo abbastanza bene, tutto come in famiglia.",
-    author: "Giulio C.",
+    text: "Il miglior box di CrossFit che ci sia! Organizzazione e prenotazione delle classi in app dedicata, tanta attrezzatura e coach professionali che ti seguono durante le lezioni! CONSIGLIATISSIMO!!!!",
+    author: "Alessandro M.",
     rating: 5
   },
   {
     id: "rev8",
-    text: "5 stelle al coach Federica Guerrera.",
-    author: "Antonio Francesco G.",
-    rating: 5
-  },
-  {
-    id: "rev9",
-    text: "Veramente un bell'impianto per attrezzature e spazio.",
-    author: "Aldo C.",
-    rating: 5
-  },
-  {
-    id: "rev10",
-    text: "Very nice and welcoming owner and community. We were in Rome for a long weekend and visited the box, the WOD was great and the atmosphere nice! Thank you for a good time!!",
-    author: "Mai-Britt N.",
-    rating: 5
-  },
-  {
-    id: "rev11",
-    text: "A great box, the coach and the place were really nice. We had a blast the two times we visited during the same weekend. Friendly and quick to answer our Facebook message. Loved it.",
-    author: "Emilia H.",
-    rating: 5
-  },
-  {
-    id: "rev12",
-    text: "Very nice box, thanks a lot!",
-    author: "Mehregan K.",
-    rating: 5
-  },
-  {
-    id: "rev13",
-    text: "Box di CrossFit completo di tutto, dove c'è spazio per tutti! Ambiente divertente e sereno, con coach professionali e preparati. Sicuramente un posto dove tornare!",
-    author: "Roberto M.",
-    rating: 5
-  },
-  {
-    id: "rev14",
-    text: "Coach e proprietari simpatici. Ottimo ambiente. Ho provato altri box, ma solo loro mi hanno convinto!",
-    author: "Salvo",
-    rating: 5
-  },
-  {
-    id: "rev15",
-    text: "Istruttori bravi e qualificati. Ti seguono e ti spiegano bene i movimenti della pesistica e di ogni movimento del CrossFit.",
-    author: "Mathias",
-    rating: 5
-  },
-  {
-    id: "rev16",
-    text: "È stato molto figo.",
-    author: "Alessandro B.",
+    text: "Ho avuto il piacere di allenarmi al Box The Cave per una settimana ed è stata un'esperienza davvero molto positiva. Fin da subito mi sono sentito accolto e a mio agio, cosa per nulla scontata quando si è solo di passaggio. Un ringraziamento speciale a Paolo per la sua gentilezza, disponibilità e attenzione: persone così fanno davvero la differenza e rendono tutto ancora più piacevole. Mi sono trovato benissimo sotto tutti i punti di vista. Complimenti a tutto il team per il lavoro che fate ogni giorno! Tornerò sicuramente appena ne avrò occasione.",
+    author: "Fabrizio B.",
     rating: 4
-  },
-  {
-    id: "rev17",
-    text: "Il The Cave è una garanzia!",
-    author: "Eleonora S.",
-    rating: 5
-  },
-  {
-    id: "rev18",
-    text: "Went to this box while staying in Rome for a couple of days. They recently opened and I did a drop-in open gym. They were really friendly and straightforward, the box offers everything a normal WOD asks for. Great experience!",
-    author: "Simon H.",
-    rating: 5
-  },
-  {
-    id: "rev19",
-    text: "Top!!",
-    author: "Elisabetta R.",
-    rating: 5
-  },
-  {
-    id: "rev20",
-    text: "Top",
-    author: "Andrea C.",
-    rating: 5
   }
 ];
 
