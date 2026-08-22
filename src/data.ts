@@ -11,6 +11,10 @@ import cinecittaImg from './assets/cinecitta.webp';
 export const CONTACT_PHONE = "339 643 8066";
 export const CONTACT_TEL_LINK = "tel:+393396438066";
 
+// Official booking app
+export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.shaggyowl.cfthecave&pcampaignid=web_share";
+export const APP_STORE_URL = "https://apps.apple.com/it/app/the-cave-crossfit/id1497429134";
+
 // Instagram accounts per location
 export const INSTAGRAM_ACCOUNTS = [
   { label: "Mandrione", handle: "@the.cave.crossfit.mandrione", url: "https://www.instagram.com/the.cave.crossfit.mandrione/" },
@@ -34,7 +38,7 @@ export const BOX_LOCATIONS: LocationInfo[] = [
     postalCode: "00181",
     city: "Roma",
     programLabel: "CrossFit® + HYROX",
-    googleMapsUrl: "https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8",
+    googleMapsUrl: "https://maps.app.goo.gl/qYJm9baFNdriiiNm8",
     image: mandrioneImg
   },
   {
@@ -46,7 +50,7 @@ export const BOX_LOCATIONS: LocationInfo[] = [
     postalCode: "00169",
     city: "Roma",
     programLabel: "HYROX + CrossFit®",
-    googleMapsUrl: "https://maps.app.goo.gl/qYJm9baFNdriiiNm8",
+    googleMapsUrl: "https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8",
     image: cinecittaImg
   }
 ];
@@ -196,6 +200,98 @@ export const REVIEWS: ReviewInfo[] = [
     text: "Ho avuto il piacere di allenarmi al Box The Cave per una settimana ed è stata un'esperienza davvero molto positiva. Fin da subito mi sono sentito accolto e a mio agio, cosa per nulla scontata quando si è solo di passaggio. Un ringraziamento speciale a Paolo per la sua gentilezza, disponibilità e attenzione: persone così fanno davvero la differenza e rendono tutto ancora più piacevole. Mi sono trovato benissimo sotto tutti i punti di vista. Complimenti a tutto il team per il lavoro che fate ogni giorno! Tornerò sicuramente appena ne avrò occasione.",
     author: "Fabrizio B.",
     rating: 4
+  },
+  // Trustpilot reviews
+  {
+    id: "rev9",
+    text: "Sono andata a The Cave per provare un box nuovo, di cui già avevo sentito parlare. Ho trovato un ambiente molto aperto, persone disponibili e accoglienti, e un livello davvero alto. Coach preparatissimi, box molto attrezzato e programmazione evidentemente studiata sul lungo periodo: mi sono sentita non solo subito accolta ma anche seguita con grande cura. Ho già acquistato l'abbonamento per il mese prossimo!",
+    author: "Grazia C.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev10",
+    text: "Il box migliore, super consigliato sia per Hyrox che Crossfit! Esperienza super positiva, personale competente e sempre attento ai clienti. Paolo e Vasyl super disponibili, sempre pronti a soddisfare le esigenze di tutti noi promuovendo peraltro sempre tante iniziative carine. The Cave è casa, una seconda famiglia!",
+    author: "Chiara",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev11",
+    text: "Coach qualificati, ambiente familiare e il box è stupendo! Il miglior box di crossfit su Roma!",
+    author: "Eleonora L.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev12",
+    text: "Frequento questo box di CrossFit da un po' di tempo e mi trovo davvero benissimo. L'ambiente è accogliente, pulito e ben organizzato, con una clientela rispettosa e piacevole che rende ogni allenamento ancora più motivante. I coach sono preparati, professionali e sempre disponibili: seguono gli atleti con attenzione, correggono la tecnica e adattano gli allenamenti in base al livello di ciascuno. Consiglio questo box a chiunque voglia allenarsi seriamente in un ambiente positivo, pulito e con istruttori davvero bravi.",
+    author: "Salvatore S.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev13",
+    text: "Community da paura, spazi da paura, attrezzature da paura e coach super preparati, non inizia la giornata se non ci si va ad allenare tutti insieme al The Cave, bellissima realtà che ti sprona a fare sempre meglio e ti aiuta nella vita di tutti i giorni, insomma una grande famiglia, sempre ON FIRE.",
+    author: "Emanuele P.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev14",
+    text: "Sono arrivata un anno fa e mi sono sentita subito a casa! I coach e le persone sono fantastiche! Ho sempre fatto Crossfit ma qui a The Cave ho provato anche Hyrox! Il box è super attrezzato e pulito. Entrare lì e woddare con gli altri è l'ora più bella della giornata.",
+    author: "Talita T.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev15",
+    text: "Box grande e fornito, coach disponibili, ampia scelta di orari!",
+    author: "Ludovica R.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev16",
+    text: "Ottimi coach, preparati e disponibili. Box grande, spazioso e ben attrezzato. Allenamenti sempre in linea con il Crossfit e l'Hyrox. Ogni giorno workout diversi e sfidanti.",
+    author: "Angela E.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev17",
+    text: "Frequento il box da ormai quasi 3 anni e posso dire che è come se fosse una seconda casa, una seconda famiglia. Magari si entra spaventati, poi a poco a poco si progredisce, si diventa più bravi e si incontrano persone eccezionali, dai coach ai compagni di classe. Tutto diventa il momento più bello della giornata. Complimenti a tutti!",
+    author: "Eugenio D.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev18",
+    text: "Frequento questo box da un anno e posso dire di aver trovato molto più di una semplice palestra. I coach sono preparati, qualificati e sempre attenti alla tecnica e alle esigenze di ogni atleta, indipendentemente dal livello di esperienza. Un box dove non sei un numero, vieni seguito con professionalità, disponibilità e passione. A questo si aggiunge lo spirito di community: fin dal primo giorno mi sono sentita accolta e parte di un gruppo che si sostiene, si motiva e cresce insieme.",
+    author: "Erica S.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev19",
+    text: "I coach sono accoglienti e competenti, c'è tanta possibilità di crescita grazie all'aiuto perenne da parte loro. L'ambiente è accogliente e ci si inserisce velocemente nel gruppo. Gli orari dei corsi sono strategici nel corso della giornata, consiglio di provare sia CrossFit che Hyrox!",
+    author: "Giorgia P.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev20",
+    text: "Box molto grande dotato di tutta la strumentazione necessaria, bravi i coach.",
+    author: "Ilenia S.",
+    rating: 5,
+    source: "trustpilot"
+  },
+  {
+    id: "rev21",
+    text: "Bellissima esperienza, coach preparati, attrezzatura di prima scelta e persone accoglienti!",
+    author: "Alessia N.",
+    rating: 5,
+    source: "trustpilot"
   }
 ];
 

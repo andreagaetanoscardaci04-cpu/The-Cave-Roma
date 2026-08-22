@@ -9,11 +9,27 @@ import { Star, X } from 'lucide-react';
 
 type Review = (typeof REVIEWS)[0];
 
+const TRUSTPILOT_GREEN = '#00b67a';
+
+/** Alternates Google/Trustpilot reviews 1-for-1; once the shorter list runs out, the rest of the longer list is appended in order. */
+function interleaveReviews(reviews: Review[]): Review[] {
+  const google = reviews.filter(r => r.source !== 'trustpilot');
+  const trustpilot = reviews.filter(r => r.source === 'trustpilot');
+  const result: Review[] = [];
+  const max = Math.max(google.length, trustpilot.length);
+  for (let i = 0; i < max; i++) {
+    if (google[i]) result.push(google[i]);
+    if (trustpilot[i]) result.push(trustpilot[i]);
+  }
+  return result;
+}
+
 export default function TestimonialCarousel() {
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const [touchPaused, setTouchPaused] = useState(false);
 
-  const tripled = [...REVIEWS, ...REVIEWS, ...REVIEWS];
+  const orderedReviews = interleaveReviews(REVIEWS);
+  const tripled = [...orderedReviews, ...orderedReviews, ...orderedReviews];
 
   useEffect(() => {
     if (!selectedReview) return;
@@ -70,7 +86,11 @@ export default function TestimonialCarousel() {
           {tripled.map((rev, idx) => (
             <div
               key={`${rev.id}-${idx}`}
-              className="premium-card w-[300px] sm:w-[400px] bg-near-black border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-yellow/30 hover:bg-white/[0.01] transition-all shrink-0 cursor-pointer group"
+              className={`premium-card w-[300px] sm:w-[400px] bg-near-black border p-6 sm:p-8 flex flex-col justify-between hover:bg-white/[0.01] transition-all shrink-0 cursor-pointer group ${
+                rev.source === 'trustpilot'
+                  ? 'border-[#00b67a]/25 hover:border-[#00b67a]/50'
+                  : 'border-white/10 hover:border-brand-yellow/30'
+              }`}
               onClick={() => setSelectedReview(rev)}
             >
               <div>
@@ -96,7 +116,16 @@ export default function TestimonialCarousel() {
                     <span className="font-mono text-[9px] text-[#2ecd6c] tracking-widest uppercase">VERIFICATO</span>
                   </div>
                 </div>
-                <span className="font-sans text-[10px] text-white/30 tracking-widest font-extrabold uppercase">GOOGLE REVIEW</span>
+                {rev.source === 'trustpilot' ? (
+                  <span
+                    className="font-sans text-[10px] tracking-widest font-extrabold uppercase"
+                    style={{ color: TRUSTPILOT_GREEN }}
+                  >
+                    ★ Trustpilot Review
+                  </span>
+                ) : (
+                  <span className="font-sans text-[10px] text-white/30 tracking-widest font-extrabold uppercase">GOOGLE REVIEW</span>
+                )}
               </div>
             </div>
           ))}
@@ -138,7 +167,16 @@ export default function TestimonialCarousel() {
                   <span className="font-mono text-[10px] text-[#2ecd6c] tracking-widest uppercase">RECENSIONE VERIFICATA</span>
                 </div>
               </div>
-              <span className="font-sans text-xs text-white/30 tracking-widest font-extrabold uppercase">Google</span>
+              {selectedReview.source === 'trustpilot' ? (
+                <span
+                  className="font-sans text-xs tracking-widest font-extrabold uppercase"
+                  style={{ color: TRUSTPILOT_GREEN }}
+                >
+                  ★ Trustpilot
+                </span>
+              ) : (
+                <span className="font-sans text-xs text-white/30 tracking-widest font-extrabold uppercase">Google</span>
+              )}
             </div>
           </div>
         </div>

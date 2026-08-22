@@ -37,6 +37,7 @@ export interface ReviewInfo {
   text: string;
   author: string;
   rating: number;
+  source?: 'google' | 'trustpilot';
 }
 
 export interface ScheduleItem {

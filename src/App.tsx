@@ -19,13 +19,20 @@ import CoachSection from './components/CoachSection.tsx';
 import TestimonialCarousel from './components/TestimonialCarousel.tsx';
 import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
-import TrustpilotBanner from './components/TrustpilotBanner.tsx';
 import Footer from './components/Footer.tsx';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
-import { Star, Dumbbell, Flame, Compass, MapPin, CalendarDays, Users } from 'lucide-react';
+import { Star, Dumbbell, Flame, Compass, MapPin, CalendarDays, Users, Smartphone } from 'lucide-react';
+import { PLAY_STORE_URL, APP_STORE_URL } from './data.ts';
+
+function isIOSDevice(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent;
+  return /iPad|iPhone|iPod/.test(ua) || (ua.includes('Macintosh') && navigator.maxTouchPoints > 1);
+}
 
 export default function App() {
   const [bookingOpen, setBookingOpen] = useState(false);
+  const appDownloadUrl = isIOSDevice() ? APP_STORE_URL : PLAY_STORE_URL;
 
   return (
     <div className="bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#15140f_0%,_#070706_55%)] text-white min-h-screen font-sans antialiased overflow-x-hidden relative film-grain">
@@ -107,6 +114,15 @@ export default function App() {
                   <MapPin size={14} />
                   SCOPRI LE SEDI
                 </a>
+                <a
+                  href={appDownloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-[13px] border border-white/25 text-white font-sans font-black text-[11px] tracking-[0.22em] uppercase btn-cut flex items-center justify-center gap-2.5 bg-white/5 backdrop-blur-sm"
+                >
+                  <Smartphone size={14} />
+                  SCARICA L'APP THE CAVE
+                </a>
               </div>
 
               {/* Stats strip */}
@@ -170,21 +186,32 @@ export default function App() {
                   Allenamenti funzionali ad alta intensità. Community reale. Zero compromessi.
                 </p>
 
-                <div className="flex flex-row gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => setBookingOpen(true)}
-                    className="py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-300"
-                  >
-                    <CalendarDays size={14} />
-                    PRENOTA UNA PROVA
-                  </button>
+                <div className="flex flex-col gap-3 pt-2 items-start">
+                  <div className="flex flex-row gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setBookingOpen(true)}
+                      className="py-4 px-8 bg-brand-yellow text-near-black font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-300"
+                    >
+                      <CalendarDays size={14} />
+                      PRENOTA UNA PROVA
+                    </button>
+                    <a
+                      href="#sedi"
+                      className="py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
+                    >
+                      <MapPin size={14} />
+                      SCOPRI LE SEDI
+                    </a>
+                  </div>
                   <a
-                    href="#sedi"
+                    href={appDownloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="py-4 px-8 bg-near-black/50 border border-white/20 text-white font-sans font-black text-sm tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white hover:text-near-black hover:border-white transition-all duration-300"
                   >
-                    <MapPin size={14} />
-                    SCOPRI LE SEDI
+                    <Smartphone size={14} />
+                    SCARICA L'APP THE CAVE
                   </a>
                 </div>
               </div>
@@ -440,13 +467,17 @@ export default function App() {
             </button>
             <div className="w-full flex flex-row items-center justify-center gap-3">
               <a
-                href="https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8"
+                href="https://maps.app.goo.gl/qYJm9baFNdriiiNm8"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-3 px-4 bg-[#0c0c0b] border border-white/10 text-white font-sans font-bold text-xs tracking-wider uppercase btn-cut text-center hover:bg-white hover:text-near-black transition-all duration-300"
               >
                 RAGGIUNGI MANDRIONE
               </a>
               <a
-                href="https://maps.app.goo.gl/qYJm9baFNdriiiNm8"
+                href="https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-3 px-4 bg-[#0c0c0b] border border-white/10 text-white font-sans font-bold text-xs tracking-wider uppercase btn-cut text-center hover:bg-white hover:text-near-black transition-all duration-300"
               >
                 RAGGIUNGI CINECITTÀ
@@ -498,9 +529,6 @@ export default function App() {
           </div>
         </div>
       </section>
-
-      {/* Trustpilot CTA — invita i membri a lasciare una recensione */}
-      <TrustpilotBanner />
 
       {/* Footer component with addresses, phone and links */}
       <Footer />
