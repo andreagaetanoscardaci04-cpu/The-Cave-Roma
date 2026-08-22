@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import cinecittaPhoto1 from '../assets/cinecitta-gallery-1-wm.jpg';
-import cinecittaPhoto3 from '../assets/cinecitta-gallery-3-wm.jpg';
-import cinecittaPhoto5 from '../assets/cinecitta-gallery-5-wm.jpg';
-import cinecittaPhoto7 from '../assets/cinecitta-gallery-7-wm.jpg';
-import mandrionePhoto5 from '../assets/mandrione-gallery-5-wm.jpg';
-import mandrionePhoto6 from '../assets/mandrione-gallery-6-wm.jpg';
-import mandrionePhoto7 from '../assets/mandrione-gallery-7-wm.jpg';
-import mandrionePhoto8 from '../assets/mandrione-gallery-8-wm.jpg';
+import cinecittaPhoto1 from '../assets/cinecitta-gallery-1-wm.webp';
+import cinecittaPhoto3 from '../assets/cinecitta-gallery-3-wm.webp';
+import cinecittaPhoto5 from '../assets/cinecitta-gallery-5-wm.webp';
+import cinecittaPhoto7 from '../assets/cinecitta-gallery-7-wm.webp';
+import mandrionePhoto5 from '../assets/mandrione-gallery-5-wm.webp';
+import mandrionePhoto6 from '../assets/mandrione-gallery-6-wm.webp';
+import mandrionePhoto7 from '../assets/mandrione-gallery-7-wm.webp';
+import mandrionePhoto8 from '../assets/mandrione-gallery-8-wm.webp';
 
 const galleryPhotos = [
   { src: cinecittaPhoto3, alt: 'The Cave Cinecittà — foto box' },

@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, PhoneCall } from 'lucide-react';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from '../data.ts';
-import theCaveLogo from '../assets/the-cave-logo.png';
+import theCaveLogo from '../assets/the-cave-logo.webp';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
