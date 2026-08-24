@@ -11,7 +11,9 @@ import heroDesktopBg from './assets/hero-desktop.webp';
 import heroMobileBg from './assets/hero-mobile.webp';
 import theCaveLogo from './assets/the-cave-logo.webp';
 import boxPhoto from './assets/box-photo.jpg';
-import wodSocialePhoto from './assets/wod-sociale.webp';
+import wodSocialePhoto from './assets/wod-sociale.jpeg';
+import fotoGruppoPhoto from './assets/foto-gruppo.jpeg';
+import manifestazioneInternaPhoto from './assets/manifestazione-interna.jpeg';
 import LocationsList from './components/LocationsList.tsx';
 import ProgramCards from './components/ProgramCards.tsx';
 import GallerySection from './components/GallerySection.tsx';
@@ -392,27 +394,24 @@ export default function App() {
             <div className="lg:col-span-7 grid grid-cols-2 gap-4">
 
               {/* Foto grande: foto di gruppo */}
-              <div className="col-span-2 relative bg-[#0c0c0b] border border-white/10 h-72 flex flex-col items-center justify-center gap-3 overflow-hidden hover:border-brand-yellow/20 transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-yellow/5 to-transparent pointer-events-none" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow/40" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow/40" />
-                <Users size={40} className="text-white/10 relative z-10" />
-                <span className="font-sans text-xs text-white/20 tracking-[0.3em] uppercase relative z-10">Foto di gruppo</span>
-                <span className="font-mono text-[9px] text-brand-yellow/20 tracking-widest uppercase relative z-10">IN ARRIVO</span>
+              <div className="col-span-2 relative bg-[#0c0c0b] border border-white/10 h-72 lg:h-96 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
+                <img src={fotoGruppoPhoto} alt="Foto di gruppo" className="w-full h-full object-cover object-bottom lg:object-[50%_82%]" />
               </div>
 
               {/* Foto piccola sinistra: manifestazione interna */}
-              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-brand-yellow/20 transition-colors">
-                <Flame size={28} className="text-white/10" />
-                <span className="font-sans text-[9px] text-white/20 tracking-[0.25em] uppercase">Manifestazione interna</span>
-                <span className="font-mono text-[8px] text-brand-yellow/20 tracking-widest uppercase">IN ARRIVO</span>
+              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 lg:h-64 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+                <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
+                <img src={manifestazioneInternaPhoto} alt="Manifestazione interna" className="w-full h-full object-cover object-center lg:object-[50%_88%]" />
               </div>
 
               {/* Foto piccola destra: WOD evento */}
-              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 overflow-hidden hover:border-brand-yellow/20 transition-colors">
+              <div className="relative bg-[#0c0c0b] border border-white/10 h-48 lg:h-64 overflow-hidden hover:border-brand-yellow/20 transition-colors">
                 <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-yellow z-10" />
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
-                <img src={wodSocialePhoto} alt="WOD sociale" className="w-full h-full object-cover" />
+                <img src={wodSocialePhoto} alt="WOD sociale" className="w-full h-full object-cover object-center lg:object-[50%_69%]" />
               </div>
 
             </div>
