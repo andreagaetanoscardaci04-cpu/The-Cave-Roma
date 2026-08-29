@@ -83,13 +83,14 @@ export const PROGRAMS: ProgramInfo[] = [
   {
     id: "hyrox",
     title: "HYROX",
-    quote: "Il connubio letale tra corsa e forza funzionale.",
-    description: "La gara di fitness che mette alla prova la tua resistenza e stabilità globale. Un mix strategico di corsa e stazioni di forza per preparare un fisico inarrestabile e resistente ad ogni sforzo prolungato.",
+    quote: "Il connubio tra corsa e forza funzionale.",
+    description: "La gara di fitness che mette alla prova la tua resistenza, forza e capacità aerobica.\nUn mix strategico di corsa e stazioni di forza per preparare un fisico inarrestabile e resistente ad ogni sforzo prolungato.\nUna programmazione strutturata in grado di portarti fino ad una vera competizione Hyrox.",
     features: [
       "Allenamento HIIT ad alto volume aerobico",
       "Sled push, rowers, wall balls dedicati",
       "Ideale per atleti da endurance e forza",
-      "Focalizzazione completa sulla metabolic conditioning"
+      "Focalizzazione completa sulla metabolic conditioning",
+      "Preparazione e simulazioni Hyrox"
     ],
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
     longDescription: [
@@ -106,8 +107,8 @@ export const PROGRAMS: ProgramInfo[] = [
   {
     id: "opengym",
     title: "Open Gym",
-    quote: "Spazio libero, nessun compromesso, solo i tuoi limiti.",
-    description: "L'accesso completo ai nostri box al di fuori delle classi strutturate. Segui la tua scheda di allenamento individuale utilizzando il rig, le pedane olimpiche ed i pesi liberi nel massimo rispetto della disciplina e del focus individuale.",
+    quote: "Spazio libero, aperto alla tua programmazione.",
+    description: "L'accesso completo ai nostri box al di fuori delle classi.\nSegui la tua programmazione utilizzando tutti gli strumenti che il box ti offre.\nInoltre in open gym potrai perfezionare le tue skill, sempre dietro la supervisione di un coach.",
     features: [
       "Accesso flessibile Lun-Sab",
       "Ampie pedane e rack olimpionici",

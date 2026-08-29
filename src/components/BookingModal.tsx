@@ -4,14 +4,14 @@
  */
 
 import { useState, useEffect, FormEvent } from 'react';
-import { X, Dumbbell, Flame, Send, CheckCircle2 } from 'lucide-react';
+import { X, Flame, Send, CheckCircle2 } from 'lucide-react';
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-type SessionType = 'crossfit' | 'hyrox';
+type SessionType = 'hyrox';
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
@@ -161,19 +161,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               <span className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
                 Sessione di prova
               </span>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setSessionType('crossfit')}
-                  className={`min-h-[44px] px-4 py-3 font-sans font-bold text-xs tracking-widest uppercase btn-cut flex items-center justify-center gap-2 transition-colors ${
-                    sessionType === 'crossfit'
-                      ? 'bg-brand-yellow text-near-black'
-                      : 'bg-white/[0.03] border border-white/10 text-white/60'
-                  }`}
-                >
-                  <Dumbbell size={14} />
-                  CrossFit
-                </button>
+              <div className="grid grid-cols-1 gap-3">
                 <button
                   type="button"
                   onClick={() => setSessionType('hyrox')}

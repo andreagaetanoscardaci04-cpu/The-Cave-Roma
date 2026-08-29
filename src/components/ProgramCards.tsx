@@ -8,7 +8,11 @@ import { PROGRAMS, CONTACT_TEL_LINK } from '../data.ts';
 import { ProgramInfo } from '../types.ts';
 import { ArrowUpRight, Check, X, Clock } from 'lucide-react';
 
-export default function ProgramCards() {
+interface ProgramCardsProps {
+  onBookTrial: () => void;
+}
+
+export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
   const [activeProgram, setActiveProgram] = useState<ProgramInfo | null>(null);
 
   const classiOrdinarie = PROGRAMS.filter(p => ['crossfit', 'hyrox', 'opengym'].includes(p.id));
@@ -42,7 +46,7 @@ export default function ProgramCards() {
           " {prog.quote} "
         </p>
 
-        <p className="font-sans text-sm text-white/50 tracking-wide leading-relaxed mb-6">
+        <p className="font-sans text-sm text-white/50 tracking-wide leading-relaxed mb-6 whitespace-pre-line">
           {prog.description}
         </p>
 
@@ -216,12 +220,25 @@ export default function ProgramCards() {
                 ))}
               </ul>
 
-              <a
-                href={CONTACT_TEL_LINK}
-                className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200"
-              >
-                PRENOTA UNA PROVA
-              </a>
+              {activeProgram.id === 'hyrox' ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveProgram(null);
+                    onBookTrial();
+                  }}
+                  className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200"
+                >
+                  PRENOTA UNA PROVA
+                </button>
+              ) : (
+                <a
+                  href={CONTACT_TEL_LINK}
+                  className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200"
+                >
+                  PRENOTA UNA PROVA
+                </a>
+              )}
             </div>
           </div>
         </div>

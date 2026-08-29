@@ -18,7 +18,7 @@ export default function CoachSection() {
             TEAM DI PROFESSIONISTI
           </span>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-            SQUADRA <span className="text-outline">DI FERRO</span>
+            THE CAVE <span className="text-outline">STAFF</span>
           </h2>
           <div className="w-24 h-1 bg-brand-yellow mt-4 mx-auto md:mx-0"></div>
         </div>

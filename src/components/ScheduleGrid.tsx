@@ -6,10 +6,32 @@
 import { useState } from 'react';
 import { Calendar, ExternalLink, Loader2 } from 'lucide-react';
 
-const BOOKING_WIDGET_URL = 'https://cfthecave.shaggyowl.com/frame/palinsesto_completo/all';
+const BOOKING_WIDGET_BASE = 'https://cfthecave.shaggyowl.com/frame/palinsesto_completo/all';
+
+const LOCATIONS = [
+  { id: 'mandrione', label: 'Mandrione', param: '1229' },
+  { id: 'cinecitta', label: 'Cinecittà', param: '16935' },
+  { id: 'visita-mandrione', label: 'Visita Medica Mandrione', param: '157432' },
+  { id: 'visita-cinecitta', label: 'Visita Medica Cinecittà', param: '157433' },
+] as const;
+
+type LocationId = typeof LOCATIONS[number]['id'];
+
+function widgetUrl(locationId: LocationId): string {
+  const location = LOCATIONS.find((l) => l.id === locationId)!;
+  return `${BOOKING_WIDGET_BASE}?palinsesto=${location.param}`;
+}
 
 export default function ScheduleGrid() {
   const [loaded, setLoaded] = useState(false);
+  const [activeLocation, setActiveLocation] = useState<LocationId>('mandrione');
+  const bookingWidgetUrl = widgetUrl(activeLocation);
+
+  const selectLocation = (id: LocationId) => {
+    if (id === activeLocation) return;
+    setLoaded(false);
+    setActiveLocation(id);
+  };
 
   return (
     <section id="orari" className="bg-near-black py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
@@ -34,18 +56,37 @@ export default function ScheduleGrid() {
 
         {/* Live booking widget */}
         <div className="premium-card bg-[#0c0c0b] border border-white/10 overflow-hidden relative">
-          <div className="bg-white/[0.02] border-b border-white/10 p-5 flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
+          <div className="bg-white/[0.02] border-b border-white/10 p-5 flex flex-col md:flex-row items-center gap-4 md:gap-3">
+            <div className="flex items-center gap-2.5 shrink-0 self-start md:self-center">
               <Calendar size={16} className="text-brand-yellow/70" />
-              <span className="font-sans text-xs font-bold tracking-widest text-white/60 uppercase">
+              <span className="font-sans text-xs font-bold tracking-widest text-white/60 uppercase whitespace-nowrap">
                 Palinsesto & Prenotazioni Live
               </span>
             </div>
+
+            {/* Location filter buttons — swap which box's schedule the widget shows */}
+            <div className="flex flex-wrap items-center justify-center gap-2 md:mx-auto">
+              {LOCATIONS.map(({ id, label }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => selectLocation(id)}
+                  className={`px-3.5 py-2 font-sans text-[10px] font-bold tracking-widest uppercase btn-cut transition-colors whitespace-nowrap ${
+                    activeLocation === id
+                      ? 'bg-brand-yellow text-near-black'
+                      : 'bg-white/[0.03] border border-white/10 text-white/60 hover:border-brand-yellow/40 hover:text-white'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
             <a
-              href={BOOKING_WIDGET_URL}
+              href={bookingWidgetUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-wider text-brand-yellow/80 hover:text-brand-yellow uppercase transition-colors"
+              className="flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-wider text-brand-yellow/80 hover:text-brand-yellow uppercase transition-colors shrink-0 self-end md:self-center"
             >
               Apri a schermo intero
               <ExternalLink size={12} />
@@ -62,7 +103,8 @@ export default function ScheduleGrid() {
               </div>
             )}
             <iframe
-              src={BOOKING_WIDGET_URL}
+              key={activeLocation}
+              src={bookingWidgetUrl}
               title="Palinsesto e prenotazione lezioni The Cave"
               onLoad={() => setLoaded(true)}
               className="w-full h-full border-0"

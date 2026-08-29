@@ -21,6 +21,7 @@ import CoachSection from './components/CoachSection.tsx';
 import TestimonialCarousel from './components/TestimonialCarousel.tsx';
 import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
+import AdditionalServices from './components/AdditionalServices.tsx';
 import Footer from './components/Footer.tsx';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
 import { Star, Dumbbell, Flame, Compass, MapPin, CalendarDays, Users, Smartphone } from 'lucide-react';
@@ -266,12 +267,8 @@ export default function App() {
             </span>
 
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              LA NOSTRA <span className="text-outline-yellow">FILOSOFIA</span>
+              Sembrano parole costruite ma è <span className="text-outline-yellow">veramente così:</span>
             </h2>
-
-            <p className="font-display text-2xl md:text-3xl text-white/50 uppercase tracking-tight leading-none">
-              Sembrano parole costruite ma è veramente così:
-            </p>
 
             <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
               The Cave è un luogo dove ci si allena con uno scopo, si cresce insieme e si costruiscono legami che vanno oltre il workout.
@@ -341,7 +338,7 @@ export default function App() {
               PEOPLE FIRST
             </span>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              COMMUNITY <span className="text-outline-yellow">& EVENTI</span>
+              A The Cave non ci si <span className="text-outline-yellow">allena da soli.</span>
             </h2>
           </div>
 
@@ -349,9 +346,6 @@ export default function App() {
 
             {/* Left: testo + card eventi */}
             <div className="lg:col-span-5 space-y-6">
-              <p className="font-sans text-lg sm:text-xl font-bold text-white tracking-wide leading-relaxed">
-                A The Cave non ci si allena da soli.
-              </p>
               <div className="space-y-4 font-sans text-sm text-white/60 tracking-wide leading-relaxed">
                 <p>
                   La community è il cuore del box. Il nostro punto di forza sono le classi, è così che nasce il CrossFit.
@@ -424,7 +418,7 @@ export default function App() {
       <LocationsList />
 
       {/* Programs (Programmi) Component */}
-      <ProgramCards />
+      <ProgramCards onBookTrial={() => setBookingOpen(true)} />
 
       {/* Gallery (La Cave in Foto) Component - placeholders until real photos are provided */}
       <GallerySection />
@@ -493,6 +487,9 @@ export default function App() {
 
       {/* Convenzioni — sconto Forze Armate e Forze dell'Ordine */}
       <PromoBlock />
+
+      {/* Servizi Aggiuntivi — Team di Nutrizione, Certificato medico in sede */}
+      <AdditionalServices />
 
       {/* Affiliazioni ufficiali */}
       <section id="affiliazioni" className="bg-[#0c0c0b] py-20 px-4 md:px-6 border-t border-white/5">
