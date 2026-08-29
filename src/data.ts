@@ -345,7 +345,7 @@ export const MARQUEE_KEYWORDS = [
   "Personal Training",
   "Rogue® Equipment",
   "BLOR® Gear",
-  "12 Coach Certificati",
+  "6 Coach Certificati",
   "900 m² Totale Spazio",
   "2 Box a Roma",
   "Community di Acciaio",
