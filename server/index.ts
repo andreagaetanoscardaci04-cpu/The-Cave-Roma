@@ -56,6 +56,30 @@ app.post('/api/booking', async (req, res) => {
   }
 });
 
+app.post('/api/promo-feedback', async (req, res) => {
+  const { nomeCognome, telefono } = req.body ?? {};
+
+  if (!nomeCognome || !telefono) {
+    return res.status(400).json({ ok: false, error: 'Dati mancanti.' });
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"The Cave — Sito Web" <${process.env.SMTP_USER}>`,
+      to: process.env.BOOKING_TO_EMAIL,
+      subject: `Nuova richiesta settimana omaggio (primi 20)`,
+      text: [
+        `Nome e Cognome: ${nomeCognome}`,
+        `Telefono: ${telefono}`,
+      ].join('\n'),
+    });
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('Invio email fallito:', err);
+    res.status(500).json({ ok: false, error: 'Invio email fallito.' });
+  }
+});
+
 // In produzione questo server serve anche i file statici generati da "vite build".
 if (process.env.NODE_ENV === 'production') {
   const distPath = path.resolve(__dirname, 'dist');

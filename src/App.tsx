@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar.tsx';
 import BookingModal from './components/BookingModal.tsx';
+import PromoFeedbackModal from './components/PromoFeedbackModal.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.webp';
 import heroMobileBg from './assets/hero-mobile.webp';
@@ -45,6 +46,9 @@ export default function App() {
 
       {/* Booking form modal — opens from the hero CTAs */}
       <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
+
+      {/* Promo popup — feedback sul sito in cambio di una settimana omaggio (primi 20) */}
+      <PromoFeedbackModal />
 
       {/* Hero Section */}
       <section className="overflow-hidden">
