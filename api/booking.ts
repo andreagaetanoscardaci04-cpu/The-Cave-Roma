@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { transporter, MinimalRequest, MinimalResponse } from './_lib/mail.ts';
+import { transporter, MinimalRequest, MinimalResponse } from './_lib/mail';
 
 const SESSION_LABELS: Record<string, string> = {
   crossfit: 'CrossFit',
