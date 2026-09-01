@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { transporter, MinimalRequest, MinimalResponse } from './_lib/mail';
+import { transporter, type MinimalRequest, type MinimalResponse } from './_lib/mail';
 
 const CLIENT_TYPE_LABELS: Record<string, string> = {
   nuovo: 'Nuovo iscritto — primo mese a 49,90€',
