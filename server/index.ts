@@ -100,28 +100,36 @@ app.post('/api/promo-feedback', async (req, res) => {
 
   const limit = PROMO_LIMITS[clientType];
 
-  // Controllo e prenotazione dello slot in modo sincrono (nessun "await" fra le due righe),
-  // così due richieste quasi simultanee non possono superare insieme la quota.
-  if (promoCounts[clientType] >= limit) {
-    return res.status(409).json({ ok: false, error: 'sold_out' });
-  }
+  // Determinato in modo sincrono (nessun "await" prima di qui), così due richieste
+  // quasi simultanee non possono passare insieme come "entro quota".
+  const isOverQuota = promoCounts[clientType] >= limit;
   promoCounts[clientType] += 1;
   savePromoCounts();
 
   const clientTypeLabel = CLIENT_TYPE_LABELS[clientType] ?? clientType;
+  const subject = isOverQuota
+    ? `⚠️ FUORI QUOTA — ${clientTypeLabel}`
+    : `Nuova richiesta promo — ${clientTypeLabel}`;
 
   try {
+    // Anche oltre quota inviamo comunque l'email allo staff (segnalata come fuori quota):
+    // sul sito, a chi invia, viene comunque mostrato "offerta esaurita".
     await transporter.sendMail({
       from: `"The Cave — Sito Web" <${process.env.SMTP_USER}>`,
       to: process.env.BOOKING_TO_EMAIL,
-      subject: `Nuova richiesta promo — ${clientTypeLabel}`,
+      subject,
       text: [
+        isOverQuota ? `ATTENZIONE: richiesta arrivata oltre la quota di ${limit} (${clientTypeLabel}). Sul sito è stato mostrato "offerta esaurita".` : null,
         `Tipo: ${clientTypeLabel}`,
         `Nome e Cognome: ${nomeCognome}`,
         `Telefono: ${telefono}`,
         `Progressivo: ${promoCounts[clientType]}/${limit}`,
-      ].join('\n'),
+      ].filter(Boolean).join('\n'),
     });
+
+    if (isOverQuota) {
+      return res.status(409).json({ ok: false, error: 'sold_out' });
+    }
     res.json({ ok: true });
   } catch (err) {
     // Invio fallito: libera lo slot appena prenotato.
