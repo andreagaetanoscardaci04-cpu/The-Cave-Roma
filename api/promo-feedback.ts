@@ -21,11 +21,11 @@ const CLIENT_TYPE_LABELS: Record<string, string> = {
 };
 
 // Quota massima di invii per tipo di cliente.
-// TEMP: +1 su entrambe le quote per permettere un invio di test reale prima del lancio.
-// Riportare a nuovo: 10, esistente: 20 dopo il test.
+// TEMP: +3 su entrambe le quote (1 test già fatto + 2 nuovi: uno per te, uno per il cliente).
+// Riportare a nuovo: 10, esistente: 20 dopo i test.
 const PROMO_LIMITS: Record<string, number> = {
-  nuovo: 11,
-  esistente: 21,
+  nuovo: 13,
+  esistente: 23,
 };
 
 // Conteggio persistito su Vercel KV quando disponibile (env KV_REST_API_URL/KV_REST_API_TOKEN,
