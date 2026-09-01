@@ -3,7 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { transporter, type MinimalRequest, type MinimalResponse } from './_lib/mail';
+import nodemailer from 'nodemailer';
+
+interface MinimalRequest {
+  method?: string;
+  body?: any;
+}
+
+interface MinimalResponse {
+  status(code: number): MinimalResponse;
+  json(body: any): void;
+}
 
 const SESSION_LABELS: Record<string, string> = {
   crossfit: 'CrossFit',
@@ -24,6 +34,13 @@ export default async function handler(req: MinimalRequest, res: MinimalResponse)
   const sessionLabel = SESSION_LABELS[sessionType] ?? sessionType;
 
   try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
     await transporter.sendMail({
       from: `"The Cave — Sito Web" <${process.env.SMTP_USER}>`,
       to: process.env.BOOKING_TO_EMAIL,

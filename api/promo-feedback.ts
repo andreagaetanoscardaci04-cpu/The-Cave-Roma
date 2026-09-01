@@ -3,7 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { transporter, type MinimalRequest, type MinimalResponse } from './_lib/mail';
+import nodemailer from 'nodemailer';
+
+interface MinimalRequest {
+  method?: string;
+  body?: any;
+}
+
+interface MinimalResponse {
+  status(code: number): MinimalResponse;
+  json(body: any): void;
+}
 
 const CLIENT_TYPE_LABELS: Record<string, string> = {
   nuovo: 'Nuovo iscritto — primo mese a 49,90€',
@@ -73,6 +83,13 @@ export default async function handler(req: MinimalRequest, res: MinimalResponse)
     : `Nuova richiesta promo — ${clientTypeLabel}`;
 
   try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
     // Anche oltre quota inviamo comunque l'email allo staff (segnalata come fuori quota):
     // sul sito, a chi invia, viene comunque mostrato "offerta esaurita".
     await transporter.sendMail({
