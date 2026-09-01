@@ -58,16 +58,26 @@ export default function App() {
 
           {/* Full-bleed background */}
           <div className="absolute inset-0 z-0">
+            {/* Phone background — portrait framing of the athlete */}
             <img
               src={heroMobileBg}
               alt=""
               aria-hidden="true"
-              className="w-full h-full object-cover object-[62%_top]"
+              className="md:hidden w-full h-full object-cover object-[62%_top]"
             />
-            {/* Top vignette — keeps logo readable over the bright gym ceiling */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#070706]/90 via-[#070706]/25 to-transparent" />
+            {/* Tablet background — swaps to the wide desktop frame so the athlete isn't cropped out on a wider viewport */}
+            <img
+              src={heroDesktopBg}
+              alt=""
+              aria-hidden="true"
+              className="hidden md:block lg:hidden w-full h-full object-cover object-[60%_center] brightness-90"
+            />
+            {/* Top vignette — keeps logo readable over the bright gym ceiling; lighter on tablet so more of the shot reads through */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#070706]/90 via-[#070706]/25 to-transparent md:from-[#070706]/65 md:via-[#070706]/10" />
             {/* Bottom vignette — CTA area always on solid dark, softened higher up so the ROGUE branding on the sled stays visible */}
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #070706 0%, rgba(7,7,6,0.85) 14%, rgba(7,7,6,0.55) 30%, rgba(7,7,6,0.15) 48%, transparent 62%)' }} />
+            <div className="md:hidden absolute inset-0" style={{ background: 'linear-gradient(to top, #070706 0%, rgba(7,7,6,0.85) 14%, rgba(7,7,6,0.55) 30%, rgba(7,7,6,0.15) 48%, transparent 62%)' }} />
+            {/* Tablet bottom vignette — lighter, opens up more of the image above the CTA area */}
+            <div className="hidden md:block lg:hidden absolute inset-0" style={{ background: 'linear-gradient(to top, #070706 0%, rgba(7,7,6,0.75) 10%, rgba(7,7,6,0.4) 22%, rgba(7,7,6,0.1) 36%, transparent 50%)' }} />
           </div>
 
           {/* Content stack */}
@@ -79,9 +89,9 @@ export default function App() {
                 src={theCaveLogo}
                 alt="THE CAVE"
                 draggable={false}
-                className="w-[85vw] max-w-[340px] -ml-8 select-none pointer-events-none"
+                className="w-[85vw] max-w-[340px] md:max-w-[520px] -ml-8 select-none pointer-events-none"
               />
-              <span className="font-sans text-[13px] font-bold tracking-[0.3em] text-brand-yellow/85 uppercase">
+              <span className="font-sans text-[13px] md:text-lg font-bold tracking-[0.3em] text-brand-yellow/85 uppercase">
                 CROSSFIT® & HYROX — ROMA
               </span>
             </div>
@@ -90,10 +100,10 @@ export default function App() {
             <div className="flex-1" />
 
             {/* Bottom block */}
-            <div className="pb-safe-area-inset-bottom pb-8 space-y-4">
+            <div className="pb-safe-area-inset-bottom pb-8 md:pb-10 flex flex-col gap-4">
 
               {/* Social proof row */}
-              <div className="flex items-center gap-2.5">
+              <div className="order-1 flex items-center gap-2.5">
                 <div className="flex gap-[2px]">
                   {[1,2,3,4,5].map(i => (
                     <Star key={i} size={12} className="fill-brand-yellow text-brand-yellow" />
@@ -104,8 +114,8 @@ export default function App() {
                 </span>
               </div>
 
-              {/* CTA buttons */}
-              <div className="flex flex-col gap-2 pt-2">
+              {/* CTA buttons — pushed below the stats strip on tablet so they sit lower and the shot above stays clearer */}
+              <div className="order-2 md:order-3 flex flex-col gap-2 pt-2">
                 <button
                   type="button"
                   onClick={() => setBookingOpen(true)}
@@ -133,7 +143,7 @@ export default function App() {
               </div>
 
               {/* Stats strip */}
-              <div className="border-t border-white/10 pt-4 grid grid-cols-3 text-center divide-x divide-white/10">
+              <div className="order-3 md:order-2 border-t border-white/10 pt-4 grid grid-cols-3 text-center divide-x divide-white/10">
                 <div>
                   <span className="font-display text-[28px] leading-none text-brand-yellow">900m²</span>
                   <span className="font-sans text-[8px] tracking-[0.22em] text-white/30 uppercase mt-1 block">Spazio Totale</span>
@@ -442,7 +452,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto relative z-15 space-y-8">
           
           <span className="inline-block bg-brand-yellow text-near-black font-sans font-extrabold text-xs tracking-[0.3em] px-4 py-1.5 uppercase">
-            TI PIACE SPINGERE PESANTE?
+            TI PIACE DARE IL GAS?
           </span>
           
           <h2 className="font-display text-5xl md:text-8xl tracking-tight leading-none text-white uppercase">

@@ -46,11 +46,11 @@ export default function PromoBlock() {
         <div className="flex-1 p-8 md:p-12 lg:p-14 flex flex-col items-start gap-6">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight uppercase leading-none text-white">
             SERVI LO STATO? <br />
-            <span className="text-brand-yellow">RICEVI IL 10% DI SCONTO</span>
+            <span className="text-brand-yellow">RICEVI FINO AL 10% DI SCONTO</span>
           </h2>
 
           <p className="font-sans text-base text-white/75 tracking-wide leading-relaxed max-w-2xl">
-            Siamo orgogliosi di supportare le nostre Forze di Sicurezza. Se sei un membro delle <strong className="text-white">Forze Armate</strong> o delle <strong className="text-white">Forze dell'Ordine</strong>, The Cave ti riserva uno <strong className="text-brand-yellow">sconto esclusivo del 10%</strong> su tutti i piani d'abbonamento mensili, trimestrali e annuali.
+            Siamo orgogliosi di supportare le nostre Forze di Sicurezza. Se sei un membro delle <strong className="text-white">Forze Armate</strong> o delle <strong className="text-white">Forze dell'Ordine</strong>, The Cave ti riserva uno <strong className="text-brand-yellow">sconto esclusivo del 10% sull'abbonamento mensile</strong> e del <strong className="text-brand-yellow">5% su tutti gli altri piani</strong> d'abbonamento (trimestrali, annuali e altre formule).
           </p>
 
           <p className="font-sans text-sm text-white/50 tracking-wide leading-relaxed max-w-2xl uppercase">
