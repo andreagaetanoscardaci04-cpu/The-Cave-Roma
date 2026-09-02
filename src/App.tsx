@@ -47,7 +47,7 @@ export default function App() {
       {/* Booking form modal — opens from the hero CTAs */}
       <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
 
-      {/* Promo popup — feedback sul sito in cambio di una settimana omaggio (primi 20) */}
+      {/* Promo popup — primo mese a 49,99€ per i primi 10 nuovi iscritti */}
       <PromoFeedbackModal />
 
       {/* Hero Section */}

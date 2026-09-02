@@ -7,7 +7,6 @@ import 'dotenv/config';
 import express from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
-import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -58,83 +57,34 @@ app.post('/api/booking', async (req, res) => {
 });
 
 const CLIENT_TYPE_LABELS: Record<string, string> = {
-  nuovo: 'Nuovo iscritto — primo mese a 49,90€',
-  esistente: 'Già cliente — settimana in omaggio',
+  nuovo: 'Nuovo iscritto — primo mese a 49,99€',
 };
 
-// Quota massima di invii per tipo di cliente.
-// TEMP: +1 su entrambe le quote per permettere un invio di test reale prima del lancio.
-// Riportare a nuovo: 10, esistente: 20 dopo il test.
-const PROMO_LIMITS: Record<string, number> = {
-  nuovo: 11,
-  esistente: 21,
-};
-
-// Contatore invii persistito su file, così sopravvive ai riavvii del server.
-const PROMO_COUNTS_FILE = path.resolve(__dirname, 'promo-counts.json');
-
-function loadPromoCounts(): Record<string, number> {
-  try {
-    const raw = fs.readFileSync(PROMO_COUNTS_FILE, 'utf-8');
-    const parsed = JSON.parse(raw);
-    return { nuovo: parsed.nuovo ?? 0, esistente: parsed.esistente ?? 0 };
-  } catch {
-    return { nuovo: 0, esistente: 0 };
-  }
-}
-
-const promoCounts = loadPromoCounts();
-
-function savePromoCounts() {
-  fs.writeFile(PROMO_COUNTS_FILE, JSON.stringify(promoCounts), (err) => {
-    if (err) console.error('Salvataggio contatore promo fallito:', err);
-  });
-}
-
+// NOTA: il tetto automatico a 10 richieste NON è ancora attivo qui (vedi api/promo-feedback.ts,
+// che è la versione realmente in produzione, per i dettagli). Da reintrodurre insieme con un
+// contatore condiviso vero prima di riattivare un blocco automatico.
 app.post('/api/promo-feedback', async (req, res) => {
   const { nomeCognome, telefono, clientType } = req.body ?? {};
 
-  if (!nomeCognome || !telefono || !clientType || !(clientType in PROMO_LIMITS)) {
+  if (!nomeCognome || !telefono || !clientType || !(clientType in CLIENT_TYPE_LABELS)) {
     return res.status(400).json({ ok: false, error: 'Dati mancanti.' });
   }
 
-  const limit = PROMO_LIMITS[clientType];
-
-  // Determinato in modo sincrono (nessun "await" prima di qui), così due richieste
-  // quasi simultanee non possono passare insieme come "entro quota".
-  const isOverQuota = promoCounts[clientType] >= limit;
-  promoCounts[clientType] += 1;
-  savePromoCounts();
-
   const clientTypeLabel = CLIENT_TYPE_LABELS[clientType] ?? clientType;
-  const subject = isOverQuota
-    ? `⚠️ FUORI QUOTA — ${clientTypeLabel}`
-    : `Nuova richiesta promo — ${clientTypeLabel}`;
 
   try {
-    // Anche oltre quota inviamo comunque l'email allo staff (segnalata come fuori quota):
-    // sul sito, a chi invia, viene comunque mostrato "offerta esaurita".
     await transporter.sendMail({
       from: `"The Cave — Sito Web" <${process.env.SMTP_USER}>`,
       to: process.env.BOOKING_TO_EMAIL,
-      subject,
+      subject: `Nuova richiesta promo — ${clientTypeLabel}`,
       text: [
-        isOverQuota ? `ATTENZIONE: richiesta arrivata oltre la quota di ${limit} (${clientTypeLabel}). Sul sito è stato mostrato "offerta esaurita".` : null,
         `Tipo: ${clientTypeLabel}`,
         `Nome e Cognome: ${nomeCognome}`,
         `Telefono: ${telefono}`,
-        `Progressivo: ${promoCounts[clientType]}/${limit}`,
-      ].filter(Boolean).join('\n'),
+      ].join('\n'),
     });
-
-    if (isOverQuota) {
-      return res.status(409).json({ ok: false, error: 'sold_out' });
-    }
     res.json({ ok: true });
   } catch (err) {
-    // Invio fallito: libera lo slot appena prenotato.
-    promoCounts[clientType] -= 1;
-    savePromoCounts();
     console.error('Invio email fallito:', err);
     res.status(500).json({ ok: false, error: 'Invio email fallito.' });
   }

@@ -4,21 +4,18 @@
  */
 
 import { useState, useEffect, FormEvent } from 'react';
-import { X, Send, CheckCircle2, Gift, UserPlus, UserCheck, XCircle } from 'lucide-react';
+import { X, Send, CheckCircle2, Gift, XCircle } from 'lucide-react';
 
 const SESSION_FLAG = 'the-cave-promo-feedback-seen';
 const OPEN_DELAY_MS = 1500;
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error' | 'sold_out';
-type ClientType = 'nuovo' | 'esistente' | null;
 
 export default function PromoFeedbackModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [nomeCognome, setNomeCognome] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [clientType, setClientType] = useState<ClientType>(null);
   const [status, setStatus] = useState<SubmitStatus>('idle');
-  const [showTypeError, setShowTypeError] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_FLAG)) return;
@@ -46,18 +43,13 @@ export default function PromoFeedbackModal() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!clientType) {
-      setShowTypeError(true);
-      return;
-    }
-
     setStatus('submitting');
 
     try {
       const res = await fetch('/api/promo-feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nomeCognome, telefono, clientType }),
+        body: JSON.stringify({ nomeCognome, telefono, clientType: 'nuovo' }),
       });
       if (res.status === 409) {
         setStatus('sold_out');
@@ -98,9 +90,7 @@ export default function PromoFeedbackModal() {
                 Mi dispiace, offerta esaurita
               </h3>
               <p className="font-sans text-sm text-white/60 leading-relaxed">
-                {clientType === 'nuovo'
-                  ? 'I 10 posti riservati ai nuovi iscritti sono già stati assegnati.'
-                  : 'I 20 posti riservati ai nostri clienti sono già stati assegnati.'}
+                I 10 posti riservati ai nuovi iscritti sono già stati assegnati.
               </p>
             </div>
           ) : status === 'success' ? (
@@ -112,9 +102,7 @@ export default function PromoFeedbackModal() {
                 Richiesta inviata!
               </h3>
               <p className="font-sans text-sm text-white/60 leading-relaxed">
-                {clientType === 'nuovo'
-                  ? 'Se rientri tra i primi 10 nuovi iscritti, il nostro staff ti contatterà al numero indicato per attivare il primo mese a 49,90€.'
-                  : 'Se rientri tra i primi 20 clienti, il nostro staff ti contatterà al numero indicato per la settimana di allenamento in regalo.'}
+                Se rientri tra i primi 10 nuovi iscritti, il nostro staff ti contatterà al numero indicato per attivare il primo mese a 49,99€.
               </p>
             </div>
           ) : (
@@ -129,22 +117,10 @@ export default function PromoFeedbackModal() {
                 NUOVI CLIENTI
               </span>
               <p className="font-display text-xl text-white tracking-tight leading-snug uppercase mb-1">
-                Primo mese a soli 49,90€ <span className="text-white/40 text-base align-middle">anziché 99</span>
+                Primo mese a soli 49,99€ <span className="text-white/40 text-base align-middle">anziché 99</span>
               </p>
               <p className="font-sans text-[11px] text-white/45 leading-relaxed">
                 Promo riservata ai primi 10 nuovi iscritti. *Iscrizione annuale €20 esclusa.
-              </p>
-            </div>
-
-            <div className="border border-white/10 bg-white/[0.03] p-4">
-              <span className="font-sans text-xs font-bold tracking-[0.25em] text-white/70 uppercase block mb-1.5">
-                GIÀ NOSTRI CLIENTI?
-              </span>
-              <p className="font-display text-xl text-white tracking-tight leading-snug uppercase mb-1">
-                Per te 1 settimana in omaggio
-              </p>
-              <p className="font-sans text-[11px] text-white/45 leading-relaxed">
-                Promo riservata ai primi 20 clienti.
               </p>
             </div>
           </div>
@@ -178,43 +154,6 @@ export default function PromoFeedbackModal() {
                 className="w-full py-3 px-4 bg-white/[0.03] border border-white/10 text-white font-sans text-sm placeholder:text-white/25 focus:outline-none focus:border-brand-yellow transition-colors"
                 placeholder="333 123 4567"
               />
-            </div>
-
-            <div>
-              <span className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
-                Sei già cliente?
-              </span>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => { setClientType('nuovo'); setShowTypeError(false); }}
-                  className={`py-3 px-3 border font-sans font-bold text-[11px] tracking-widest uppercase flex items-center justify-center gap-2 transition-colors ${
-                    clientType === 'nuovo'
-                      ? 'bg-brand-yellow text-near-black border-brand-yellow'
-                      : 'bg-white/[0.03] text-white/70 border-white/10 hover:border-brand-yellow/40'
-                  }`}
-                >
-                  <UserPlus size={14} />
-                  NUOVO ISCRITTO
-                </button>
-                <button
-                  type="button"
-                  onClick={() => { setClientType('esistente'); setShowTypeError(false); }}
-                  className={`py-3 px-3 border font-sans font-bold text-[11px] tracking-widest uppercase flex items-center justify-center gap-2 transition-colors ${
-                    clientType === 'esistente'
-                      ? 'bg-brand-yellow text-near-black border-brand-yellow'
-                      : 'bg-white/[0.03] text-white/70 border-white/10 hover:border-brand-yellow/40'
-                  }`}
-                >
-                  <UserCheck size={14} />
-                  GIÀ CLIENTE
-                </button>
-              </div>
-              {showTypeError && (
-                <p className="font-sans text-xs text-red-400 mt-2">
-                  Seleziona un'opzione per continuare.
-                </p>
-              )}
             </div>
 
             {status === 'error' && (
