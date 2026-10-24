@@ -12,6 +12,8 @@ const SESSION_FLAG = 'the-cave-halloween-offer-seen';
 const OPEN_DELAY_MS = 1200;
 const PROMO_PRICE = '149';
 const FULL_PRICE = '198';
+// La promo termina il 30 novembre: dal 1° dicembre il popup non si apre più
+const PROMO_END = new Date(2026, 11, 1);
 
 /* Ragnatela d'angolo: raggi dal vertice + archi concentrici */
 function SpiderWeb({ className = '' }: { className?: string }) {
@@ -85,7 +87,7 @@ export default function HalloweenOfferModal() {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_FLAG)) return;
+    if (new Date() >= PROMO_END || sessionStorage.getItem(SESSION_FLAG)) return;
     const timeout = setTimeout(() => {
       setIsOpen(true);
       sessionStorage.setItem(SESSION_FLAG, '1');
@@ -149,7 +151,7 @@ export default function HalloweenOfferModal() {
 
           <div className="border border-[#ff7a1a]/30 bg-[#ff7a1a]/5 p-5 mb-6">
             <span className="font-sans text-[11px] font-bold tracking-[0.25em] text-white/60 uppercase block mb-2">
-              Riservata ai già iscritti
+              Riservata ai nuovi iscritti
             </span>
             <p className="font-display text-2xl text-white uppercase leading-tight">
               2 mensilità
@@ -159,6 +161,9 @@ export default function HalloweenOfferModal() {
             </p>
             <p className="font-sans text-sm text-white/50">
               anziché <span className="line-through">{FULL_PRICE}€</span>
+            </p>
+            <p className="font-sans text-[11px] font-bold tracking-[0.2em] text-[#ff7a1a] uppercase mt-3 pt-3 border-t border-[#ff7a1a]/20">
+              Promo valida fino al 30 novembre
             </p>
           </div>
 
@@ -177,7 +182,7 @@ export default function HalloweenOfferModal() {
           ) : (
             <>
               <p className="font-sans text-sm text-white/60 leading-relaxed mb-6">
-                Sei già parte della community di The Cave? Lascia nome e numero: ti ricontattiamo noi per attivare la promo.
+                Vuoi entrare nella community di The Cave? Lascia nome e numero: ti ricontattiamo noi per attivare la promo.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4 text-left">

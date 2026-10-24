@@ -58,7 +58,7 @@ app.post('/api/booking', async (req, res) => {
 
 const CLIENT_TYPE_LABELS: Record<string, string> = {
   nuovo: 'Nuovo iscritto — primo mese a 49,99€',
-  halloween: 'Già iscritto — Promo Halloween, 2 mensilità a 149€',
+  halloween: 'Nuovo iscritto — Promo Halloween, 2 mensilità a 149€ (fino al 30/11)',
 };
 
 // NOTA: il tetto automatico a 10 richieste NON è ancora attivo qui (vedi api/promo-feedback.ts,
