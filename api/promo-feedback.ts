@@ -17,6 +17,7 @@ interface MinimalResponse {
 
 const CLIENT_TYPE_LABELS: Record<string, string> = {
   nuovo: 'Nuovo iscritto — primo mese a 49,99€',
+  halloween: 'Già iscritto — Promo Halloween, 2 mensilità a 149€',
 };
 
 // NOTA: il tetto automatico a 10 richieste NON è ancora attivo qui.

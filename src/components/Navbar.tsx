@@ -25,6 +25,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: "NEWS", href: "#news" },
     { name: "FILOSOFIA", href: "#box-philosophy" },
     { name: "COMMUNITY", href: "#community" },
     { name: "CORSI", href: "#programmi" },

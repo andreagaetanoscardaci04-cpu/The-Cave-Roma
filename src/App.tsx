@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar.tsx';
 import BookingModal from './components/BookingModal.tsx';
-import PromoFeedbackModal from './components/PromoFeedbackModal.tsx';
+import HalloweenOfferModal from './components/HalloweenOfferModal.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.webp';
 import heroMobileBg from './assets/hero-mobile.webp';
@@ -22,6 +22,7 @@ import CoachSection from './components/CoachSection.tsx';
 import TestimonialCarousel from './components/TestimonialCarousel.tsx';
 import ScheduleGrid from './components/ScheduleGrid.tsx';
 import PromoBlock from './components/PromoBlock.tsx';
+import NewsSection from './components/NewsSection.tsx';
 import AdditionalServices from './components/AdditionalServices.tsx';
 import Footer from './components/Footer.tsx';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from './data.ts';
@@ -47,8 +48,8 @@ export default function App() {
       {/* Booking form modal — opens from the hero CTAs */}
       <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
 
-      {/* Promo popup — primo mese a 49,99€ per i primi 10 nuovi iscritti */}
-      <PromoFeedbackModal />
+      {/* Promo Halloween — 2 mensilità a 149€ per i già iscritti */}
+      <HalloweenOfferModal />
 
       {/* Hero Section */}
       <section className="overflow-hidden">
@@ -268,6 +269,9 @@ export default function App() {
         </div>
 
       </section>
+
+      {/* News — HYROX Technical Workshop del 7 novembre */}
+      <NewsSection />
 
       {/* LA NOSTRA FILOSOFIA manifesto */}
       <section id="box-philosophy" className="bg-[#0c0c0b] py-16 md:py-24 px-4 md:px-6 relative border-b border-white/5">
