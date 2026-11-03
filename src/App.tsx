@@ -6,7 +6,6 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar.tsx';
 import BookingModal from './components/BookingModal.tsx';
-import HalloweenOfferModal from './components/HalloweenOfferModal.tsx';
 import LanguagePrompt from './components/LanguagePrompt.tsx';
 import MarqueeStrip, { HazardBanner } from './components/MarqueeStrip.tsx';
 import heroDesktopBg from './assets/hero-desktop.webp';
@@ -50,9 +49,6 @@ export default function App() {
 
       {/* Booking form modal — opens from the hero CTAs */}
       <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
-
-      {/* Promo Halloween — 2 mensilità a 149€ per i già iscritti */}
-      <HalloweenOfferModal />
 
       {/* Scelta lingua alla prima visita */}
       <LanguagePrompt />
