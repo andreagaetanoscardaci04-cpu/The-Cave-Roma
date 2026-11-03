@@ -4,10 +4,13 @@
  */
 
 import { MARQUEE_KEYWORDS } from '../data.ts';
+import { useLanguage } from '../i18n.tsx';
 
 export default function MarqueeStrip() {
+  const { t } = useLanguage();
+  const keywords = t(MARQUEE_KEYWORDS);
   // Let's duplicate the list to ensure there is enough content to loop seamlessly on huge screens
-  const items = [...MARQUEE_KEYWORDS, ...MARQUEE_KEYWORDS, ...MARQUEE_KEYWORDS];
+  const items = [...keywords, ...keywords, ...keywords];
 
   return (
     <div className="relative w-full overflow-hidden bg-brand-yellow py-3 border-y border-near-black z-20 select-none">

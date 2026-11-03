@@ -6,9 +6,35 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, PhoneCall } from 'lucide-react';
 import { CONTACT_TEL_LINK, CONTACT_PHONE } from '../data.ts';
+import { useLanguage, Lang } from '../i18n.tsx';
 import theCaveLogo from '../assets/the-cave-logo.webp';
 
+const LANGS: Lang[] = ['it', 'en'];
+
+/** IT / EN toggle — the active language is highlighted in yellow */
+function LanguageSwitcher({ className = '' }: { className?: string }) {
+  const { lang, setLang } = useLanguage();
+  return (
+    <div className={`flex items-center border border-white/15 bg-near-black/50 ${className}`} role="group" aria-label="Language">
+      {LANGS.map((code) => (
+        <button
+          key={code}
+          type="button"
+          onClick={() => setLang(code)}
+          aria-pressed={lang === code}
+          className={`px-2.5 py-1.5 font-sans text-xs font-bold tracking-widest uppercase transition-colors ${
+            lang === code ? 'bg-brand-yellow text-near-black' : 'text-white/60 hover:text-brand-yellow'
+          }`}
+        >
+          {code}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -26,11 +52,11 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "NEWS", href: "#news" },
-    { name: "FILOSOFIA", href: "#box-philosophy" },
+    { name: t("FILOSOFIA", "PHILOSOPHY"), href: "#box-philosophy" },
     { name: "COMMUNITY", href: "#community" },
-    { name: "CORSI", href: "#programmi" },
-    { name: "SEDI", href: "#sedi" },
-    { name: "ORARI", href: "#orari" },
+    { name: t("CORSI", "CLASSES"), href: "#programmi" },
+    { name: t("SEDI", "LOCATIONS"), href: "#sedi" },
+    { name: t("ORARI", "TIMETABLE"), href: "#orari" },
     { name: "COACH", href: "#coaches" },
   ];
 
@@ -99,7 +125,8 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Prova Gratis Button */}
-        <div className="hidden sm:block">
+        <div className="hidden sm:flex items-center gap-4">
+          <LanguageSwitcher />
           <a
             href={CONTACT_TEL_LINK}
             className="group relative inline-flex items-center justify-center px-6 py-2.5 bg-brand-yellow text-near-black font-sans font-bold text-sm tracking-wider uppercase btn-cut hover:bg-white transition-all duration-200"
@@ -108,16 +135,17 @@ export default function Navbar() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-near-black opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-near-black"></span>
             </span>
-            CHIAMA ORA
+            {t('CHIAMA ORA', 'CALL NOW')}
           </a>
         </div>
 
         {/* Mobile Menu Trigger */}
         <div className="flex items-center space-x-3 sm:space-x-0 lg:hidden">
+          <LanguageSwitcher className="sm:hidden" />
           <a
             href={CONTACT_TEL_LINK}
             className="sm:hidden flex items-center justify-center p-2 bg-brand-yellow text-near-black btn-cut"
-            aria-label="Chiama il Box"
+            aria-label={t('Chiama il Box', 'Call the box')}
           >
             <PhoneCall size={18} />
           </a>
@@ -159,10 +187,10 @@ export default function Navbar() {
               className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-lg text-center tracking-wider uppercase btn-cut flex items-center justify-center"
             >
               <PhoneCall size={20} className="mr-3" />
-              CHIAMA ORA
+              {t('CHIAMA ORA', 'CALL NOW')}
             </a>
             <div className="text-center text-white/40 text-xs font-sans tracking-widest uppercase">
-              CHIAMACI: {CONTACT_PHONE}
+              {t('CHIAMACI', 'CALL US')}: {CONTACT_PHONE}
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@
 
 import { useState, useEffect, FormEvent } from 'react';
 import { X, Flame, Send, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ type SessionType = 'hyrox';
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
+  const { t } = useLanguage();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
@@ -77,7 +79,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Chiudi"
+          aria-label={t('Chiudi', 'Close')}
           className="absolute top-4 right-4 p-2 rounded-full bg-near-black/70 border border-white/10 text-white hover:bg-brand-yellow hover:text-near-black transition-all z-10"
         >
           <X size={16} />
@@ -90,31 +92,37 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <CheckCircle2 size={30} className="text-brand-yellow" />
               </div>
               <h3 className="font-display text-3xl text-white tracking-tight uppercase mb-4">
-                Grazie per aver contattato The Cave!
+                {t('Grazie per aver contattato The Cave!', 'Thanks for contacting The Cave!')}
               </h3>
               <p className="font-sans text-sm text-white/60 leading-relaxed mb-6">
-                Abbiamo ricevuto la tua richiesta. Un nostro coach ti contatterà al più presto per conoscere i tuoi obiettivi e prenotare una lezione demo.
+                {t(
+                  'Abbiamo ricevuto la tua richiesta. Un nostro coach ti contatterà al più presto per conoscere i tuoi obiettivi e prenotare una lezione demo.',
+                  'We have received your request. One of our coaches will contact you as soon as possible to learn about your goals and book a demo class.'
+                )}
               </p>
               <p className="font-sans text-xs font-bold tracking-widest text-brand-yellow uppercase mb-2">
                 The Cave – Hyrox &amp; CrossFit
               </p>
               <p className="font-sans text-xs text-white/40 leading-relaxed">
-                Con i nostri allenamenti troverai la tua migliore forma psico-fisica.
+                {t(
+                  'Con i nostri allenamenti troverai la tua migliore forma psico-fisica.',
+                  'With our training you will find your best physical and mental shape.'
+                )}
               </p>
             </div>
           ) : (
           <>
           <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-2">
-            PRENOTA UNA PROVA
+            {t('PRENOTA UNA PROVA', 'BOOK A TRIAL CLASS')}
           </span>
           <h3 className="font-display text-3xl text-white tracking-tight uppercase mb-6">
-            Lascia i tuoi dati
+            {t('Lascia i tuoi dati', 'Leave your details')}
           </h3>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="booking-nome" className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
-                Nome
+                {t('Nome', 'Name')}
               </label>
               <input
                 id="booking-nome"
@@ -123,7 +131,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 className="w-full py-3 px-4 bg-white/[0.03] border border-white/10 text-white font-sans text-sm placeholder:text-white/25 focus:outline-none focus:border-brand-yellow transition-colors"
-                placeholder="Il tuo nome"
+                placeholder={t('Il tuo nome', 'Your name')}
               />
             </div>
 
@@ -138,13 +146,13 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full py-3 px-4 bg-white/[0.03] border border-white/10 text-white font-sans text-sm placeholder:text-white/25 focus:outline-none focus:border-brand-yellow transition-colors"
-                placeholder="nome@esempio.it"
+                placeholder={t('nome@esempio.it', 'name@example.com')}
               />
             </div>
 
             <div>
               <label htmlFor="booking-telefono" className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
-                Telefono
+                {t('Telefono', 'Phone')}
               </label>
               <input
                 id="booking-telefono"
@@ -159,7 +167,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
             <div>
               <span className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
-                Sessione di prova
+                {t('Sessione di prova', 'Trial session')}
               </span>
               <div className="grid grid-cols-1 gap-3">
                 <button
@@ -179,7 +187,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
             {status === 'error' && (
               <p className="font-sans text-xs text-red-400 text-center">
-                Invio non riuscito. Riprova o chiamaci direttamente.
+                {t('Invio non riuscito. Riprova o chiamaci direttamente.', 'Sending failed. Please try again or call us directly.')}
               </p>
             )}
 
@@ -189,7 +197,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Send size={15} />
-              {status === 'submitting' ? 'INVIO IN CORSO…' : 'INVIA RICHIESTA'}
+              {status === 'submitting' ? t('INVIO IN CORSO…', 'SENDING…') : t('INVIA RICHIESTA', 'SEND REQUEST')}
             </button>
           </form>
           </>

@@ -5,14 +5,15 @@
 
 import { useState } from 'react';
 import { Calendar, ExternalLink, Loader2 } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 const BOOKING_WIDGET_BASE = 'https://cfthecave.shaggyowl.com/frame/palinsesto_completo/all';
 
 const LOCATIONS = [
-  { id: 'mandrione', label: 'Mandrione', param: '1229' },
-  { id: 'cinecitta', label: 'Cinecittà', param: '16935' },
-  { id: 'visita-mandrione', label: 'Visita Medica Mandrione', param: '157432' },
-  { id: 'visita-cinecitta', label: 'Visita Medica Cinecittà', param: '157433' },
+  { id: 'mandrione', label: { it: 'Mandrione', en: 'Mandrione' }, param: '1229' },
+  { id: 'cinecitta', label: { it: 'Cinecittà', en: 'Cinecittà' }, param: '16935' },
+  { id: 'visita-mandrione', label: { it: 'Visita Medica Mandrione', en: 'Medical Check Mandrione' }, param: '157432' },
+  { id: 'visita-cinecitta', label: { it: 'Visita Medica Cinecittà', en: 'Medical Check Cinecittà' }, param: '157433' },
 ] as const;
 
 type LocationId = typeof LOCATIONS[number]['id'];
@@ -23,6 +24,7 @@ function widgetUrl(locationId: LocationId): string {
 }
 
 export default function ScheduleGrid() {
+  const { t } = useLanguage();
   const [loaded, setLoaded] = useState(false);
   const [activeLocation, setActiveLocation] = useState<LocationId>('mandrione');
   const bookingWidgetUrl = widgetUrl(activeLocation);
@@ -42,15 +44,18 @@ export default function ScheduleGrid() {
         <div className="mb-10 md:mb-14 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-              I NOSTRI TURNI GIORNALIERI
+              {t('I NOSTRI TURNI GIORNALIERI', 'OUR DAILY CLASSES')}
             </span>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-              ORARI RUSH <span className="text-outline">HOUR</span>
+              {t('ORARI RUSH', 'RUSH HOUR')} <span className="text-outline">{t('HOUR', 'TIMETABLE')}</span>
             </h2>
             <div className="w-24 h-1 bg-brand-yellow mt-4 mx-auto md:mx-0"></div>
           </div>
           <p className="font-sans text-sm text-white/40 tracking-wider max-w-sm text-center md:text-right">
-            Consulta il palinsesto completo e prenota direttamente la tua classe: il calendario qui sotto è collegato in tempo reale al nostro sistema di prenotazione.
+            {t(
+              'Consulta il palinsesto completo e prenota direttamente la tua classe: il calendario qui sotto è collegato in tempo reale al nostro sistema di prenotazione.',
+              'Check the full timetable and book your class directly: the calendar below is connected in real time to our booking system.'
+            )}
           </p>
         </div>
 
@@ -60,7 +65,7 @@ export default function ScheduleGrid() {
             <div className="flex items-center gap-2.5 shrink-0 self-start md:self-center">
               <Calendar size={16} className="text-brand-yellow/70" />
               <span className="font-sans text-xs font-bold tracking-widest text-white/60 uppercase whitespace-nowrap">
-                Palinsesto & Prenotazioni Live
+                {t('Palinsesto & Prenotazioni Live', 'Live Timetable & Booking')}
               </span>
             </div>
 
@@ -77,7 +82,7 @@ export default function ScheduleGrid() {
                       : 'bg-white/[0.03] border border-white/10 text-white/60 hover:border-brand-yellow/40 hover:text-white'
                   }`}
                 >
-                  {label}
+                  {t(label)}
                 </button>
               ))}
             </div>
@@ -88,7 +93,7 @@ export default function ScheduleGrid() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-wider text-brand-yellow/80 hover:text-brand-yellow uppercase transition-colors shrink-0 self-end md:self-center"
             >
-              Apri a schermo intero
+              {t('Apri a schermo intero', 'Open full screen')}
               <ExternalLink size={12} />
             </a>
           </div>
@@ -98,14 +103,14 @@ export default function ScheduleGrid() {
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#0c0c0b]">
                 <Loader2 size={28} className="text-brand-yellow animate-spin" />
                 <span className="font-sans text-[11px] tracking-widest text-white/40 uppercase">
-                  Caricamento orari...
+                  {t('Caricamento orari...', 'Loading timetable...')}
                 </span>
               </div>
             )}
             <iframe
               key={activeLocation}
               src={bookingWidgetUrl}
-              title="Palinsesto e prenotazione lezioni The Cave"
+              title={t('Palinsesto e prenotazione lezioni The Cave', 'The Cave class timetable and booking')}
               onLoad={() => setLoaded(true)}
               className="w-full h-full border-0"
               loading="lazy"

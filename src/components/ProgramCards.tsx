@@ -7,12 +7,14 @@ import { useState } from 'react';
 import { PROGRAMS, CONTACT_TEL_LINK } from '../data.ts';
 import { ProgramInfo } from '../types.ts';
 import { ArrowUpRight, Check, X, Clock } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 interface ProgramCardsProps {
   onBookTrial: () => void;
 }
 
 export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
+  const { t } = useLanguage();
   const [activeProgram, setActiveProgram] = useState<ProgramInfo | null>(null);
 
   const classiOrdinarie = PROGRAMS.filter(p => ['crossfit', 'hyrox', 'opengym'].includes(p.id));
@@ -35,7 +37,7 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
           <button
             type="button"
             onClick={() => setActiveProgram(prog)}
-            aria-label={`Più info su ${prog.title}`}
+            aria-label={`${t('Più info su', 'More info on')} ${prog.title}`}
             className="p-2.5 border border-white/10 text-brand-yellow rounded-full group-hover:border-brand-yellow group-hover:bg-brand-yellow group-hover:text-near-black transition-all"
           >
             <ArrowUpRight size={18} />
@@ -43,15 +45,15 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
         </div>
 
         <p className="font-sans text-xs font-bold tracking-widest text-[#f2c200]/80 uppercase mb-4">
-          " {prog.quote} "
+          " {t(prog.quote)} "
         </p>
 
         <p className="font-sans text-sm text-white/50 tracking-wide leading-relaxed mb-6 whitespace-pre-line">
-          {prog.description}
+          {t(prog.description)}
         </p>
 
         <ul className="space-y-3 mb-8">
-          {prog.features.map((feat, fIdx) => (
+          {t(prog.features).map((feat, fIdx) => (
             <li key={fIdx} className="flex items-start gap-2.5">
               <div className="bg-[#f2c200]/10 border border-[#f2c200]/30 rounded-full p-0.5 mt-0.5">
                 <Check className="text-brand-yellow" size={12} />
@@ -66,14 +68,14 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
 
       <div className="pt-6 border-t border-white/5 flex items-center justify-between">
         <span className="font-sans text-[10px] tracking-widest text-white/30 uppercase">
-          ATTREZZATURE D'ELITE Rogue & BLOR
+          {t("ATTREZZATURE D'ELITE Rogue & BLOR", 'ELITE EQUIPMENT Rogue & BLOR')}
         </span>
         <button
           type="button"
           onClick={() => setActiveProgram(prog)}
           className="font-sans text-xs tracking-widest text-brand-yellow font-bold uppercase hover:underline cursor-pointer"
         >
-          INFO CORSO
+          {t('INFO CORSO', 'CLASS INFO')}
         </button>
       </div>
     </div>
@@ -88,10 +90,10 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
         {/* Testata principale sezione */}
         <div className="mb-12 md:mb-20 text-center md:text-left">
           <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-            COSA OFFRIAMO
+            {t('COSA OFFRIAMO', 'WHAT WE OFFER')}
           </span>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-            I NOSTRI <span className="text-outline-yellow">CORSI</span>
+            {t('I NOSTRI', 'OUR')} <span className="text-outline-yellow">{t('CORSI', 'CLASSES')}</span>
           </h2>
         </div>
 
@@ -103,13 +105,16 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
           <div className="mb-8 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-                01 / CLASSI ORDINARIE
+                {t('01 / CLASSI ORDINARIE', '01 / REGULAR CLASSES')}
               </span>
               <h3 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-none text-white uppercase">
-                ATTIVITÀ <span className="text-outline-yellow">CORSI</span>
+                {t('ATTIVITÀ', 'GROUP')} <span className="text-outline-yellow">{t('CORSI', 'CLASSES')}</span>
               </h3>
               <p className="font-sans text-sm text-white/40 tracking-wider leading-relaxed mt-4 max-w-lg">
-                Le classi regolari del box: CrossFit, HYROX e Open Gym. Programmate dai nostri coach certificati, aperte a ogni livello.
+                {t(
+                  'Le classi regolari del box: CrossFit, HYROX e Open Gym. Programmate dai nostri coach certificati, aperte a ogni livello.',
+                  "The box's regular classes: CrossFit, HYROX and Open Gym. Programmed by our certified coaches, open to every level."
+                )}
               </p>
             </div>
             <a
@@ -117,7 +122,7 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
               className="inline-flex items-center gap-2 py-3 px-6 border border-brand-yellow/50 text-brand-yellow font-sans font-bold text-sm tracking-widest uppercase btn-cut hover:bg-brand-yellow hover:text-near-black transition-all duration-200 shrink-0 self-start md:self-auto"
             >
               <Clock size={15} />
-              VEDI GLI ORARI
+              {t('VEDI GLI ORARI', 'SEE THE TIMETABLE')}
             </a>
           </div>
 
@@ -133,13 +138,16 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
         <div>
           <div className="mb-8 md:mb-14">
             <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-              02 / PROGRAMMI PERSONALIZZATI
+              {t('02 / PROGRAMMI PERSONALIZZATI', '02 / PERSONALISED PROGRAMS')}
             </span>
             <h3 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-none text-white uppercase">
-              PERCORSI <span className="text-outline-yellow">SU MISURA</span>
+              {t('PERCORSI', 'TAILORED')} <span className="text-outline-yellow">{t('SU MISURA', 'PROGRAMS')}</span>
             </h3>
             <p className="font-sans text-sm text-white/40 tracking-wider leading-relaxed mt-4 max-w-lg">
-              Personal Training e programmazioni dedicate per chi vuole un percorso costruito sui propri obiettivi specifici.
+              {t(
+                'Personal Training e programmazioni dedicate per chi vuole un percorso costruito sui propri obiettivi specifici.',
+                'Personal Training and dedicated programming for those who want a path built around their specific goals.'
+              )}
             </p>
           </div>
 
@@ -171,7 +179,7 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
               <button
                 type="button"
                 onClick={() => setActiveProgram(null)}
-                aria-label="Chiudi"
+                aria-label={t('Chiudi', 'Close')}
                 className="absolute top-4 right-4 p-2 rounded-full bg-near-black/70 border border-white/10 text-white hover:bg-brand-yellow hover:text-near-black transition-all"
               >
                 <X size={16} />
@@ -183,11 +191,11 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
                 {activeProgram.title}
               </h3>
               <p className="font-sans text-xs font-bold tracking-widest text-[#f2c200]/80 uppercase mb-4">
-                " {activeProgram.quote} "
+                " {t(activeProgram.quote)} "
               </p>
 
               <div className="space-y-4 mb-6">
-                {activeProgram.longDescription.map((para, pIdx) => (
+                {t(activeProgram.longDescription).map((para, pIdx) => (
                   <p key={pIdx} className="font-sans text-sm text-white/60 tracking-wide leading-relaxed">
                     {para}
                   </p>
@@ -198,17 +206,17 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
                 {activeProgram.details.map((d, dIdx) => (
                   <div key={dIdx} className="bg-white/[0.02] border border-white/5 p-3">
                     <span className="font-sans text-[10px] tracking-widest text-white/40 uppercase block mb-1">
-                      {d.label}
+                      {t(d.label)}
                     </span>
                     <span className="font-sans text-xs font-bold text-white tracking-wide">
-                      {d.value}
+                      {t(d.value)}
                     </span>
                   </div>
                 ))}
               </div>
 
               <ul className="space-y-3 mb-8">
-                {activeProgram.features.map((feat, fIdx) => (
+                {t(activeProgram.features).map((feat, fIdx) => (
                   <li key={fIdx} className="flex items-start gap-2.5">
                     <div className="bg-[#f2c200]/10 border border-[#f2c200]/30 rounded-full p-0.5 mt-0.5">
                       <Check className="text-brand-yellow" size={12} />
@@ -229,14 +237,14 @@ export default function ProgramCards({ onBookTrial }: ProgramCardsProps) {
                   }}
                   className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200"
                 >
-                  PRENOTA UNA PROVA
+                  {t('PRENOTA UNA PROVA', 'BOOK A TRIAL CLASS')}
                 </button>
               ) : (
                 <a
                   href={CONTACT_TEL_LINK}
                   className="w-full py-4 bg-brand-yellow text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200"
                 >
-                  PRENOTA UNA PROVA
+                  {t('PRENOTA UNA PROVA', 'BOOK A TRIAL CLASS')}
                 </a>
               )}
             </div>

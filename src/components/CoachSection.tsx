@@ -5,8 +5,11 @@
 
 import { COACH_ROLES } from '../data.ts';
 import { User } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 export default function CoachSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="coaches" className="bg-near-black py-16 md:py-24 px-4 md:px-6 border-b border-white/5 relative">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
@@ -15,7 +18,7 @@ export default function CoachSection() {
         {/* Section Heading */}
         <div className="mb-16 md:mb-20 text-center md:text-left">
           <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-            TEAM DI PROFESSIONISTI
+            {t('TEAM DI PROFESSIONISTI', 'A TEAM OF PROFESSIONALS')}
           </span>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
             THE CAVE <span className="text-outline">STAFF</span>
@@ -89,20 +92,20 @@ export default function CoachSection() {
                 <div>
                   <div className="mb-2">
                     <span className="inline-block bg-brand-yellow text-near-black font-sans font-bold text-[10px] tracking-widest px-2.5 py-0.5 uppercase">
-                      {coach.status}
+                      {t(coach.status)}
                     </span>
                   </div>
                   <h3 className="font-display text-xl text-white tracking-tight uppercase mb-2 group-hover:text-brand-yellow transition-colors">
                     {coach.role}
                   </h3>
                   <p className="font-sans text-xs text-white/50 leading-relaxed tracking-wider">
-                    {coach.desc}
+                    {t(coach.desc)}
                   </p>
                 </div>
 
                 {/* Underlined static text to represent high standards */}
                 <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-white/30 font-sans text-[10px] tracking-widest uppercase">
-                  <span>LIVELLO CERTIFICAZIONE</span>
+                  <span>{t('LIVELLO CERTIFICAZIONE', 'CERTIFICATION LEVEL')}</span>
                   <span className="text-brand-yellow/60 font-bold">L1/L2</span>
                 </div>
               </div>

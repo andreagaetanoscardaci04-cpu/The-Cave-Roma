@@ -5,8 +5,10 @@
 
 import { BOX_LOCATIONS, CONTACT_PHONE, CONTACT_TEL_LINK, INSTAGRAM_ACCOUNTS, FACEBOOK_ACCOUNTS } from '../data.ts';
 import { Phone, Mail, Instagram, Facebook } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -17,13 +19,13 @@ export default function Footer() {
         {/* Mandrione address box */}
         <div className="p-8 md:p-12 space-y-4">
           <span className="font-sans text-[11px] font-bold tracking-[0.3em] text-brand-yellow uppercase block">
-            SEDE MANDRIONE
+            {t('SEDE MANDRIONE', 'MANDRIONE LOCATION')}
           </span>
           <h4 className="font-display text-2xl md:text-3xl tracking-wide uppercase">
             THE CAVE — MANDRIONE
           </h4>
           <p className="font-sans text-sm text-white/50 tracking-wide max-w-sm">
-            Via del Mandrione 105, 00181 Roma | CrossFit® & HYROX
+            Via del Mandrione 105, 00181 {t('Roma', 'Rome')} | CrossFit® & HYROX
           </p>
           <a
             href="https://maps.app.goo.gl/qYJm9baFNdriiiNm8"
@@ -31,7 +33,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-1 font-sans text-xs font-bold text-brand-yellow hover:underline uppercase tracking-widest pt-2"
           >
-            <span>APRI IN GOOGLE MAPS</span>
+            <span>{t('APRI IN GOOGLE MAPS', 'OPEN IN GOOGLE MAPS')}</span>
             <span>→</span>
           </a>
         </div>
@@ -39,13 +41,13 @@ export default function Footer() {
         {/* Cinecittà address box */}
         <div className="p-8 md:p-12 space-y-4">
           <span className="font-sans text-[11px] font-bold tracking-[0.3em] text-brand-yellow uppercase block">
-            SEDE CINECITTÀ
+            {t('SEDE CINECITTÀ', 'CINECITTÀ LOCATION')}
           </span>
           <h4 className="font-display text-2xl md:text-3xl tracking-wide uppercase">
             THE CAVE — CINECITTÀ
           </h4>
           <p className="font-sans text-sm text-white/50 tracking-wide max-w-sm">
-            Via Silicella 103, 00169 Roma | HYROX & CrossFit®
+            Via Silicella 103, 00169 {t('Roma', 'Rome')} | HYROX & CrossFit®
           </p>
           <a
             href="https://maps.app.goo.gl/2ZY2RYBbr3uSZGfq8"
@@ -53,7 +55,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-1 font-sans text-xs font-bold text-brand-yellow hover:underline uppercase tracking-widest pt-2"
           >
-            <span>APRI IN GOOGLE MAPS</span>
+            <span>{t('APRI IN GOOGLE MAPS', 'OPEN IN GOOGLE MAPS')}</span>
             <span>→</span>
           </a>
         </div>
@@ -74,12 +76,15 @@ export default function Footer() {
             </span>
           </div>
           <p className="font-sans text-xs text-white/40 leading-relaxed uppercase tracking-wider">
-            La tana sotterranea nei quartieri di Roma dove il carattere viene forgiato e temperato attraverso il sudore, la ghisa, Rogue ed eccellenti coach certificati. Non è una semplice palestra, è la tua nuova casa.
+            {t(
+              'La tana sotterranea nei quartieri di Roma dove il carattere viene forgiato e temperato attraverso il sudore, la ghisa, Rogue ed eccellenti coach certificati. Non è una semplice palestra, è la tua nuova casa.',
+              'The underground den in the neighbourhoods of Rome where character is forged and tempered through sweat, iron, Rogue gear and excellent certified coaches. It is not just a gym, it is your new home.'
+            )}
           </p>
           
           <div className="pt-2 space-y-2.5">
             <span className="font-sans text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase block">
-              SEGUICI SU INSTAGRAM
+              {t('SEGUICI SU INSTAGRAM', 'FOLLOW US ON INSTAGRAM')}
             </span>
             <div className="flex flex-wrap items-center gap-3">
               {INSTAGRAM_ACCOUNTS.map((acc) => (
@@ -102,7 +107,7 @@ export default function Footer() {
             </div>
 
             <span className="font-sans text-[10px] font-bold tracking-[0.25em] text-white/40 uppercase block pt-1">
-              SEGUICI SU FACEBOOK
+              {t('SEGUICI SU FACEBOOK', 'FOLLOW US ON FACEBOOK')}
             </span>
             <div className="flex flex-wrap items-center gap-3">
               {FACEBOOK_ACCOUNTS.map((acc) => (
@@ -129,23 +134,23 @@ export default function Footer() {
         {/* Links Column */}
         <div className="space-y-4">
           <h4 className="font-display text-lg tracking-wider text-white uppercase border-l-2 border-brand-yellow pl-3">
-            NAVIGAZIONE VELOCE
+            {t('NAVIGAZIONE VELOCE', 'QUICK LINKS')}
           </h4>
           <ul className="space-y-2.5 font-sans text-xs font-semibold tracking-wider text-white/50 uppercase">
             <li>
-              <a href="#box-philosophy" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">IL BOX FILOSOFIA</a>
+              <a href="#box-philosophy" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">{t('IL BOX FILOSOFIA', 'OUR PHILOSOPHY')}</a>
             </li>
             <li>
-              <a href="#sedi" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">LE DUE SEDI</a>
+              <a href="#sedi" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">{t('LE DUE SEDI', 'OUR TWO LOCATIONS')}</a>
             </li>
             <li>
-              <a href="#programmi" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">I NOSTRI PROGRAMMI</a>
+              <a href="#programmi" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">{t('I NOSTRI PROGRAMMI', 'OUR PROGRAMS')}</a>
             </li>
             <li>
-              <a href="#coaches" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">COACH CERTIFICATI</a>
+              <a href="#coaches" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">{t('COACH CERTIFICATI', 'CERTIFIED COACHES')}</a>
             </li>
             <li>
-              <a href="#orari" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">I TURNI E ORARI</a>
+              <a href="#orari" className="hover:text-brand-yellow hover:translate-x-1 inline-block transition-transform">{t('I TURNI E ORARI', 'CLASSES & TIMETABLE')}</a>
             </li>
           </ul>
         </div>
@@ -153,10 +158,13 @@ export default function Footer() {
         {/* Contact/Support Column */}
         <div className="space-y-4">
           <h4 className="font-display text-lg tracking-wider text-white uppercase border-l-2 border-brand-yellow pl-3">
-            CONTATTO DIRETTO
+            {t('CONTATTO DIRETTO', 'DIRECT CONTACT')}
           </h4>
           <p className="font-sans text-xs text-white/40 leading-relaxed uppercase tracking-wider">
-            Hai domande su abbonamenti, orari o lezioni di prova? Chiama subito il nostro centralino unico per entrambe le sedi.
+            {t(
+              'Hai domande su abbonamenti, orari o lezioni di prova? Chiama subito il nostro centralino unico per entrambe le sedi.',
+              'Questions about memberships, timetables or trial classes? Call our single number for both locations.'
+            )}
           </p>
           <div className="p-4 bg-white/[0.01] border border-white/5 space-y-3">
             <a 
@@ -178,10 +186,10 @@ export default function Footer() {
       {/* Extreme Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-[10px] text-white/30 tracking-widest uppercase font-semibold">
         <div>
-          © {currentYear} THE CAVE. TUTTI I DIRITTI RISERVATI.
+          © {currentYear} THE CAVE. {t('TUTTI I DIRITTI RISERVATI.', 'ALL RIGHTS RESERVED.')}
         </div>
         <div className="flex items-center space-x-1 divide-x divide-white/10">
-          <span className="pr-2">AFFILIATO UFFICIALE CROSSFIT®</span>
+          <span className="pr-2">{t('AFFILIATO UFFICIALE CROSSFIT®', 'OFFICIAL CROSSFIT® AFFILIATE')}</span>
           <span className="pl-2 pr-2">HYROX PARTNER BOX</span>
           <span className="pl-2 text-brand-yellow">P.IVA 12345678901</span>
         </div>

@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import { REVIEWS } from '../data.ts';
 import { Star, X } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 type Review = (typeof REVIEWS)[0];
 
@@ -25,6 +26,7 @@ function interleaveReviews(reviews: Review[]): Review[] {
 }
 
 export default function TestimonialCarousel() {
+  const { t } = useLanguage();
   const [selectedReview, setSelectedReview] = useState<Review | null>(null);
   const [touchPaused, setTouchPaused] = useState(false);
 
@@ -63,13 +65,16 @@ export default function TestimonialCarousel() {
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 mb-10 md:mb-16 text-center md:text-left">
         <span className="font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase block mb-3">
-          I NOSTRI MEMBRI DICONO DI NOI
+          {t('I NOSTRI MEMBRI DICONO DI NOI', 'WHAT OUR MEMBERS SAY')}
         </span>
         <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
-          VOCI DI <span className="text-outline-yellow">SUCCESSO</span>
+          {t('VOCI DI', 'VOICES OF')} <span className="text-outline-yellow">{t('SUCCESSO', 'SUCCESS')}</span>
         </h2>
         <p className="font-sans text-sm text-white/40 tracking-wider mt-4 max-w-lg mx-auto md:mx-0">
-          Leggi le recensioni certificate dei nostri iscritti che hanno forgiato la propria mente e il proprio corpo a The Cave.
+          {t(
+            'Leggi le recensioni certificate dei nostri iscritti che hanno forgiato la propria mente e il proprio corpo a The Cave.',
+            'Read verified reviews from our members who have forged their mind and body at The Cave. Reviews are shown in their original language.'
+          )}
         </p>
       </div>
 
@@ -101,7 +106,7 @@ export default function TestimonialCarousel() {
                     ))}
                   </div>
                   <span className="text-[9px] font-sans text-white/20 tracking-widest uppercase group-hover:text-brand-yellow/60 transition-colors">
-                    ESPANDI
+                    {t('ESPANDI', 'EXPAND')}
                   </span>
                 </div>
                 <p className="font-sans text-sm sm:text-base text-white/80 leading-relaxed italic mb-6 line-clamp-4">
@@ -113,7 +118,7 @@ export default function TestimonialCarousel() {
                   <h4 className="font-sans font-bold text-sm text-white uppercase tracking-wider">{rev.author}</h4>
                   <div className="flex items-center space-x-1.5 mt-0.5">
                     <span className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse" />
-                    <span className="font-mono text-[9px] text-[#2ecd6c] tracking-widest uppercase">VERIFICATO</span>
+                    <span className="font-mono text-[9px] text-[#2ecd6c] tracking-widest uppercase">{t('VERIFICATO', 'VERIFIED')}</span>
                   </div>
                 </div>
                 {rev.source === 'trustpilot' ? (
@@ -145,7 +150,7 @@ export default function TestimonialCarousel() {
             <button
               onClick={() => setSelectedReview(null)}
               className="absolute top-4 right-4 w-8 h-8 border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white transition-all"
-              aria-label="Chiudi"
+              aria-label={t('Chiudi', 'Close')}
             >
               <X size={16} />
             </button>
@@ -164,7 +169,7 @@ export default function TestimonialCarousel() {
                 </h4>
                 <div className="flex items-center space-x-1.5 mt-1">
                   <span className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse" />
-                  <span className="font-mono text-[10px] text-[#2ecd6c] tracking-widest uppercase">RECENSIONE VERIFICATA</span>
+                  <span className="font-mono text-[10px] text-[#2ecd6c] tracking-widest uppercase">{t('RECENSIONE VERIFICATA', 'VERIFIED REVIEW')}</span>
                 </div>
               </div>
               {selectedReview.source === 'trustpilot' ? (

@@ -3,11 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { Localized } from './i18n.tsx';
+
 export interface LocationInfo {
   id: string;
   name: string;
   size: string;
-  description: string;
+  description: Localized;
   address: string;
   postalCode: string;
   city: string;
@@ -17,18 +19,18 @@ export interface LocationInfo {
 }
 
 export interface ProgramDetail {
-  label: string;
-  value: string;
+  label: Localized;
+  value: Localized;
 }
 
 export interface ProgramInfo {
   id: string;
   title: string;
-  quote: string;
-  description: string;
-  features: string[];
+  quote: Localized;
+  description: Localized;
+  features: Localized<string[]>;
   image: string;
-  longDescription: string[];
+  longDescription: Localized<string[]>;
   details: ProgramDetail[];
 }
 

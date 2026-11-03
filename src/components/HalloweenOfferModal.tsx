@@ -5,6 +5,7 @@
 
 import { useState, useEffect, FormEvent } from 'react';
 import { X, Send, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../i18n.tsx';
 
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -63,6 +64,7 @@ function Spider({ className = '' }: { className?: string }) {
 }
 
 export default function HalloweenOfferModal() {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [nomeCognome, setNomeCognome] = useState('');
   const [telefono, setTelefono] = useState('');
@@ -132,7 +134,7 @@ export default function HalloweenOfferModal() {
         <button
           type="button"
           onClick={close}
-          aria-label="Chiudi"
+          aria-label={t('Chiudi', 'Close')}
           className="absolute top-4 right-4 p-2 rounded-full bg-near-black/70 border border-white/10 text-white hover:bg-[#ff7a1a] hover:text-near-black transition-all z-10"
         >
           <X size={16} />
@@ -142,28 +144,28 @@ export default function HalloweenOfferModal() {
           <span className="text-4xl block mb-3" aria-hidden="true">🎃</span>
 
           <span className="font-sans text-xs font-bold tracking-[0.3em] text-[#ff7a1a] uppercase block mb-2">
-            Promo Halloween
+            {t('Promo Halloween', 'Halloween Offer')}
           </span>
 
           <h3 className="font-display text-4xl text-white tracking-tight uppercase leading-none mb-6">
-            Dolcetto o <span className="text-[#ff7a1a]">allenamento?</span>
+            {t('Dolcetto o', 'Trick or')} <span className="text-[#ff7a1a]">{t('allenamento?', 'training?')}</span>
           </h3>
 
           <div className="border border-[#ff7a1a]/30 bg-[#ff7a1a]/5 p-5 mb-6">
             <span className="font-sans text-[11px] font-bold tracking-[0.25em] text-white/60 uppercase block mb-2">
-              Riservata ai nuovi iscritti
+              {t('Riservata ai nuovi iscritti', 'New members only')}
             </span>
             <p className="font-display text-2xl text-white uppercase leading-tight">
-              2 mensilità
+              {t('2 mensilità', '2 months')}
             </p>
             <p className="font-display text-5xl text-[#ff7a1a] leading-none my-2">
               {PROMO_PRICE}€
             </p>
             <p className="font-sans text-sm text-white/50">
-              anziché <span className="line-through">{FULL_PRICE}€</span>
+              {t('anziché', 'instead of')} <span className="line-through">{FULL_PRICE}€</span>
             </p>
             <p className="font-sans text-[11px] font-bold tracking-[0.2em] text-[#ff7a1a] uppercase mt-3 pt-3 border-t border-[#ff7a1a]/20">
-              Promo valida fino al 30 novembre
+              {t('Promo valida fino al 30 novembre', 'Offer valid until 30 November')}
             </p>
           </div>
 
@@ -173,22 +175,28 @@ export default function HalloweenOfferModal() {
                 <CheckCircle2 size={26} className="text-[#ff7a1a]" />
               </div>
               <h4 className="font-display text-2xl text-white tracking-tight uppercase mb-2">
-                Richiesta inviata!
+                {t('Richiesta inviata!', 'Request sent!')}
               </h4>
               <p className="font-sans text-sm text-white/60 leading-relaxed">
-                Il nostro staff ti contatterà al numero indicato per attivare la promo di Halloween.
+                {t(
+                  'Il nostro staff ti contatterà al numero indicato per attivare la promo di Halloween.',
+                  'Our staff will contact you at the number provided to activate the Halloween offer.'
+                )}
               </p>
             </div>
           ) : (
             <>
               <p className="font-sans text-sm text-white/60 leading-relaxed mb-6">
-                Vuoi entrare nella community di The Cave? Lascia nome e numero: ti ricontattiamo noi per attivare la promo.
+                {t(
+                  'Vuoi entrare nella community di The Cave? Lascia nome e numero: ti ricontattiamo noi per attivare la promo.',
+                  'Want to join The Cave community? Leave your name and number: we will get back to you to activate the offer.'
+                )}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4 text-left">
                 <div>
                   <label htmlFor="halloween-nome" className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
-                    Nome e Cognome
+                    {t('Nome e Cognome', 'Full name')}
                   </label>
                   <input
                     id="halloween-nome"
@@ -197,13 +205,13 @@ export default function HalloweenOfferModal() {
                     value={nomeCognome}
                     onChange={(e) => setNomeCognome(e.target.value)}
                     className="w-full py-3 px-4 bg-white/[0.03] border border-white/10 text-white font-sans text-sm placeholder:text-white/25 focus:outline-none focus:border-[#ff7a1a] transition-colors"
-                    placeholder="Mario Rossi"
+                    placeholder={t('Mario Rossi', 'John Smith')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="halloween-telefono" className="font-sans text-[11px] font-bold tracking-widest text-white/50 uppercase block mb-2">
-                    Telefono
+                    {t('Telefono', 'Phone')}
                   </label>
                   <input
                     id="halloween-telefono"
@@ -218,7 +226,7 @@ export default function HalloweenOfferModal() {
 
                 {status === 'error' && (
                   <p className="font-sans text-xs text-red-400 text-center">
-                    Invio non riuscito. Riprova tra qualche istante.
+                    {t('Invio non riuscito. Riprova tra qualche istante.', 'Sending failed. Please try again in a moment.')}
                   </p>
                 )}
 
@@ -228,7 +236,7 @@ export default function HalloweenOfferModal() {
                   className="w-full py-4 bg-[#ff7a1a] text-near-black font-sans font-bold text-sm text-center tracking-widest uppercase btn-cut flex items-center justify-center gap-2 hover:bg-white transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   <Send size={15} />
-                  {status === 'submitting' ? 'INVIO IN CORSO…' : 'RICHIEDI LA PROMO'}
+                  {status === 'submitting' ? t('INVIO IN CORSO…', 'SENDING…') : t('RICHIEDI LA PROMO', 'CLAIM THE OFFER')}
                 </button>
               </form>
             </>

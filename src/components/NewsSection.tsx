@@ -5,6 +5,7 @@
 
 import { Megaphone, CalendarDays, Clock, MapPin, PhoneCall, Award } from 'lucide-react';
 import workshopPoster from '../assets/hyrox-workshop.jpeg';
+import { useLanguage } from '../i18n.tsx';
 
 const STATIONS = ['Sled Push', 'Sled Pull', 'SkiErg', 'RowErg', 'Wall Balls'];
 
@@ -14,6 +15,8 @@ const PHONES = [
 ];
 
 export default function NewsSection() {
+  const { lang, t } = useLanguage();
+
   return (
     <section id="news" className="bg-near-black py-16 md:py-24 px-4 md:px-6 relative border-b border-white/5 overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-yellow/30 to-transparent" />
@@ -24,7 +27,7 @@ export default function NewsSection() {
         <div className="mb-10 md:mb-14 text-center md:text-left">
           <span className="inline-flex items-center gap-2 font-sans text-xs font-bold tracking-[0.3em] text-brand-yellow uppercase mb-3">
             <Megaphone size={14} />
-            NEWS DAL BOX
+            {t('NEWS DAL BOX', 'NEWS FROM THE BOX')}
           </span>
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white uppercase">
             HYROX <span className="text-outline-yellow">Technical Workshop</span>
@@ -40,7 +43,7 @@ export default function NewsSection() {
               <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-yellow z-10" />
               <img
                 src={workshopPoster}
-                alt="Locandina HYROX Technical Workshop — 7 novembre, The Cave Mandrione"
+                alt={t('Locandina HYROX Technical Workshop — 7 novembre, The Cave Mandrione', 'HYROX Technical Workshop poster — 7 November, The Cave Mandrione')}
                 loading="lazy"
                 className="w-full h-auto block"
               />
@@ -52,19 +55,22 @@ export default function NewsSection() {
 
             <div className="space-y-4">
               <p className="font-display text-3xl md:text-4xl text-white tracking-tight leading-tight uppercase">
-                La tua prossima performance <span className="text-brand-yellow">parte dalla tecnica.</span>
+                {t('La tua prossima performance', 'Your next performance')} <span className="text-brand-yellow">{t('parte dalla tecnica.', 'starts with technique.')}</span>
               </p>
               <p className="font-sans text-base text-white/70 tracking-wide leading-relaxed">
-                Il 7 novembre arriva a The Cave l'HYROX Technical Workshop: una giornata per lavorare sui dettagli che fanno la differenza in gara, con uno dei migliori atleti mondiali come ospite docente.
+                {t(
+                  "Il 7 novembre arriva a The Cave l'HYROX Technical Workshop: una giornata per lavorare sui dettagli che fanno la differenza in gara, con uno dei migliori atleti mondiali come ospite docente.",
+                  "On 7 November the HYROX Technical Workshop comes to The Cave: a full day working on the details that make the difference on race day, with one of the world's best athletes as guest coach."
+                )}
               </p>
             </div>
 
             {/* Data, orario, luogo */}
             <div className="grid grid-cols-1 sm:grid-cols-3 border border-white/10 divide-y sm:divide-y-0 sm:divide-x divide-white/10 bg-[#0c0c0b]">
               {[
-                { Icon: CalendarDays, label: 'Data', value: '7 Novembre' },
-                { Icon: Clock, label: 'Orario', value: '9:00 – 17:00' },
-                { Icon: MapPin, label: 'Dove', value: 'Via del Mandrione 105' },
+                { Icon: CalendarDays, label: t('Data', 'Date'), value: t('7 Novembre', '7 November') },
+                { Icon: Clock, label: t('Orario', 'Time'), value: '9:00 – 17:00' },
+                { Icon: MapPin, label: t('Dove', 'Where'), value: 'Via del Mandrione 105' },
               ].map(({ Icon, label, value }) => (
                 <div key={label} className="p-5 flex items-center gap-3">
                   <Icon size={18} className="text-brand-yellow shrink-0" />
@@ -82,15 +88,15 @@ export default function NewsSection() {
                 <Award size={18} className="text-brand-yellow" />
               </div>
               <div>
-                <span className="font-sans text-[10px] font-bold tracking-[0.25em] text-brand-yellow uppercase block mb-0.5">Ospite docente</span>
-                <span className="font-display text-xl text-white uppercase leading-tight">Uno dei migliori atleti mondiali</span>
+                <span className="font-sans text-[10px] font-bold tracking-[0.25em] text-brand-yellow uppercase block mb-0.5">{t('Ospite docente', 'Guest coach')}</span>
+                <span className="font-display text-xl text-white uppercase leading-tight">{t('Uno dei migliori atleti mondiali', "One of the world's best athletes")}</span>
               </div>
             </div>
 
             {/* Stazioni */}
             <div className="space-y-3">
               <span className="font-sans text-xs font-bold tracking-[0.3em] text-white/50 uppercase block">
-                Focus su 5 stazioni
+                {t('Focus su 5 stazioni', 'Focus on 5 stations')}
               </span>
               <div className="flex flex-wrap gap-2">
                 {STATIONS.map((station) => (
@@ -102,18 +108,24 @@ export default function NewsSection() {
                   </span>
                 ))}
               </div>
-              <p className="font-sans text-sm text-white/60 tracking-wide leading-relaxed pt-1">
-                Dalla tecnica alla pratica, con una <strong className="text-white">simulazione HYROX</strong> per mettere alla prova quanto appreso.
-              </p>
+              {lang === 'it' ? (
+                <p className="font-sans text-sm text-white/60 tracking-wide leading-relaxed pt-1">
+                  Dalla tecnica alla pratica, con una <strong className="text-white">simulazione HYROX</strong> per mettere alla prova quanto appreso.
+                </p>
+              ) : (
+                <p className="font-sans text-sm text-white/60 tracking-wide leading-relaxed pt-1">
+                  From technique to practice, with a <strong className="text-white">HYROX simulation</strong> to put what you've learned to the test.
+                </p>
+              )}
             </div>
 
             {/* Iscrizioni */}
             <div className="pt-6 border-t border-white/10 space-y-4">
               <div className="flex items-center gap-3">
                 <span className="inline-block bg-brand-yellow text-near-black font-sans font-extrabold text-xs tracking-[0.3em] px-3 py-1 uppercase">
-                  Posti limitati
+                  {t('Posti limitati', 'Limited spots')}
                 </span>
-                <span className="font-sans text-xs text-white/50 tracking-widest uppercase">Info e iscrizioni</span>
+                <span className="font-sans text-xs text-white/50 tracking-widest uppercase">{t('Info e iscrizioni', 'Info & registration')}</span>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 {PHONES.map(({ label, href }, idx) => (
